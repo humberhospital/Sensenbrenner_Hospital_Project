@@ -47,6 +47,6 @@ namespace SensenbrennerHospital.Models
         public DbSet<DonorInfo> DonorInfos { get; set; }
         public DbSet<Donation> Donations { get; set; }
         public DbSet<Volunteer> Volunteers { get; set; }
-        public DbSet<CurrentVolunteerPositions> CurrentVolunteerPositions { get; set; }
+        public DbSet<VolunteerPositions> VolunteerPositions { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SensenbrennerHospital.Models
 {
-    public class CurrentVolunteerPositions
+    public class VolunteerPositions
     {
         [Key]
         public int CvpID { get; set; }
