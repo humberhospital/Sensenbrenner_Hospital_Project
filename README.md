@@ -1,4 +1,4 @@
-# Sensenbrenner_Hospital_Project
+# Sensenbrenner Hospital Project
 ## TODO
 - [x] Build models to represent table data
 - [x] Create database for project
