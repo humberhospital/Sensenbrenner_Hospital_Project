@@ -86,7 +86,7 @@ namespace SensenbrennerHospital.Controllers
         // POST: api/CareerData/AddCareer
         [ResponseType(typeof(Career))]
         [HttpPost]
-        public IHttpActionResult AddCareer(Career career)
+        public IHttpActionResult AddCareer([FromBody]Career career)
         {
             if (!ModelState.IsValid)
             {
@@ -96,11 +96,12 @@ namespace SensenbrennerHospital.Controllers
             db.Careers.Add(career);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = career.CareerID }, career);
+            return Ok(career.CareerID);
         }
 
         // DELETE: api/CareerData/5
         [ResponseType(typeof(Career))]
+        [HttpPost]
         public IHttpActionResult DeleteCareer(int id)
         {
             Career career = db.Careers.Find(id);
