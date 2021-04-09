@@ -164,7 +164,7 @@ namespace SensenbrennerHospital.Controllers
 
             if (httpResponse.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             }
             else
             {
