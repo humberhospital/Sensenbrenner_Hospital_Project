@@ -204,6 +204,10 @@
     <Compile Include="Migrations\202104090054102_testmigration.Designer.cs">
       <DependentUpon>202104090054102_testmigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104092125562_databaseFix.cs" />
+    <Compile Include="Migrations\202104092125562_databaseFix.Designer.cs">
+      <DependentUpon>202104092125562_databaseFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -320,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104090054102_testmigration.resx">
       <DependentUpon>202104090054102_testmigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104092125562_databaseFix.resx">
+      <DependentUpon>202104092125562_databaseFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
