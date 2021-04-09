@@ -16,14 +16,16 @@ namespace SensenbrennerHospital.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/AppointmentBookingData
-        public IQueryable<AppointmentBooking> GetAppointmentBookings()
+        // GET: api/AppointmentBookingData/ListAppointmentBookings
+        [HttpGet]
+        public IEnumerable<AppointmentBooking> ListAppointmentBookings()
         {
             return db.AppointmentBookings;
         }
 
-        // GET: api/AppointmentBookingData/5
+        // GET: api/AppointmentBookingData/GetAppointmentBooking/5
         [ResponseType(typeof(AppointmentBooking))]
+        [HttpGet]
         public IHttpActionResult GetAppointmentBooking(int id)
         {
             AppointmentBooking appointmentBooking = db.AppointmentBookings.Find(id);
@@ -35,9 +37,10 @@ namespace SensenbrennerHospital.Controllers
             return Ok(appointmentBooking);
         }
 
-        // PUT: api/AppointmentBookingData/5
+        // POST: api/AppointmentBookingData/UpdateAppointmentBooking/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAppointmentBooking(int id, AppointmentBooking appointmentBooking)
+        [HttpPost]
+        public IHttpActionResult UpdateAppointmentBooking(int id, [FromBody]AppointmentBooking appointmentBooking)
         {
             if (!ModelState.IsValid)
             {
@@ -70,9 +73,10 @@ namespace SensenbrennerHospital.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/AppointmentBookingData
+        // POST: api/AppointmentBookingData/AddAppointmentBooking
         [ResponseType(typeof(AppointmentBooking))]
-        public IHttpActionResult PostAppointmentBooking(AppointmentBooking appointmentBooking)
+        [HttpPost]
+        public IHttpActionResult AddAppointmentBooking([FromBody]AppointmentBooking appointmentBooking)
         {
             if (!ModelState.IsValid)
             {
@@ -82,11 +86,12 @@ namespace SensenbrennerHospital.Controllers
             db.AppointmentBookings.Add(appointmentBooking);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = appointmentBooking.AppointmentID }, appointmentBooking);
+            return Ok(appointmentBooking.AppointmentID);
         }
 
-        // DELETE: api/AppointmentBookingData/5
+        // DELETE: api/AppointmentBookingData/DeleteAppointmentBooking/5
         [ResponseType(typeof(AppointmentBooking))]
+        [HttpPost]
         public IHttpActionResult DeleteAppointmentBooking(int id)
         {
             AppointmentBooking appointmentBooking = db.AppointmentBookings.Find(id);
