@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SensenbrennerHospital.Controllers
 {
-    public class DepartmenttController : Controller
+    public class DepartmentController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
