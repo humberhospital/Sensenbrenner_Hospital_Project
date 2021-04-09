@@ -10,6 +10,8 @@ namespace SensenbrennerHospital.Models.ViewModels
 
         //Information about the user
         public UserInfoDto user { get; set; }
-         
+
+        public IEnumerable<DonationDto> alldonations { get; set; }
+
     }
 }

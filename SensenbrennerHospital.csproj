@@ -187,6 +187,8 @@
     <Compile Include="Controllers\Donation.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
+    <Compile Include="Controllers\UserInfoDataController.cs" />
     <Compile Include="Controllers\VolunteerDataController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -291,6 +293,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Departmentt\" />
+    <Folder Include="Views\UserInfo\" />
     <Folder Include="Views\VolunteerData\" />
     <Folder Include="Views\Volunteerr\" />
   </ItemGroup>
