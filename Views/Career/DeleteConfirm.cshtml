@@ -1,0 +1,56 @@
+﻿@model SensenbrennerHospital.Models.Career
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>DeleteConfirm</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Career</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CareerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CareerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CareerPayRange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CareerPayRange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CareerType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CareerType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CareerDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CareerDescription)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
