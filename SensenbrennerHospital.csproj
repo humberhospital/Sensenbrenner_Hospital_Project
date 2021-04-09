@@ -183,6 +183,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppointmentBookingController.cs" />
     <Compile Include="Controllers\AppointmentBookingDataController.cs" />
+    <Compile Include="Controllers\CareerController.cs" />
     <Compile Include="Controllers\CareerDataController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\Donation.cs" />
@@ -294,6 +295,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\AppointmentBooking\" />
+    <Folder Include="Views\Career\" />
     <Folder Include="Views\Departmentt\" />
     <Folder Include="Views\UserInfo\" />
     <Folder Include="Views\VolunteerData\" />
