@@ -16,17 +16,29 @@ namespace SensenbrennerHospital.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/CareerData
-        public IQueryable<Career> GetCareers()
+        /// <summary>
+        /// Retrieves a list of all career postings
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/CareerData/ListCareers
+        [HttpGet]
+        public IEnumerable<Career> ListCareers()
         {
             return db.Careers;
         }
 
-        // GET: api/CareerData/5
+        /// <summary>
+        /// Retrieves a specific career posting by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        // GET: api/CareerData/GetCareer/5
         [ResponseType(typeof(Career))]
+        [HttpGet]
         public IHttpActionResult GetCareer(int id)
         {
             Career career = db.Careers.Find(id);
+
             if (career == null)
             {
                 return NotFound();
@@ -35,9 +47,10 @@ namespace SensenbrennerHospital.Controllers
             return Ok(career);
         }
 
-        // PUT: api/CareerData/5
+        // POST: api/CareerData/UpdateCareer/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCareer(int id, Career career)
+        [HttpPost]
+        public IHttpActionResult UpdateCareer(int id, [FromBody]Career career)
         {
             if (!ModelState.IsValid)
             {
@@ -70,9 +83,10 @@ namespace SensenbrennerHospital.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/CareerData
+        // POST: api/CareerData/AddCareer
         [ResponseType(typeof(Career))]
-        public IHttpActionResult PostCareer(Career career)
+        [HttpPost]
+        public IHttpActionResult AddCareer(Career career)
         {
             if (!ModelState.IsValid)
             {
