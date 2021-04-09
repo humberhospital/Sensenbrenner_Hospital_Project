@@ -181,7 +181,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Donation.cs" />
+    <Compile Include="Controllers\DepartmenttController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,9 +191,9 @@
     <Compile Include="Migrations\202104082256081_base.Designer.cs">
       <DependentUpon>202104082256081_base.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104090021131_updateddonationvolunteer04082021821.cs" />
-    <Compile Include="Migrations\202104090021131_updateddonationvolunteer04082021821.Designer.cs">
-      <DependentUpon>202104090021131_updateddonationvolunteer04082021821.cs</DependentUpon>
+    <Compile Include="Migrations\202104090054102_testmigration.cs" />
+    <Compile Include="Migrations\202104090054102_testmigration.Designer.cs">
+      <DependentUpon>202104090054102_testmigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
@@ -201,12 +201,6 @@
     <Compile Include="Models\AppointmentBooking.cs" />
     <Compile Include="Models\Career.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\ViewModels\ListDonation.cs" />
-    <Compile Include="Models\ViewModels\ListUser.cs" />
-    <Compile Include="Models\ViewModels\ShowDonation.cs" />
-    <Compile Include="Models\ViewModels\ShowUser.cs" />
-    <Compile Include="Models\ViewModels\UpdateUser.cs" />
-    <Compile Include="Models\VolunteerPosition.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DoctorInfo.cs" />
     <Compile Include="Models\Donation.cs" />
@@ -222,6 +216,7 @@
     <Compile Include="Models\ReportsTable.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\Volunteer.cs" />
+    <Compile Include="Models\VolunteerPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -284,6 +279,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Departmentt\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -302,8 +298,8 @@
     <EmbeddedResource Include="Migrations\202104082256081_base.resx">
       <DependentUpon>202104082256081_base.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104090021131_updateddonationvolunteer04082021821.resx">
-      <DependentUpon>202104090021131_updateddonationvolunteer04082021821.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104090054102_testmigration.resx">
+      <DependentUpon>202104090054102_testmigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
