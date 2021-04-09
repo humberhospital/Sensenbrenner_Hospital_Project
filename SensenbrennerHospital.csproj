@@ -181,6 +181,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Donation.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,13 +191,22 @@
     <Compile Include="Migrations\202104082256081_base.Designer.cs">
       <DependentUpon>202104082256081_base.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104090021131_updateddonationvolunteer04082021821.cs" />
+    <Compile Include="Migrations\202104090021131_updateddonationvolunteer04082021821.Designer.cs">
+      <DependentUpon>202104090021131_updateddonationvolunteer04082021821.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppointmentBooking.cs" />
     <Compile Include="Models\Career.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\VolunteerPositions.cs" />
+    <Compile Include="Models\ViewModels\ListDonation.cs" />
+    <Compile Include="Models\ViewModels\ListUser.cs" />
+    <Compile Include="Models\ViewModels\ShowDonation.cs" />
+    <Compile Include="Models\ViewModels\ShowUser.cs" />
+    <Compile Include="Models\ViewModels\UpdateUser.cs" />
+    <Compile Include="Models\VolunteerPosition.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DoctorInfo.cs" />
     <Compile Include="Models\Donation.cs" />
@@ -291,6 +301,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104082256081_base.resx">
       <DependentUpon>202104082256081_base.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104090021131_updateddonationvolunteer04082021821.resx">
+      <DependentUpon>202104090021131_updateddonationvolunteer04082021821.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

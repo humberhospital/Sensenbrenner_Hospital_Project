@@ -29,7 +29,7 @@ namespace SensenbrennerHospital.Models
         public decimal DonationAmount { get; set; }
 
         [DisplayName("Donation Date")]
-        public DateTime DepartmentClass { get; set; }
+        public DateTime DonationDate { get; set; }
 
 
     }
