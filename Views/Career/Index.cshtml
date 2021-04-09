@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SensenbrennerHospital.Models.Career>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CareerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CareerPayRange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CareerType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CareerDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CareerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CareerPayRange)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CareerType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CareerDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CareerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CareerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CareerID })
+        </td>
+    </tr>
+}
+
+</table>

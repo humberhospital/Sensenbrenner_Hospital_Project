@@ -291,11 +291,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Career\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\AppointmentBooking\" />
-    <Folder Include="Views\Career\" />
     <Folder Include="Views\Departmentt\" />
     <Folder Include="Views\UserInfo\" />
     <Folder Include="Views\VolunteerData\" />
