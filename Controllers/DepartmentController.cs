@@ -9,9 +9,11 @@ namespace SensenbrennerHospital.Controllers
 {
     public class DepartmentController : Controller
     {
+
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Department
+        [Authorize]
         public ActionResult Index()
         {
             return View();
