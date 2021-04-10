@@ -309,6 +309,7 @@
     <Content Include="Views\Department\List.cshtml" />
     <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\DeleteConfirm.cshtml" />
+    <Content Include="Views\Department\DepartmentList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

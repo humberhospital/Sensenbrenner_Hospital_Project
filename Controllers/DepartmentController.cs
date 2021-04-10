@@ -107,5 +107,22 @@ namespace SensenbrennerHospital.Controllers
                 return RedirectToAction("Error");
             }
         }
+
+        [HttpGet]
+        public IEnumerable<DepartmentDto> DepartmentList()
+        {
+            string url = "DepartmentData/GetListOfDepartments";
+            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                IEnumerable<DepartmentDto> DepartmentList = httpResponse.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+                return DepartmentList;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

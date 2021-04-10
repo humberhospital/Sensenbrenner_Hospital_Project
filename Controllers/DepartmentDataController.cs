@@ -18,10 +18,10 @@ namespace SensenbrennerHospital.Controllers
         [HttpGet]
         public IHttpActionResult GetDepartments()
         {
-            List<Department> Departments = db.Departments.ToList();
+            List<Department> departments = db.Departments.ToList();
             List<DepartmentDto> departmentDtos = new List<DepartmentDto>();
 
-            foreach (var department in Departments)
+            foreach (var department in departments)
             {
                 DepartmentDto NewDepartment = new DepartmentDto
                 {
@@ -77,6 +77,26 @@ namespace SensenbrennerHospital.Controllers
             db.SaveChanges();
 
             return Ok(department);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetListOfDepartments()
+        {
+            List<Department> departments = db.Departments.ToList();
+            List<DepartmentDto> departmentDtos = new List<DepartmentDto>();
+
+            foreach (var department in departments)
+            {
+                DepartmentDto NewDepartment = new DepartmentDto
+                {
+                    DepartmentID = department.DepartmentID,
+                    DepartmentName = department.DepartmentName,
+                    DepartmentPhoneNumber = department.DepartmentPhoneNumber
+                };
+                departmentDtos.Add(NewDepartment);
+            }
+
+            return Ok(departmentDtos);
         }
     }
 }
