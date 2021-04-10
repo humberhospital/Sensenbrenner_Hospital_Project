@@ -18,7 +18,9 @@ namespace SensenbrennerHospital.Models
     public class DepartmentDto
     {
         public int DepartmentID { get; set; }
+        [Display(Name = "Department Name")]
         public string DepartmentName { get; set; }
+        [Display(Name = "Department Phone Number")]
         public string DepartmentPhoneNumber { get; set; }
     }
 }

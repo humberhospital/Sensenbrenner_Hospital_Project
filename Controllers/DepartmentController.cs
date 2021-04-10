@@ -1,41 +1,111 @@
 ﻿using SensenbrennerHospital.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
+using System.Web.Http.Description;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace SensenbrennerHospital.Controllers
 {
     public class DepartmentController : Controller
     {
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
+        private static readonly HttpClient client;
 
-        private ApplicationDbContext db = new ApplicationDbContext();
+        static DepartmentController()
+        {
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false
+            };
+            client = new HttpClient(handler);
+            client.BaseAddress = new Uri("https://localhost:44336/api/");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
 
-        // GET: Department
-        [Authorize]
-        public ActionResult Index()
+        public ActionResult List()
+        {
+            string url = "DepartmentData/GetDepartments";
+            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                IEnumerable<DepartmentDto> DepartmentList = httpResponse.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+                return View(DepartmentList);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create()
         {
             return View();
         }
 
-        public IEnumerable<DepartmentDto> GetDepartments()
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create(Department NewDepartment)
         {
-            List<Department> Departments = db.Departments.ToList();
-            List<DepartmentDto> DepartmentDtos = new List<DepartmentDto>();
-
-            foreach (var department in Departments)
+            string url = "DepartmentData/AddDepartment";
+            
+            HttpContent content = new StringContent(jss.Serialize(NewDepartment));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
+            //Debug.WriteLine(jss.Serialize(NewDepartment));
+            if (httpResponse.IsSuccessStatusCode)
             {
-                DepartmentDto NewDepartment = new DepartmentDto
-                {
-                    DepartmentID = department.DepartmentID,
-                    DepartmentName = department.DepartmentName,
-                    DepartmentPhoneNumber = department.DepartmentPhoneNumber
-                };
-                DepartmentDtos.Add(NewDepartment);
+                int DepartmentID = httpResponse.Content.ReadAsAsync<int>().Result;
+                return RedirectToAction("List");
             }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
 
-            return DepartmentDtos;
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteConfirm(int id)
+        {
+            string url = "DepartmentData/GetDepartment/" + id;
+            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                DepartmentDto department = new DepartmentDto();
+                department = httpResponse.Content.ReadAsAsync<DepartmentDto>().Result;
+                return View(department);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delete(int id)
+        {
+            string url = "DepartmentData/DeleteDepartment/" + id;
+            HttpContent content = new StringContent("");
+            HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
     }
 }
