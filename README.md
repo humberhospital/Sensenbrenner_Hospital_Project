@@ -21,29 +21,29 @@ Bryan -
 Nodir - 
 
 ## Progress
-Luis: 
-Completed 
+### Luis: 
+#### Completed 
 - [x] Web API Controllers for booking and career postings pages
 - [x] Controllers for booking and career postings pages
 - [x] Views for both features
-Next Steps 
+#### Next Steps 
 - [ ] Calendar widget for appointment bookings page
 - [ ] Integrate appointment booking table with doctors table
 - [ ] Create admin view for appointment bookings table
 
-Elle: 
-Completed
+### Elle: 
+#### Completed
 - [x] Models
-Next Steps - 
+#### Next Steps - 
 
-Mohamed: 
-Completed -
-Next Steps -
+### Mohamed: 
+#### Completed -
+#### Next Steps -
 
-Bryan: 
-Completed -
-Next Steps -
+### Bryan: 
+#### Completed -
+#### Next Steps -
 
-Nodir: 
-Completed -
-Next Steps -
+### Nodir: 
+#### Completed -
+#### Next Steps -
