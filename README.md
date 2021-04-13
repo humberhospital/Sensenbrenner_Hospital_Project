@@ -11,6 +11,7 @@ Hospital website redesign for small community in northern Ontario, Sensenbrenner
 - [ ] Add CRUD to All Features
 - [ ] Build REST api for modifying individual tables
 - [ ] Build views to display api data
+- [ ] Lock pages behind user roles
 
 ## Responsibilities
 Luis - Appointment Bookings, Career Postings
@@ -21,11 +22,18 @@ Nodir -
 
 ## Progress
 Luis: 
-Completed - 
-Next Steps -
+Completed 
+- [x] Web API Controllers for booking and career postings pages
+- [x] Controllers for booking and career postings pages
+- [x] Views for both features
+Next Steps 
+- [ ] Calendar widget for appointment bookings page
+- [ ] Integrate appointment booking table with doctors table
+- [ ] Create admin view for appointment bookings table
 
 Elle: 
-Completed - Models, 
+Completed
+- [x] Models
 Next Steps - 
 
 Mohamed: 
