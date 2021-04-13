@@ -19,7 +19,7 @@ Mohamed -
 Bryan - 
 Nodir - 
 
-## Status
+## Progress
 Luis: 
 Completed - 
 Next Steps -
