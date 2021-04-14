@@ -187,6 +187,8 @@
     <Compile Include="Controllers\CareerDataController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DepartmentDataController.cs" />
+    <Compile Include="Controllers\DoctorInfoController.cs" />
+    <Compile Include="Controllers\DoctorInfoDataController.cs" />
     <Compile Include="Controllers\Donation.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -313,6 +315,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\DoctorInfo\" />
     <Folder Include="Views\UserInfo\" />
     <Folder Include="Views\VolunteerData\" />
     <Folder Include="Views\Volunteerr\" />

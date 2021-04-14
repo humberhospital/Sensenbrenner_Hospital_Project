@@ -18,4 +18,14 @@ namespace SensenbrennerHospital.Models
         public int PracticeID { get; set; }
         public virtual Practice Practice { get; set; }
     }
+
+    public class DoctorInfoDTO
+    {
+        public int DoctorID { get; set; }
+        [Display(Name = "Doctor First Name")]
+        public string FirstName { get; set; }
+        [Display(Name = "Doctor Last Name")]
+        public string LastName { get; set; }
+        public int PracticeID { get; set; }
+    }
 }
