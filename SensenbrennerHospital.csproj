@@ -211,6 +211,10 @@
     <Compile Include="Migrations\202104092125562_databaseFix.Designer.cs">
       <DependentUpon>202104092125562_databaseFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104142342352_added aplication user key to donation.cs" />
+    <Compile Include="Migrations\202104142342352_added aplication user key to donation.Designer.cs">
+      <DependentUpon>202104142342352_added aplication user key to donation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -342,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104092125562_databaseFix.resx">
       <DependentUpon>202104092125562_databaseFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104142342352_added aplication user key to donation.resx">
+      <DependentUpon>202104142342352_added aplication user key to donation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

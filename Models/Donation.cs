@@ -18,6 +18,12 @@ namespace SensenbrennerHospital.Models
         [ForeignKey("UserInfo")]
         public int UserID { get; set; }
         public virtual UserInfo UserInfo { get; set; }
+
+        [ForeignKey("ApplicationUser")]
+        public string Id { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
+
     }
 
     public class DonationDto
