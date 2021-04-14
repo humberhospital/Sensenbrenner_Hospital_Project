@@ -48,8 +48,5 @@ namespace SensenbrennerHospital.Controllers
             return View();
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-
     }
 }
