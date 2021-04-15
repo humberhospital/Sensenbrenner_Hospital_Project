@@ -72,6 +72,45 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
+        // GET: Donation/Details/5
+        public ActionResult Details(int id)
+        {
+            string url = "DonationData/GetDonation/" + id;
+            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                Donation selectedDonation = new Donation();
+                selectedDonation = httpResponse.Content.ReadAsAsync<Donation>().Result;
+
+                return View(selectedDonation);
+
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        // POST: Donation/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, Donation selectedDonation)
+        {
+            string url = "DonationData/UpdateDonation/" + id;
+            HttpContent content = new StringContent(jss.Serialize(selectedDonation));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Details", new { id = id });
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
