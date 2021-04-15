@@ -64,7 +64,7 @@ namespace SensenbrennerHospital.Controllers
             if (httpResponse.IsSuccessStatusCode)
             {
                 int DonationID = httpResponse.Content.ReadAsAsync<int>().Result;
-                return RedirectToAction("List");
+                return RedirectToAction("DonationList");
             }
             else
             {
@@ -100,7 +100,7 @@ namespace SensenbrennerHospital.Controllers
             HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
             if (httpResponse.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("DonationList");
             }
             else
             {
