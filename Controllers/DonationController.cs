@@ -45,7 +45,7 @@ namespace SensenbrennerHospital.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -109,7 +109,7 @@ namespace SensenbrennerHospital.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<DonationDto> DonationList()
+        public ActionResult DonationList()
         {
             string url = "DonationData/GetListOfDonations";
             HttpResponseMessage httpResponse = client.GetAsync(url).Result;
@@ -117,7 +117,7 @@ namespace SensenbrennerHospital.Controllers
             if (httpResponse.IsSuccessStatusCode)
             {
                 IEnumerable<DonationDto> DonationList = httpResponse.Content.ReadAsAsync<IEnumerable<DonationDto>>().Result;
-                return DonationList;
+                return View(DonationList);
             }
             else
             {

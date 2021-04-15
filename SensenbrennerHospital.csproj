@@ -326,7 +326,7 @@
     <Content Include="Views\Department\DeleteConfirm.cshtml" />
     <Content Include="Views\Department\DepartmentList.cshtml" />
     <Content Include="Views\Donation\Create.cshtml" />
-    <Content Include="Views\Donation\List.cshtml" />
+    <Content Include="Views\Donation\DonationList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
