@@ -18,9 +18,7 @@ namespace SensenbrennerHospital.Models
 
         public DateTime DonationDate { get; set; }
 
-        [ForeignKey("UserInfo")]
-        public int UserID { get; set; }
-        public virtual UserInfo UserInfo { get; set; }
+        
 
         [ForeignKey("ApplicationUser")]
         public string Id { get; set; }

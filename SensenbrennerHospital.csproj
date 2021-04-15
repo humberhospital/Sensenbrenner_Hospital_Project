@@ -220,6 +220,10 @@
     <Compile Include="Migrations\202104142349193_updated donation model.Designer.cs">
       <DependentUpon>202104142349193_updated donation model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104150115205_deleted FK from Donation.cs" />
+    <Compile Include="Migrations\202104150115205_deleted FK from Donation.Designer.cs">
+      <DependentUpon>202104150115205_deleted FK from Donation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -321,11 +325,12 @@
     <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\DeleteConfirm.cshtml" />
     <Content Include="Views\Department\DepartmentList.cshtml" />
+    <Content Include="Views\Donation\Create.cshtml" />
+    <Content Include="Views\Donation\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\DoctorInfo\" />
-    <Folder Include="Views\Donation\" />
     <Folder Include="Views\UserInfo\" />
     <Folder Include="Views\VolunteerData\" />
     <Folder Include="Views\Volunteerr\" />
@@ -358,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104142349193_updated donation model.resx">
       <DependentUpon>202104142349193_updated donation model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104150115205_deleted FK from Donation.resx">
+      <DependentUpon>202104150115205_deleted FK from Donation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
