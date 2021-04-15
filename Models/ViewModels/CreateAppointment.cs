@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SensenbrennerHospital.Models.ViewModels
 {
@@ -14,7 +15,7 @@ namespace SensenbrennerHospital.Models.ViewModels
         public bool isUser { get; set; }
 
         public AppointmentBooking appointmentBooking { get; set; }
-        public IEnumerable<DoctorDTO> doctorDTOs { get; set; }
+        public List<SelectListItem> doctorSelectList { get; set; }
 
     }
 }
