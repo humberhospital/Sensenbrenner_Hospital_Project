@@ -28,7 +28,7 @@ namespace SensenbrennerHospital.Controllers
 
         public ActionResult ListDoctors()
         {
-            string URL = "DoctorInfoData/GetDoctors";
+            string URL = "DoctorData/AddDoctor";
             HttpResponseMessage httpResponse = client.GetAsync(URL).Result;
             
             if (httpResponse.IsSuccessStatusCode)
