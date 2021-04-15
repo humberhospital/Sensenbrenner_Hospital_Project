@@ -62,7 +62,13 @@
                 @Html.ValidationMessageFor(model => model.Confirmation, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.DoctorID, "DoctorID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <select>
+                @for
+                <option
+            </select>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.DoctorID, "DoctorID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
