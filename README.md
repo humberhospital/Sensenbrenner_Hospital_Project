@@ -16,8 +16,8 @@ Hospital website redesign for small community in northern Ontario, Sensenbrenner
 ## Responsibilities
 Luis - Appointment Bookings, Career Postings
 Elle - Volunteers, Volunteer Positions
-Mohamed - 
-Bryan - 
+Mohamed - Departments, FAQ
+Bryan - Doctors, Practices
 Nodir - 
 
 ## Progress
