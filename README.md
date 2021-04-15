@@ -18,7 +18,7 @@ Luis - Appointment Bookings, Career Postings
 Elle - Volunteers, Volunteer Positions
 Mohamed - Departments, FAQ
 Bryan - Doctors, Practices
-Nodir - 
+Nodir - Application USer, Donation
 
 ## Progress
 ### Luis: 
@@ -34,7 +34,7 @@ Nodir -
 ### Elle: 
 #### Completed
 - [x] Models
-- [ ] Volunteer Controllers
+- [x] Volunteer Controllers
 #### Next Steps 
 - [ ] Volunteer Position Controllers
 - [ ] Volunteer Views
