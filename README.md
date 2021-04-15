@@ -38,7 +38,12 @@ Nodir -
 
 ### Mohamed: 
 #### Completed -
+- [x] Models
+- [x] API Controllers for departments
+- [x] Views for departments
 #### Next Steps -
+- [] API Controllers for FAQ
+- [] Views for FAQ
 
 ### Bryan: 
 #### Completed -
