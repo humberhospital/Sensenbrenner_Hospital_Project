@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SensenbrennerHospital.Models
 {
-    public class DoctorInfo
+    public class Doctor
     {
         [Key]
         public int DoctorID { get; set; }
@@ -19,7 +19,7 @@ namespace SensenbrennerHospital.Models
         public virtual Practice Practice { get; set; }
     }
 
-    public class DoctorInfoDTO
+    public class DoctorDTO
     {
         public int DoctorID { get; set; }
         [Display(Name = "Doctor First Name")]
