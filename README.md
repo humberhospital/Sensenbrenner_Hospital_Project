@@ -48,10 +48,18 @@ Nodir - Application USer, Donation
 - [ ] API Controllers for FAQ
 - [ ] Views for FAQ
 
-### Bryan: 
+### Bryan:
 #### Completed -
+- [x] Models
 #### Next Steps -
-
+- [ ] Doctor Controller
+- [ ] Doctor API Controller
+- [ ] Practice Controller
+- [ ] Practice API Controller
+- [ ] Doctors View
+- [ ] Docor View
+- [ ] Practices Views
+- [ ] Doctor Views
 ### Nodir: 
 #### Completed -
 - [x] Models
