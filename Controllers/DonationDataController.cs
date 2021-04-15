@@ -26,6 +26,7 @@ namespace SensenbrennerHospital.Controllers
                 DonationDto NewDonation = new DonationDto
                 {
                     DonationID = donation.DonationID,
+                    DonationAmount = donation.DonationAmount,
                     DonationDate = donation.DonationDate,
                     DonationMethod = donation.DonationMethod,
                     DonationText = donation.DonationText
@@ -91,6 +92,7 @@ namespace SensenbrennerHospital.Controllers
                 DonationDto NewDonation = new DonationDto
                 {
                     DonationID = donation.DonationID,
+                    DonationAmount = donation.DonationAmount,
                     DonationDate = donation.DonationDate,
                     DonationMethod = donation.DonationMethod,
                     DonationText = donation.DonationText
