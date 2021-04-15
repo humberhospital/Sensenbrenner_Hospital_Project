@@ -34,8 +34,11 @@ Nodir -
 ### Elle: 
 #### Completed
 - [x] Models
-#### Next Steps - 
-
+- [ ] Volunteer Controllers
+#### Next Steps 
+- [ ] Volunteer Position Controllers
+- [ ] Volunteer Views
+- [ ] Volunteer Position Views
 ### Mohamed: 
 #### Completed -
 - [x] Models
