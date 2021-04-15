@@ -20,6 +20,6 @@ namespace SensenbrennerHospital.Models
 
         [ForeignKey("DoctorInfo")]
         public int DoctorID { get; set; }
-        public virtual DoctorInfo DoctorInfo { get; set; }
+        public virtual Doctor DoctorInfo { get; set; }
     }
 }

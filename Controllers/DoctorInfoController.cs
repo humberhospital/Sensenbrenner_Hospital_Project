@@ -33,7 +33,7 @@ namespace SensenbrennerHospital.Controllers
             
             if (httpResponse.IsSuccessStatusCode)
             {
-                IEnumerable<DoctorInfoDTO> DoctorsList = httpResponse.Content.ReadAsAsync<IEnumerable<DoctorInfoDTO>>().Result;
+                IEnumerable<DoctorDTO> DoctorsList = httpResponse.Content.ReadAsAsync<IEnumerable<DoctorDTO>>().Result;
                 return View(DoctorsList);
             } else
             {

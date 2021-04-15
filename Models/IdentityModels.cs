@@ -47,7 +47,7 @@ namespace SensenbrennerHospital.Models
         public DbSet<About> Abouts { get; set; }
         public DbSet<NewsBanner> NewsBanners { get; set; }
         public DbSet<Practice> Practices { get; set; }
-        public DbSet<DoctorInfo> DoctorInfos { get; set; }
+        public DbSet<Doctor> DoctorInfos { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<AppointmentBooking> AppointmentBookings { get; set; }
         public DbSet<DonorInfo> DonorInfos { get; set; }

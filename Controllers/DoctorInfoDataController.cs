@@ -13,16 +13,16 @@ namespace SensenbrennerHospital.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        [ResponseType(typeof(IEnumerable<DoctorInfoDTO>))]
+        [ResponseType(typeof(IEnumerable<DoctorDTO>))]
         [HttpGet]
         public IHttpActionResult GetDoctors()
         {
-            List<DoctorInfo> Doctors = db.DoctorInfos.ToList();
-            List<DoctorInfoDTO> doctorInfoDTOs = new List<DoctorInfoDTO>();
+            List<Doctor> Doctors = db.DoctorInfos.ToList();
+            List<DoctorDTO> doctorInfoDTOs = new List<DoctorDTO>();
 
             foreach (var Doctor in Doctors)
             {
-                DoctorInfoDTO NewDoctor = new DoctorInfoDTO
+                DoctorDTO NewDoctor = new DoctorDTO
                 {
                     DoctorID = Doctor.DoctorID,
                     FirstName = Doctor.FirstName,
