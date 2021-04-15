@@ -42,8 +42,8 @@ Nodir -
 - [x] API Controllers for departments
 - [x] Views for departments
 #### Next Steps -
-- [] API Controllers for FAQ
-- [] Views for FAQ
+- [ ] API Controllers for FAQ
+- [ ] Views for FAQ
 
 ### Bryan: 
 #### Completed -
