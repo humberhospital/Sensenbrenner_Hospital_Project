@@ -16,9 +16,9 @@ Hospital website redesign for small community in northern Ontario, Sensenbrenner
 ## Responsibilities
 Luis - Appointment Bookings, Career Postings
 Elle - Volunteers, Volunteer Positions
-Mohamed - 
-Bryan - 
-Nodir - 
+Mohamed - Departments, FAQ
+Bryan - Doctors, Practices
+Nodir - Application USer, Donation
 
 ## Progress
 ### Luis: 
@@ -34,8 +34,11 @@ Nodir -
 ### Elle: 
 #### Completed
 - [x] Models
-#### Next Steps - 
-
+- [x] Volunteer Controllers
+#### Next Steps 
+- [ ] Volunteer Position Controllers
+- [ ] Volunteer Views
+- [ ] Volunteer Position Views
 ### Mohamed: 
 #### Completed -
 - [x] Models
@@ -45,10 +48,18 @@ Nodir -
 - [ ] API Controllers for FAQ
 - [ ] Views for FAQ
 
-### Bryan: 
+### Bryan:
 #### Completed -
+- [x] Models
 #### Next Steps -
-
+- [ ] Doctor Controller
+- [ ] Doctor API Controller
+- [ ] Practice Controller
+- [ ] Practice API Controller
+- [ ] Doctors View
+- [ ] Docor View
+- [ ] Practices Views
+- [ ] Doctor Views
 ### Nodir: 
 #### Completed -
 - [x] Models
