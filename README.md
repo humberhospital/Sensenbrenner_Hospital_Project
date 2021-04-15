@@ -38,7 +38,12 @@ Nodir -
 
 ### Mohamed: 
 #### Completed -
+- [x] Models
+- [x] API Controllers for departments
+- [x] Views for departments
 #### Next Steps -
+- [ ] API Controllers for FAQ
+- [ ] Views for FAQ
 
 ### Bryan: 
 #### Completed -
@@ -46,4 +51,11 @@ Nodir -
 
 ### Nodir: 
 #### Completed -
+- [x] Models
+- [x] API Controllers for donations
+- [x] Views for donations
+- [x] Connection between Application User and Donation 
 #### Next Steps -
+- [ ] Completing all views, 
+- [ ] checking for any bugs
+- [ ] Working on styling

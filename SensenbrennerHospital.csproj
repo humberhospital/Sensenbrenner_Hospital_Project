@@ -189,7 +189,8 @@
     <Compile Include="Controllers\DepartmentDataController.cs" />
     <Compile Include="Controllers\DoctorInfoController.cs" />
     <Compile Include="Controllers\DoctorInfoDataController.cs" />
-    <Compile Include="Controllers\Donation.cs" />
+    <Compile Include="Controllers\DonationController.cs" />
+    <Compile Include="Controllers\DonationDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
@@ -210,6 +211,18 @@
     <Compile Include="Migrations\202104092125562_databaseFix.cs" />
     <Compile Include="Migrations\202104092125562_databaseFix.Designer.cs">
       <DependentUpon>202104092125562_databaseFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104142342352_added aplication user key to donation.cs" />
+    <Compile Include="Migrations\202104142342352_added aplication user key to donation.Designer.cs">
+      <DependentUpon>202104142342352_added aplication user key to donation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104142349193_updated donation model.cs" />
+    <Compile Include="Migrations\202104142349193_updated donation model.Designer.cs">
+      <DependentUpon>202104142349193_updated donation model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104150115205_deleted FK from Donation.cs" />
+    <Compile Include="Migrations\202104150115205_deleted FK from Donation.Designer.cs">
+      <DependentUpon>202104150115205_deleted FK from Donation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
@@ -312,6 +325,8 @@
     <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\DeleteConfirm.cshtml" />
     <Content Include="Views\Department\DepartmentList.cshtml" />
+    <Content Include="Views\Donation\Create.cshtml" />
+    <Content Include="Views\Donation\DonationList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -342,6 +357,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104092125562_databaseFix.resx">
       <DependentUpon>202104092125562_databaseFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104142342352_added aplication user key to donation.resx">
+      <DependentUpon>202104142342352_added aplication user key to donation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104142349193_updated donation model.resx">
+      <DependentUpon>202104142349193_updated donation model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104150115205_deleted FK from Donation.resx">
+      <DependentUpon>202104150115205_deleted FK from Donation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

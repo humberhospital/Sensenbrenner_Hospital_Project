@@ -13,11 +13,18 @@ namespace SensenbrennerHospital.Models
         [Key]
         public int DonationID { get; set; }
         public decimal DonationAmount { get; set; }
+        public string DonationMethod { get; set; }
+        public string DonationText { get; set; }
+
         public DateTime DonationDate { get; set; }
 
-        [ForeignKey("UserInfo")]
-        public int UserID { get; set; }
-        public virtual UserInfo UserInfo { get; set; }
+        
+
+        [ForeignKey("ApplicationUser")]
+        public string Id { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
+
     }
 
     public class DonationDto
@@ -30,6 +37,12 @@ namespace SensenbrennerHospital.Models
 
         [DisplayName("Donation Date")]
         public DateTime DonationDate { get; set; }
+
+        [DisplayName("Donation Method")]
+        public string DonationMethod { get; set; }
+
+        [DisplayName("Donation Text")]
+        public string DonationText { get; set; }
 
 
     }
