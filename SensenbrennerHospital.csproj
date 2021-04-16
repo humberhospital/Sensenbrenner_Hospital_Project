@@ -232,7 +232,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DepartmentDataController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
-    <Compile Include="Controllers\DoctorInfoDataController.cs" />
+    <Compile Include="Controllers\DoctorDataController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\DonationDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
