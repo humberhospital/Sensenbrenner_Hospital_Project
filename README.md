@@ -51,11 +51,11 @@ Nodir - Application USer, Donation
 ### Bryan:
 #### Completed -
 - [x] Models
+- [x] Doctor Controller
 #### Next Steps -
-- [ ] Doctor Controller
-- [ ] Doctor API Controller
+- [ ] Doctor Data Controller
 - [ ] Practice Controller
-- [ ] Practice API Controller
+- [ ] Practice Data Controller
 - [ ] Doctors View
 - [ ] Docor View
 - [ ] Practices Views
