@@ -52,14 +52,13 @@ Nodir - Application USer, Donation
 #### Completed -
 - [x] Models
 - [x] Doctor Controller
+- [x] Doctor Data Controller
 #### Next Steps -
-- [ ] Doctor Data Controller
 - [ ] Practice Controller
 - [ ] Practice Data Controller
 - [ ] Doctors View
-- [ ] Docor View
+- [ ] Doctor View
 - [ ] Practices Views
-- [ ] Doctor Views
 ### Nodir: 
 #### Completed -
 - [x] Models
