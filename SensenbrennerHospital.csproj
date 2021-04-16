@@ -232,7 +232,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DepartmentDataController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
-    <Compile Include="Controllers\DoctorInfoDataController.cs" />
+    <Compile Include="Controllers\DoctorDataController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\DonationDataController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
@@ -376,8 +376,11 @@
     <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\DeleteConfirm.cshtml" />
     <Content Include="Views\Department\DepartmentList.cshtml" />
+    <Content Include="Views\Donation\Index.cshtml" />
+    <Content Include="Views\Donation\Details.cshtml" />
     <Content Include="Views\Donation\Create.cshtml" />
-    <Content Include="Views\Donation\DonationList.cshtml" />
+    <Content Include="Views\Donation\Edit.cshtml" />
+    <Content Include="Views\Donation\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

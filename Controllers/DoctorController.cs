@@ -107,5 +107,23 @@ namespace SensenbrennerHospital.Controllers
             }    
         }
 
+        [HttpGet]
+        public IEnumerable<DoctorDTO> DoctorList()
+        {
+            string URL = "DoctorData/GetListOfDoctors";
+            HttpResponseMessage HttpResponse = client.GetAsync(URL).Result;
+
+            if (HttpResponse.IsSuccessStatusCode)
+            {
+                IEnumerable<DoctorDTO> DoctorList = HttpResponse.Content.ReadAsAsync<IEnumerable<DoctorDTO>>().Result;
+
+                return DoctorList;
+            }
+            else
+            {
+                return null;
+            }    
+        }
+
     }
 }
