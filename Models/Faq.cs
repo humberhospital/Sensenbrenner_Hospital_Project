@@ -13,4 +13,11 @@ namespace SensenbrennerHospital.Models
         public string Question { get; set; }
         public string Answer { get; set; }
     }
+
+    public class FaqDto
+    {
+        public int FaqID { get; set; }
+        public string Question { get; set; }
+        public string Answer { get; set; }
+    }
 }

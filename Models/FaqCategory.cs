@@ -20,4 +20,11 @@ namespace SensenbrennerHospital.Models
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; }
     }
+
+    public class FaqCategoryDto
+    {
+        public int FaqCategoryID { get; set; }
+        public int FaqID { get; set; }
+        public int CategoryID { get; set; }
+    }
 }
