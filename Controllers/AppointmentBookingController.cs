@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using SensenbrennerHospital.Models;
+using SensenbrennerHospital.Models.ViewModels;
 
 namespace SensenbrennerHospital.Controllers
 {
@@ -68,7 +69,34 @@ namespace SensenbrennerHospital.Controllers
         // GET: AppointmentBooking/Create
         public ActionResult Create()
         {
-            return View();
+            CreateAppointment ViewModel = new CreateAppointment();
+
+            ViewModel.appointmentBooking = new AppointmentBooking();
+            string URL = "DoctorInfoData/GetDoctors";
+            HttpResponseMessage httpResponse = client.GetAsync(URL).Result;
+
+            
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                List<SelectListItem> doctorSelectList = new List<SelectListItem>();
+                IEnumerable<DoctorDTO> doctorList = httpResponse.Content.ReadAsAsync<IEnumerable<DoctorDTO>>().Result;
+                foreach (var d in doctorList)
+                {
+                    doctorSelectList.Add(new SelectListItem
+                    {
+                        Text = "Dr." + d.LastName,
+                        Value = d.DoctorID.ToString()
+                    });
+                }
+                Debug.WriteLine(doctorSelectList);
+                ViewModel.doctorSelectList = doctorSelectList;
+                return View(ViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
 
         // POST: AppointmentBooking/Create

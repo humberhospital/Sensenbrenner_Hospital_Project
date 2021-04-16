@@ -89,5 +89,41 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delete(int id)
+        {
+            string URL = "DoctorData/DeleteDoctor/" + id;
+            HttpContent Content = new StringContent("");
+            HttpResponseMessage HttpResponse = client.PostAsync(URL, Content).Result;
+
+            if (HttpResponse.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }    
+        }
+
+        [HttpGet]
+        public IEnumerable<DoctorDTO> DoctorList()
+        {
+            string URL = "DoctorData/GetListOfDoctors";
+            HttpResponseMessage HttpResponse = client.GetAsync(URL).Result;
+
+            if (HttpResponse.IsSuccessStatusCode)
+            {
+                IEnumerable<DoctorDTO> DoctorList = HttpResponse.Content.ReadAsAsync<IEnumerable<DoctorDTO>>().Result;
+
+                return DoctorList;
+            }
+            else
+            {
+                return null;
+            }    
+        }
+
     }
 }

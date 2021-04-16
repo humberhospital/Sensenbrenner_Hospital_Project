@@ -232,7 +232,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DepartmentDataController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
-    <Compile Include="Controllers\DoctorInfoDataController.cs" />
+    <Compile Include="Controllers\DoctorDataController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\DonationDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -292,6 +292,7 @@
     <Compile Include="Models\Practice.cs" />
     <Compile Include="Models\ReportsTable.cs" />
     <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\ViewModels\CreateAppointment.cs" />
     <Compile Include="Models\ViewModels\ListDonation.cs" />
     <Compile Include="Models\ViewModels\ListUser.cs" />
     <Compile Include="Models\ViewModels\ShowDonation.cs" />
