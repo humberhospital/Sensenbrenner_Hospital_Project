@@ -6,162 +6,202 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
-using System.Web.Http.Description;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
+
 namespace SensenbrennerHospital.Controllers
 {
-    public class DonationController : Controller
-    {
-        private JavaScriptSerializer jss = new JavaScriptSerializer();
-        private static readonly HttpClient client;
+	public class DonationController : Controller
+	{
+		private JavaScriptSerializer jss = new JavaScriptSerializer();
+		private static readonly HttpClient client;
+		static DonationController()
+		{
+			HttpClientHandler handler = new HttpClientHandler()
+			{
+				AllowAutoRedirect = false
+			};
+			client = new HttpClient(handler);
+			client.BaseAddress = new Uri("https://localhost:44336/api/");
+			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+		}
+		// GET: Donation
+		public ActionResult Index()
+		{
+			string url = "DonationData/GetDonations";
+			HttpResponseMessage httpResponse = client.GetAsync(url).Result;
 
-        static DonationController()
-        {
-            HttpClientHandler handler = new HttpClientHandler()
-            {
-                AllowAutoRedirect = false
-            };
-            client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44336/api/");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        }
 
-        public ActionResult List()
-        {
-            string url = "DonationData/GetDonations";
-            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+			if (httpResponse.IsSuccessStatusCode)
+			{
+				IEnumerable<DonationDto> DonationList = httpResponse.Content.ReadAsAsync<IEnumerable<DonationDto>>().Result;
+				return View(DonationList);
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
 
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                IEnumerable<DonationDto> DonationList = httpResponse.Content.ReadAsAsync<IEnumerable<DonationDto>>().Result;
-                return View(DonationList);
-            }
-            else
-            {
-                return RedirectToAction("Error");
-            }
-        }
 
-        [HttpGet]
-        [Authorize]
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        [HttpPost]
-        [Authorize]
-        public ActionResult Create(Donation NewDonation)
-        {
-            string url = "DonationData/AddDonation";
+		// GET: Donation/Details/5
+		public ActionResult Details(int id)
+		{
+			string url = "DonationData/GetDonation/" + id;
+			HttpResponseMessage httpResponse = client.GetAsync(url).Result;
 
-            HttpContent content = new StringContent(jss.Serialize(NewDonation));
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
-            //Debug.WriteLine(jss.Serialize(NewDepartment));
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                int DonationID = httpResponse.Content.ReadAsAsync<int>().Result;
-                return RedirectToAction("DonationList");
-            }
-            else
-            {
-                return RedirectToAction("Error");
-            }
-        }
 
-        // GET: Donation/Details/5
-        public ActionResult Details(int id)
-        {
-            string url = "DonationData/GetDonation/" + id;
-            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+			if (httpResponse.IsSuccessStatusCode)
+			{
+				Donation selectedDonation = new Donation();
+				selectedDonation = httpResponse.Content.ReadAsAsync<Donation>().Result;
 
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                Donation selectedDonation = new Donation();
-                selectedDonation = httpResponse.Content.ReadAsAsync<Donation>().Result;
 
-                return View(selectedDonation);
+				return View(selectedDonation);
 
-            }
-            else
-            {
-                return RedirectToAction("Error");
-            }
-        }
 
-        // POST: Donation/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, Donation selectedDonation)
-        {
-            string url = "DonationData/UpdateDonation/" + id;
-            HttpContent content = new StringContent(jss.Serialize(selectedDonation));
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
 
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Details", new { id = id });
-            }
-            else
-            {
-                return RedirectToAction("Error");
-            }
-        }
 
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public ActionResult DeleteConfirm(int id)
-        {
-            string url = "DonationData/GetDonation/" + id;
-            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+		// GET: Donation/Create
+		public ActionResult Create()
+		{
+			return View();
+		}
 
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                DonationDto donation = new DonationDto();
-                donation = httpResponse.Content.ReadAsAsync<DonationDto>().Result;
-                return View(donation);
-            }
-            else
-            {
-                return RedirectToAction("Error");
-            }
-        }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public ActionResult Delete(int id)
-        {
-            string url = "DonationtData/DeleteDonation/" + id;
-            HttpContent content = new StringContent("");
-            HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                return RedirectToAction("DonationList");
-            }
-            else
-            {
-                return RedirectToAction("Error");
-            }
-        }
+		// POST: Donation/Create
+		[HttpPost]
+		[Authorize]
+		public ActionResult Create(Donation NewDonation)
+		{
+			string url = "DonationData/AddDonation";
 
-        [HttpGet]
-        public ActionResult DonationList()
-        {
-            string url = "DonationData/GetListOfDonations";
-            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
 
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                IEnumerable<DonationDto> DonationList = httpResponse.Content.ReadAsAsync<IEnumerable<DonationDto>>().Result;
-                return View(DonationList);
-            }
-            else
-            {
-                return null;
-            }
-        }
-    }
+			HttpContent content = new StringContent(jss.Serialize(NewDonation));
+			content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+			HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
+			Debug.WriteLine(jss.Serialize(NewDonation));
+
+
+			if (httpResponse.IsSuccessStatusCode)
+			{
+				int DonationID = httpResponse.Content.ReadAsAsync<int>().Result;
+
+
+				return RedirectToAction("Details", new { id = DonationID });
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
+
+
+		// GET: Donation/Edit/5
+		
+		public ActionResult Edit(int id)
+		{
+			string url = "DonationData/GetDonation/" + id;
+			HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+
+
+			if (httpResponse.IsSuccessStatusCode)
+			{
+				Donation selectedDonation = new Donation();
+				selectedDonation = httpResponse.Content.ReadAsAsync<Donation>().Result;
+
+
+				return View(selectedDonation);
+
+
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
+
+
+		// POST: Donation/Edit/5
+		[HttpPost]
+		
+		public ActionResult Edit(int id, Donation selectedDonation)
+		{
+			string url = "DonationData/UpdateDonation/" + id;
+			HttpContent content = new StringContent(jss.Serialize(selectedDonation));
+			content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+			HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
+
+
+			//if (httpResponse.IsSuccessStatusCode)
+			//{
+			//	return RedirectToAction("Details", new { id = id });
+			//}
+			//else
+			//{
+			//	return RedirectToAction("Error");
+			//}
+
+
+			return RedirectToAction("Details", new { id = id });
+		}
+
+
+		// GET: Donation/Delete/5
+		
+		public ActionResult DeleteConfirm(int id)
+		{
+			string url = "DonationData/GetDonation/" + id;
+			HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+
+
+			if (httpResponse.IsSuccessStatusCode)
+			{
+				Donation selectedDonation = new Donation();
+				selectedDonation = httpResponse.Content.ReadAsAsync<Donation>().Result;
+
+
+				return View(selectedDonation);
+
+
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
+
+
+		// POST: Donation/Delete/5
+		[HttpPost]
+
+		public ActionResult Delete(int id)
+		{
+			string url = "DonationData/DeleteDonation/" + id;
+			HttpContent content = new StringContent("");
+			HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
+
+
+			if (httpResponse.IsSuccessStatusCode)
+			{
+				return RedirectToAction("Index");
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
+
+
+
+
+	}
 }
