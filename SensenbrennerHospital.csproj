@@ -376,6 +376,7 @@
     <Content Include="Views\Department\DepartmentList.cshtml" />
     <Content Include="Views\Donation\Create.cshtml" />
     <Content Include="Views\Donation\DonationList.cshtml" />
+    <Content Include="Views\Doctor\ListDoctors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
