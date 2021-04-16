@@ -71,7 +71,32 @@ namespace SensenbrennerHospital.Controllers
             if (Doctor == null)
             {
                 return NotFound();
-            }    
+            }
+
+            db.Doctors.Remove(Doctor);
+            db.SaveChanges();
+
+            return Ok(Doctor);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetListOfDoctors()
+        {
+            List<Doctor> Doctors = db.Doctors.ToList();
+            List<DoctorDTO> doctorDTOs = new List<DoctorDTO>();
+
+            foreach (var Doctor in Doctors)
+            {
+                DoctorDTO NewDoctor = new DoctorDTO
+                {
+                    DoctorID = Doctor.DoctorID,
+                    FirstName = Doctor.FirstName,
+                    LastName = Doctor.LastName,
+                    PracticeID = Doctor.PracticeID
+                };
+                doctorDTOs.Add(NewDoctor);
+            }
+            return Ok(doctorDTOs);
         }
     }
 
