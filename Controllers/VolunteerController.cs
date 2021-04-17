@@ -17,8 +17,6 @@ namespace SensenbrennerHospital.Controllers
     public class VolunteerController : Controller
     {
 
-
-
         private JavaScriptSerializer jss = new JavaScriptSerializer();
         private static readonly HttpClient client;
 
@@ -31,7 +29,7 @@ namespace SensenbrennerHospital.Controllers
             };
             client = new HttpClient(handler);
 
-            client.BaseAddress = new Uri("http://localhost:56807/api/");
+            client.BaseAddress = new Uri("http://localhost:44336/api/");
             client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -45,7 +43,7 @@ namespace SensenbrennerHospital.Controllers
         // GET: Volunteer/List
         public ActionResult List()
         {
-            string url = "volunteerdata/getvolunteers";
+            string url = "volunteerdata/GetVolunteers";
             HttpResponseMessage response = client.GetAsync(url).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -59,46 +57,46 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
-        // GET: Volunteer/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    ShowVolunteer ViewModel = new ShowVolunteer();
-        //    string url = "volunteerdata/findvolunteer/" + id;
-        //    HttpResponseMessage response = client.GetAsync(url).Result;
-        //    //Can catch the status code (200 OK, 301 REDIRECT), etc.
+        //GET: Volunteer/Details/5
+        public ActionResult Details(int id)
+        {
+            ShowVolunteer ViewModel = new ShowVolunteer();
+            string url = "volunteerdata/findvolunteer/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            //Can catch the status code (200 OK, 301 REDIRECT), etc.
 
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        //Volunteer goes in Data Transfer Object
-        //        VolunteerDto SelectedVolunteer = response.Content.ReadAsAsync<VolunteerDto>().Result;
-        //        ViewModel.volunteer = SelectedVolunteer;
+            if (response.IsSuccessStatusCode)
+            {
+                //Volunteer goes in Data Transfer Object
+                VolunteerDto SelectedVolunteer = response.Content.ReadAsAsync<VolunteerDto>().Result;
+                ViewModel.volunteer = SelectedVolunteer;
 
 
-        //        url = "volunteerdata/finddepartmentforvolunteer/" + id;
-        //        response = client.GetAsync(url).Result;
-        //        DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
-        //        ViewModel.department = SelectedDepartment;
+                url = "volunteerdata/finddepartmentforvolunteer/" + id;
+                response = client.GetAsync(url).Result;
+                DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
+                ViewModel.department = SelectedDepartment;
 
-        //        return View(ViewModel);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Error");
-        //    }
-        //}
+                return View(ViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
 
-        // GET: Volunteer/Create
-        //public ActionResult Create()
-        //{
-        //    UpdateVolunteer ViewModel = new UpdateVolunteer();
-        //    //get information about departments this volunteer could also be in
-        //    string url = "departmentdata/getdepartments";
-        //    HttpResponseMessage response = client.GetAsync(url).Result;
-        //    IEnumerable<DepartmentDto> PotentialDepartments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
-        //    ViewModel.alldepartments = PotentialDepartments;
+        //GET: Volunteer/Create
+        public ActionResult Create()
+        {
+            UpdateVolunteer ViewModel = new UpdateVolunteer();
+            //get information about departments this volunteer could also be in
+            string url = "departmentdata/getdepartments";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<DepartmentDto> PotentialDepartments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+            ViewModel.alldepartments = PotentialDepartments;
 
-        //    return View(ViewModel);
-        //}
+            return View(ViewModel);
+        }
 
         // POST: Volunteer/Create
         [HttpPost]
