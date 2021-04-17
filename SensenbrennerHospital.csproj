@@ -229,6 +229,7 @@
     <Compile Include="Controllers\AppointmentBookingDataController.cs" />
     <Compile Include="Controllers\CareerController.cs" />
     <Compile Include="Controllers\CareerDataController.cs" />
+    <Compile Include="Controllers\CategoryDataController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DepartmentDataController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
@@ -296,6 +297,7 @@
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\ViewModels\CreateAppointment.cs" />
     <Compile Include="Models\ViewModels\ListDonation.cs" />
+    <Compile Include="Models\ViewModels\ListFaq.cs" />
     <Compile Include="Models\ViewModels\ListUser.cs" />
     <Compile Include="Models\ViewModels\ShowDonation.cs" />
     <Compile Include="Models\ViewModels\ShowUser.cs" />
@@ -381,11 +383,11 @@
     <Content Include="Views\Donation\Create.cshtml" />
     <Content Include="Views\Donation\Edit.cshtml" />
     <Content Include="Views\Donation\DeleteConfirm.cshtml" />
+    <Content Include="Views\Faq\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\DoctorInfo\" />
-    <Folder Include="Views\Faq\" />
     <Folder Include="Views\UserInfo\" />
     <Folder Include="Views\VolunteerData\" />
     <Folder Include="Views\Volunteerr\" />
