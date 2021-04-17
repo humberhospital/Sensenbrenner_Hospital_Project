@@ -241,8 +241,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\UserInfoDataController.cs" />
-    <Compile Include="Controllers\VolunteerDataController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
+    <Compile Include="Controllers\VolunteerDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -299,7 +299,10 @@
     <Compile Include="Models\ViewModels\ListUser.cs" />
     <Compile Include="Models\ViewModels\ShowDonation.cs" />
     <Compile Include="Models\ViewModels\ShowUser.cs" />
+    <Compile Include="Models\ViewModels\ShowVolunteer.cs" />
+    <Compile Include="Models\ViewModels\UpdateVolunteer.cs" />
     <Compile Include="Models\ViewModels\UpdateUser.cs" />
+    <Compile Include="Models\ViewModels\Volunteerz.cs" />
     <Compile Include="Models\Volunteer.cs" />
     <Compile Include="Models\VolunteerPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -327,6 +330,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Volunteer\Create.cshtml" />
+    <Content Include="Views\Volunteer\DeleteConfirm.cshtml" />
+    <Content Include="Views\Volunteer\Details.cshtml" />
+    <Content Include="Views\Volunteer\Edit.cshtml" />
+    <Content Include="Views\Volunteer\Error.cshtml" />
+    <Content Include="Views\Volunteer\List.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -388,7 +397,6 @@
     <Folder Include="Views\Faq\" />
     <Folder Include="Views\UserInfo\" />
     <Folder Include="Views\VolunteerData\" />
-    <Folder Include="Views\Volunteerr\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
