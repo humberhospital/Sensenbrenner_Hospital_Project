@@ -1,0 +1,14 @@
+﻿body {
+}
+
+.btn-category {
+    margin-bottom: 3px;
+}
+
+.selected-btn {
+    background-color: #98D7C2;
+}
+
+.hidden-faq {
+    display: none;
+}

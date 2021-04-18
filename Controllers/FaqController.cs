@@ -30,7 +30,6 @@ namespace SensenbrennerHospital.Controllers
        public ActionResult List()
         {
             List<ListFaq> ViewModel = new List<ListFaq>();
-
             string url = "FaqData/ListFaqs";
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<FaqDto> FaqList = response.Content.ReadAsAsync<IEnumerable<FaqDto>>().Result;
@@ -39,9 +38,9 @@ namespace SensenbrennerHospital.Controllers
                 url = "CategoryData/GetCategoriesForFaq/" + item.FaqID;
                 response = client.GetAsync(url).Result;
                 IEnumerable<CategoryDto> selectedCategories = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
-
                 ListFaq newListFaq = new ListFaq
                 {
+                    isadmin = User.IsInRole("Admin"),
                     faq = item,
                     category = selectedCategories
                 };
