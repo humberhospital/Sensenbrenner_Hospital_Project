@@ -1,6 +1,8 @@
 ﻿using SensenbrennerHospital.Models;
+using SensenbrennerHospital.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -32,6 +34,22 @@ namespace SensenbrennerHospital.Controllers
             }
 
             return Ok(faqDtos);
+        }
+
+        [ResponseType(typeof(Faq))]
+        [HttpPost]
+        public IHttpActionResult AddFaq([FromBody]Faq newFaq)
+        {
+            Debug.WriteLine(newFaq);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Faqs.Add(newFaq);
+            db.SaveChanges();
+
+            return Ok(newFaq.FaqID);
         }
     }
 }

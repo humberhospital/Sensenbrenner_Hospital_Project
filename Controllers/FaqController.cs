@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -47,6 +48,34 @@ namespace SensenbrennerHospital.Controllers
                 ViewModel.Add(newListFaq);
             }
             return View(ViewModel);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create(Faq NewFaq)
+        {
+            string url = "FaqData/AddFaq";
+
+            HttpContent content = new StringContent(jss.Serialize(NewFaq));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                int faqID = response.Content.ReadAsAsync<int>().Result;
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
     }
 }
