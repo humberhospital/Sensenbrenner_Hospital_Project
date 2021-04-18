@@ -31,7 +31,7 @@ namespace SensenbrennerHospital.Controllers
             };
             client = new HttpClient(handler);
 
-            client.BaseAddress = new Uri("http://localhost:56807/api/");
+            client.BaseAddress = new Uri("https://localhost:44336/api/");
             client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -65,7 +65,7 @@ namespace SensenbrennerHospital.Controllers
             ShowVolunteerPosition ViewModel = new ShowVolunteerPosition();
             string url = "volunteerpositiondata/findvolunteerposition/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            //Can catch the status code (200 OK, 301 REDIRECT), etc.
+            //Catch the status code (200 OK, 301 REDIRECT), etc.
 
             if (response.IsSuccessStatusCode)
             {
@@ -91,7 +91,7 @@ namespace SensenbrennerHospital.Controllers
         public ActionResult Create()
         {
             UpdateVolunteerPosition ViewModel = new UpdateVolunteerPosition();
-            //get information about departments this volunteerposition could also be in
+            //get information about departments that may also need this volunteer position
             string url = "departmentdata/getdepartments";
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<DepartmentDto> PotentialDepartments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
@@ -105,7 +105,7 @@ namespace SensenbrennerHospital.Controllers
         [ValidateAntiForgeryToken()]
         public ActionResult Create(VolunteerPosition VolunteerPositionInfo)
         {
-            Debug.WriteLine(VolunteerPositionInfo.VolunteerPositionName);
+            Debug.WriteLine(VolunteerPositionInfo.Name);
             string url = "volunteerpositiondata/addvolunteerposition";
             Debug.WriteLine(jss.Serialize(VolunteerPositionInfo));
             HttpContent content = new StringContent(jss.Serialize(VolunteerPositionInfo));
@@ -141,7 +141,7 @@ namespace SensenbrennerHospital.Controllers
                 VolunteerPositionDto SelectedVolunteerPosition = response.Content.ReadAsAsync<VolunteerPositionDto>().Result;
                 ViewModel.volunteerposition = SelectedVolunteerPosition;
 
-                //get information about departments this volunteerposition could also be in
+                //get information about departments that may also need this volunteer position
                 url = "departmentdata/getdepartments";
                 response = client.GetAsync(url).Result;
                 IEnumerable<DepartmentDto> PotentialDepartments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
@@ -154,38 +154,6 @@ namespace SensenbrennerHospital.Controllers
                 return RedirectToAction("Error");
             }
         }
-
-        // // POST: VolunteerPosition/Edit/2
-        // [HttpPost]
-        // [ValidateAntiForgeryToken()]
-        // public ActionResult Edit(int id, VolunteerPosition VolunteerPositionInfo, HttpPostedFileBase VolunteerPic)
-        // {
-        //     Debug.WriteLine(VolunteerPositionInfo.VolunteerPositionName);
-        //     string url = "volunteerpositiondata/updatevolunteer/" + id;
-        //     Debug.WriteLine(jss.Serialize(VolunteerPositionInfo));
-        //     HttpContent content = new StringContent(jss.Serialize(VolunteerPositionInfo));
-        //     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //     HttpResponseMessage response = client.PostAsync(url, content).Result;
-        //     Debug.WriteLine(response.StatusCode);
-        //     if (response.IsSuccessStatusCode)
-        //     {
-
-        //         //Send over image data for volunteerposition
-        //         url = "volunteerpositiondata/updatevolunteerpic/" + id;
-        //         Debug.WriteLine("Received volunteerposition picture " + VolunteerPic.FileName);
-
-        //         MultipartFormDataContent requestcontent = new MultipartFormDataContent();
-        //         HttpContent imagecontent = new StreamContent(VolunteerPic.InputStream);
-        //         requestcontent.Add(imagecontent, "VolunteerPic", VolunteerPic.FileName);
-        //         response = client.PostAsync(url, requestcontent).Result;
-
-        //         return RedirectToAction("Details", new { id = id });
-        //     }
-        //     else
-        //     {
-        //         return RedirectToAction("Error");
-        //     }
-        // }
 
         // GET: VolunteerPosition/Delete/5
         [HttpGet]
