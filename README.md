@@ -34,10 +34,8 @@ Nodir - Application USer, Donation
 ### Elle: 
 #### Completed
 - [x] Models
-- [x] Volunteer Controller
-- [x] Volunteer Data Controller
-- [x] Volunteer Position Controller
-- [x] Volunteer Position Data Controller
+- [x] Volunteer Controllers
+- [x] Volunteer Position Controllers
 - [x] Volunteer Views
 - [x] Volunteer Position Views
 #### Next Steps 
