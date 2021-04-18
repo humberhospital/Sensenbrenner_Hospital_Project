@@ -42,6 +42,7 @@ Nodir - Application USer, Donation
 - [ ] Fix Volunteer Image Upload
 - [ ] HTML + CSS for Volunteers Pages
 - [ ] HTML + CSS for Volunteer Positions Pages
+- [ ] Connect tables with Departments table  
 ### Mohamed: 
 #### Completed -
 - [x] Models
