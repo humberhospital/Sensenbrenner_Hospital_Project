@@ -87,7 +87,7 @@ namespace SensenbrennerHospital.Controllers
         ///// Finds a particular Department in the database given a volunteer id with a 200 status code. If the Department is not found, return 404.
         ///// </summary>
         ///// <param name="id">The volunteer id</param>
-        ///// <returns>Information about the Department, including Department id, bio, first and last name, and countryid</returns>
+        ///// <returns>Information about the Department, including Department id, Department name, and department number</returns>
         //// <example>
         //// GET: api/DepartmentData/FindDepartmentForVolunteer/5
         //// </example>
@@ -95,8 +95,7 @@ namespace SensenbrennerHospital.Controllers
         //[ResponseType(typeof(DepartmentDto))]
         //public IHttpActionResult FindDepartmentForVolunteer(int id)
         //{
-        //    //Finds the first country which has any volunteers
-        //    //that match the input articleid
+        //    //Finds the first Department that matches the input volunteerid
         //    Department Department = db.Departments
         //        .Where(t => t.Volunteers.Any(p => p.VolunteerID == id))
         //        .FirstOrDefault();
@@ -180,7 +179,7 @@ namespace SensenbrennerHospital.Controllers
         /// HEADER: enctype=multipart/form-data
         /// FORM-DATA: image
         /// </example>
-        /// https://stackoverflow.com/questions/28369529/how-to-set-up-a-web-api-controller-for-multipart-form-data
+        /// 
 
         [HttpPost]
         public IHttpActionResult UpdateVolunteerPic(int id)

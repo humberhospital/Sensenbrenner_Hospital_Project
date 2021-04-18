@@ -29,7 +29,7 @@ namespace SensenbrennerHospital.Controllers
             };
             client = new HttpClient(handler);
 
-            client.BaseAddress = new Uri("http://localhost:44336/api/");
+            client.BaseAddress = new Uri("https://localhost:44336/api/");
             client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
 
