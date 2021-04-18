@@ -34,11 +34,16 @@ Nodir - Application USer, Donation
 ### Elle: 
 #### Completed
 - [x] Models
-- [x] Volunteer Controllers
+- [x] Volunteer Controller
+- [x] Volunteer Data Controller
+- [x] Volunteer Position Controller
+- [x] Volunteer Position Data Controller
+- [x] Volunteer Views
+- [x] Volunteer Position Views
 #### Next Steps 
-- [ ] Volunteer Position Controllers
-- [ ] Volunteer Views
-- [ ] Volunteer Position Views
+- [ ] Fix Volunteer Image Upload
+- [ ] HTML + CSS for Volunteers Pages
+- [ ] HTML + CSS for Volunteer Positions Pages
 ### Mohamed: 
 #### Completed -
 - [x] Models
