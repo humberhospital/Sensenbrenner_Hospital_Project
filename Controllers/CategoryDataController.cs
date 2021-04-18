@@ -17,7 +17,7 @@ namespace SensenbrennerHospital.Controllers
         [HttpGet]
         public IHttpActionResult GetCategoriesForFaq(int id)
         {
-            IEnumerable<FaqCategory> faqCategories = db.FaqCategories.Where(c => c.FaqID == id);
+            IEnumerable<FaqCategory> faqCategories = db.FaqCategories.Where(c => c.FaqID == id).ToList();
             List<CategoryDto> categoryDtos = new List<CategoryDto>();
 
             foreach (var faqCategory in faqCategories)
