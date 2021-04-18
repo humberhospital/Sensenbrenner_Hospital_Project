@@ -35,10 +35,14 @@ Nodir - Application USer, Donation
 #### Completed
 - [x] Models
 - [x] Volunteer Controllers
+- [x] Volunteer Position Controllers
+- [x] Volunteer Views
+- [x] Volunteer Position Views
 #### Next Steps 
-- [ ] Volunteer Position Controllers
-- [ ] Volunteer Views
-- [ ] Volunteer Position Views
+- [ ] Fix Volunteer Image Upload
+- [ ] HTML + CSS for Volunteers Pages
+- [ ] HTML + CSS for Volunteer Positions Pages
+- [ ] Connect tables with Departments table  
 ### Mohamed: 
 #### Completed -
 - [x] Models

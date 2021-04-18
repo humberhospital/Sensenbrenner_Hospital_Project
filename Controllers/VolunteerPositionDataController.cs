@@ -49,11 +49,11 @@ namespace SensenbrennerHospital.Controllers
             return Ok(VolunteerPositionDtos);
         }
 
-        /// <summary>
-        /// Finds a particular volunteerposition in the database with a 200 status code. If the volunteerposition is not found, return 404.
+        /// <summary> Needs more...
+        /// Finds a particular volunteer position in the database with a 200 status code. If the volunteer position is not found, return 404.
         /// </summary>
-        /// <param name="id">The Cvp.Id </param>
-        /// <returns>Information about the volunteerposition, including volunteerposition, cvpId, name, description, and departmentid</returns>
+        /// <param name="id">The volunteer position id, CvpID </param>
+        /// <returns>Information about the volunteer position, including the cvpId, name, description, and departmentid</returns>
         // <example>
         // GET: api/VolunteerPositionData/FindVolunteerPosition/5
         // </example>
@@ -83,46 +83,46 @@ namespace SensenbrennerHospital.Controllers
             return Ok(VolunteerPositionDto);
         }
 
+        ///// <summary> I might need this?
+        ///// Finds a particular Department in the database given a volunteer position id, cvp, with a 200 status code. If the Department is not found, return 404.
+        ///// </summary>
+        ///// <param name="id">The volunteerposition id</param>
+        ///// <returns>Information about the Department, including Department id, Department name, department phone number</returns>
+        //// <example>
+        //// GET: api/DepartmentData/FindDepartmentForVolunteerPosition/5
+        //// </example>
+        //[HttpGet]
+        //[ResponseType(typeof(DepartmentDto))]
+        //public IHttpActionResult FindDepartmentForVolunteerPosition(int id)
+        //{
+        //    //Finds the first department which has any volunteerpositions
+        //    //that match the input cvpid
+        //    Department Department = db.Departments
+        //        .Where(t => t.VolunteerPositions.Any(p => p.CvpID == id))
+        //        .FirstOrDefault();
+        //    //if not found, return 404 status code.
+        //    if (Department == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    //put into a 'friendly object format'
+        //    DepartmentDto DepartmentDto = new DepartmentDto
+        //    {
+        //        DepartmentID = Department.DepartmentID,
+        //        DepartmentName = Department.DepartmentName,
+        //        DepartmentPhoneNumber = Department.DepartmentPhoneNumber
+        //    };
+
+
+        //    //pass along data as 200 status code OK response
+        //    return Ok(DepartmentDto);
+        //}
+
+
+
         /// <summary>
-        /// Finds a particular Department in the database given a volunteer position id, cvp, with a 200 status code. If the Department is not found, return 404.
-        /// </summary>
-        /// <param name="id">The volunteerposition id</param>
-        /// <returns>Information about the Department, including Department id, Department name, department phone number</returns>
-        // <example>
-        // GET: api/DepartmentData/FindDepartmentForVolunteerPosition/5
-        // </example>
-        [HttpGet]
-        [ResponseType(typeof(DepartmentDto))]
-        public IHttpActionResult FindDepartmentForVolunteerPosition(int id)
-        {
-            //Finds the first department which has any volunteerpositions
-            //that match the input cvpid
-            Department Department = db.Departments
-                .Where(t => t.VolunteerPositions.Any(p => p.CvpID == id))
-                .FirstOrDefault();
-            //if not found, return 404 status code.
-            if (Department == null)
-            {
-                return NotFound();
-            }
-
-            //put into a 'friendly object format'
-            DepartmentDto DepartmentDto = new DepartmentDto
-            {
-                DepartmentID = Department.DepartmentID,
-                DepartmentName = Department.DepartmentName,
-                DepartmentPhoneNumber = Department.DepartmentPhoneNumber
-            };
-
-
-            //pass along data as 200 status code OK response
-            return Ok(DepartmentDto);
-        }
-
-
-
-        /// <summary>
-        /// Updates a volunteerposition in the database given information about the volunteerposition.
+        /// Updates a volunteer position in the database given information about the volunteer position.
         /// </summary>
         /// <param name="id">The volunteerposition id, CVP</param>
         /// <param name="volunteerposition">A volunteerposition object. Received as POST data.</param>
@@ -169,85 +169,8 @@ namespace SensenbrennerHospital.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // /// <summary>
-        // /// Receives volunteerposition picture data, uploads it to the webserver and updates the volunteerposition's HasPic option
-        // /// </summary>
-        // /// <param name="id">the volunteerposition id</param>
-        // /// <returns>status code 200 if successful.</returns>
-        // /// <example>
-        // /// curl -F articlepic=@file.jpg "https://localhost:xx/api/volunteerdata/updatevolunteerpic/2"
-        // /// POST: api/VolunteerPositionData/UpdateVolunteerPic/3
-        // /// HEADER: enctype=multipart/form-data
-        // /// FORM-DATA: image
-        // /// </example>
-        // /// https://stackoverflow.com/questions/28369529/how-to-set-up-a-web-api-controller-for-multipart-form-data
-
-        // [HttpPost]
-        // public IHttpActionResult UpdateVolunteerPic(int id)
-        // {
-
-        //     bool haspic = false;
-        //     string picextension;
-        //     if (Request.Content.IsMimeMultipartContent())
-        //     {
-        //         Debug.WriteLine("Received multipart form data.");
-
-        //         int numfiles = HttpContext.Current.Request.Files.Count;
-        //         Debug.WriteLine("Files Received: " + numfiles);
-
-        //         //Check if a file is posted
-        //         if (numfiles == 1 && HttpContext.Current.Request.Files[0] != null)
-        //         {
-        //             var VolunteerPic = HttpContext.Current.Request.Files[0];
-        //             //Check if the file is empty
-        //             if (VolunteerPic.ContentLength > 0)
-        //             {
-        //                 var valtypes = new[] { "jpeg", "jpg", "png", "gif" };
-        //                 var extension = Path.GetExtension(VolunteerPic.FileName).Substring(1);
-        //                 //Check the extension of the file
-        //                 if (valtypes.Contains(extension))
-        //                 {
-        //                     try
-        //                     {
-        //                         //file name is the id of the image
-        //                         string fn = id + "." + extension;
-
-        //                         //get a direct file path to ~/Content/VolunteerPositions/{id}.{extension}
-        //                         string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/VolunteerPositions/"), fn);
-
-        //                         //save the file
-        //                         VolunteerPic.SaveAs(path);
-
-        //                         //if these are all successful then we can set these fields
-        //                         haspic = true;
-        //                         picextension = extension;
-
-        //                         //Update the volunteerposition haspic and picextension fields in the database
-        //                         VolunteerPosition SelectedVolunteer = db.VolunteerPositions.Find(id);
-        //                         SelectedVolunteer.VolunteerHasPic = haspic;
-        //                         SelectedVolunteer.PicExtension = extension;
-        //                         db.Entry(SelectedVolunteer).State = EntityState.Modified;
-
-        //                         db.SaveChanges();
-
-        //                     }
-        //                     catch (Exception ex)
-        //                     {
-        //                         Debug.WriteLine("VolunteerPosition Image was not saved successfully.");
-        //                         Debug.WriteLine("Exception:" + ex);
-        //                     }
-        //                 }
-        //             }
-
-        //         }
-        //     }
-
-        //     return Ok();
-        // }
-
-
         /// <summary>
-        /// Adds a volunteerposition to the database.
+        /// Adds a volunteer position to the database.
         /// </summary>
         /// <param name="volunteerposition">A volunteerposition object. Sent as POST form data.</param>
         /// <returns>status code 200 if successful. 400 if unsuccessful</returns>
@@ -272,9 +195,9 @@ namespace SensenbrennerHospital.Controllers
         }
 
         /// <summary>
-        /// Deletes a volunteerposition in the database
+        /// Deletes a volunteer position in the database
         /// </summary>
-        /// <param name="id">The id of the volunteerposition to delete.</param>
+        /// <param name="id">The id of the volunteer position to delete.</param>
         /// <returns>200 if successful. 404 if not successful.</returns>
         /// <example>
         /// POST: api/VolunteerPositionData/DeleteVolunteerPosition/5
@@ -286,13 +209,6 @@ namespace SensenbrennerHospital.Controllers
             if (volunteerposition == null)
             {
                 return NotFound();
-            }
-            //also delete image from path
-            string path = HttpContext.Current.Server.MapPath("~/Content/VolunteerPositions/" + id + volunteerposition.PicExtension);
-            if (System.IO.File.Exists(path))
-            {
-                Debug.WriteLine("File exists... preparing to delete!");
-                System.IO.File.Delete(path);
             }
 
             db.VolunteerPositions.Remove(volunteerposition);
@@ -311,7 +227,7 @@ namespace SensenbrennerHospital.Controllers
         }
 
         /// <summary>
-        /// Finds a volunteerposition in the system. Internal use only.
+        /// Finds a volunteer position in the system. Internal use only.
         /// </summary>
         /// <param name="id">The volunteerposition id, Cvp</param>
         /// <returns>TRUE if the volunteerposition exists, false otherwise.</returns>

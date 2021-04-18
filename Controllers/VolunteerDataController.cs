@@ -20,7 +20,7 @@ namespace SensenbrennerHospital.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        /// <summary>Needs more
+        /// <summary>Needs more...
         /// Gets a list or volunteers in the database alongside a status code (200 OK).
         /// </summary>
         /// <returns>A list of volunteers including ..........</returns>
@@ -49,7 +49,7 @@ namespace SensenbrennerHospital.Controllers
             return Ok(VolunteerDtos);
         }
 
-        /// <summary>
+        /// <summary>Needs more...
         /// Finds a particular volunteer in the database with a 200 status code. If the volunteer is not found, return 404.
         /// </summary>
         /// <param name="id">The volunteer id</param>
@@ -83,7 +83,7 @@ namespace SensenbrennerHospital.Controllers
             return Ok(VolunteerDto);
         }
 
-        ///// <summary> ELLE, LOOK AT THIS LATER!!
+        ///// <summary> ELLE, I THINK YOU MIGHT NEED THIS??
         ///// Finds a particular Department in the database given a volunteer id with a 200 status code. If the Department is not found, return 404.
         ///// </summary>
         ///// <param name="id">The volunteer id</param>
@@ -120,7 +120,7 @@ namespace SensenbrennerHospital.Controllers
 
 
 
-        /// <summary>
+        /// <summary> ADD MORE...
         /// Updates a volunteer in the database given information about the volunteer.
         /// </summary>
         /// <param name="id">The volunteer id</param>
@@ -245,7 +245,7 @@ namespace SensenbrennerHospital.Controllers
         }
 
 
-        /// <summary>
+        /// <summary>ADD MORE...
         /// Adds a volunteer to the database.
         /// </summary>
         /// <param name="volunteer">A volunteer object. Sent as POST form data.</param>

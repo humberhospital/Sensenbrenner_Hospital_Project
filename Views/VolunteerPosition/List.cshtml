@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SensenbrennerHospital.Models.VolunteerPositionDto>
+<head>
+    @*//Stylesheets
+    //
+    <link rel="stylesheet" href="~/Content/Volunteers/articles.css">
+    //
+    <link rel="stylesheet" href="~/Content/Site.css">*@
+</head>
+@{
+    ViewBag.Title = "View";
+}
+<div id="topBanner">
+
+    <h2 class="water">Volunteer Positions</h2>
+
+</div>
+
+<div class="record-container">
+    @foreach (var volunteerposition in Model)
+    {
+
+        <div class="record">
+            <div class="_record">
+
+                    <div class="recordtitle">
+                        <h1>@volunteerposition.Name </h1>
+                        <p>@volunteerposition.Description</p>
+
+                    </div>
+                    <div class="linknav">
+                        <span class="editlink">@Html.ActionLink("Details", "Details", new { id = volunteerposition.CvpID })</span>
+                        <span class="editlink">@Html.ActionLink("Delete", "DeleteConfirm", new { id = volunteerposition.CvpID })</span>
+                    </div>
+
+            </div>
+        </div>
+    }
+        <div class="record _record" id="createNew">
+            <h3>@Html.ActionLink("Create New", "Create")</h3>
+        </div>
+ </div>

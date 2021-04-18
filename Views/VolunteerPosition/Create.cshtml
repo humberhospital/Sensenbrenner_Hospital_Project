@@ -1,4 +1,4 @@
-﻿@model SensenbrennerHospital.Models.ViewModels.UpdateVolunteer
+﻿@model SensenbrennerHospital.Models.ViewModels.UpdateVolunteerPosition
 
 <head>
     //Stylesheets
@@ -14,28 +14,28 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h1>Create a Volunteer</h1>
+        <h1>Create a Volunteer Position</h1>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.volunteer.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.volunteerposition.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.volunteer.FirstName, new { htmlAttributes = new { @class = "form-control", Name = "FirstName" } })
-                @Html.ValidationMessageFor(model => model.volunteer.FirstName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.volunteerposition.Name, new { htmlAttributes = new { @class = "form-control", Name = "Name" } })
+                @Html.ValidationMessageFor(model => model.volunteerposition.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.volunteer.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.volunteerposition.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.volunteer.LastName, new { htmlAttributes = new { @class = "form-control", Name = "LastName" } })
-                @Html.ValidationMessageFor(model => model.volunteer.LastName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.volunteerposition.Description, new { htmlAttributes = new { @class = "form-control", Name = "Description" } })
+                @Html.ValidationMessageFor(model => model.volunteerposition.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.volunteer.DepartmentID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.volunteerposition.DepartmentID, htmlAttributes: new { @class = "control-label col-md-2" })
 
             <div class="col-md-10">
 
