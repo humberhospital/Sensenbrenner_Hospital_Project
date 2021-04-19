@@ -408,7 +408,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\DoctorInfo\" />
     <Folder Include="Views\UserInfo\" />
   </ItemGroup>
   <ItemGroup>
