@@ -408,6 +408,9 @@
     <Content Include="Views\VolunteerPosition\Error.cshtml" />
     <Content Include="Views\VolunteerPosition\List.cshtml" />
     <Content Include="Views\Faq\Create.cshtml" />
+    <Content Include="Views\Doctor\ListDoctors.cshtml" />
+    <Content Include="Views\Doctor\Create.cshtml" />
+    <Content Include="Views\Doctor\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
