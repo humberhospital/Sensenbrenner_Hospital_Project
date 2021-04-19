@@ -54,10 +54,8 @@ namespace SensenbrennerHospital.Controllers
         {
             if (!ModelState.IsValid)
             {
-                Debug.WriteLine("Not valid");
                 return BadRequest(ModelState);
             }
-            Debug.WriteLine(newDepartment);
             db.Departments.Add(newDepartment);
             db.SaveChanges();
 

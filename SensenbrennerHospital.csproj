@@ -236,6 +236,7 @@
     <Compile Include="Controllers\DoctorDataController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\DonationDataController.cs" />
+    <Compile Include="Controllers\FaqCategoryDataController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\FaqDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -298,6 +299,7 @@
     <Compile Include="Models\ReportsTable.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\ViewModels\CreateAppointment.cs" />
+    <Compile Include="Models\ViewModels\CreateFaq.cs" />
     <Compile Include="Models\ViewModels\ListDonation.cs" />
     <Compile Include="Models\ViewModels\ListFaq.cs" />
     <Compile Include="Models\ViewModels\ListUser.cs" />
@@ -405,6 +407,7 @@
     <Content Include="Views\VolunteerPosition\Edit.cshtml" />
     <Content Include="Views\VolunteerPosition\Error.cshtml" />
     <Content Include="Views\VolunteerPosition\List.cshtml" />
+    <Content Include="Views\Faq\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
