@@ -1,0 +1,61 @@
+﻿@model IEnumerable<SensenbrennerHospital.Models.ViewModels.ListFaq>
+@Scripts.Render("~/bundles/faqScripts")
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>F.A.Q</h2>
+
+<p>
+    @if (Model.First().isadmin)
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+</p>
+<div id="category-container">
+    @foreach (var item in Model.First().category)
+    {
+        <button class="btn-category" id="btn-@item.CategoryID">@item.CategoryName</button>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Categories</th>
+        @if (Model.First().isadmin)
+        {
+            <th>More options</th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="@foreach (var category in item.category)
+        {
+            @Html.Raw(category.CategoryName + " ")
+        } question
+        ">
+            <td>
+                @item.faq.Question
+            </td>
+            <td>
+                @item.faq.Answer
+            </td>
+            <td>
+                @foreach (var category in item.category)
+                {
+                    @category.CategoryName
+                }
+            </td>
+            @if (Model.First().isadmin)
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Update", new { id = item.faq.FaqID }) |
+                    @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.faq.FaqID })
+                </td>
+            }
+        </tr>
+    }
+
+</table>

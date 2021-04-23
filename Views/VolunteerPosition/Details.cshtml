@@ -1,0 +1,38 @@
+﻿@model SensenbrennerHospital.Models.ViewModels.ShowVolunteerPosition
+<head>
+    // Stylesheets
+    //
+    <link rel="stylesheet" href="~/Content/Volunteers/details.css">
+    //
+    <link rel="stylesheet" href="~/Content/Site.css">
+</head>
+
+
+<h2>@Html.DisplayFor(model => model.volunteerposition.Name)</h2>
+
+<div>
+    <hr />
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.volunteerposition.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.volunteerposition.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.department.DepartmentName)
+            </dt>
+            <dd>
+                @*// @Html.ActionLink(Model.department.DepartmentName, "Details", "Department", new { id = Model.department.DepartmentID }, new { })*@
+            </dd>
+
+        </dl>
+    </div>
+    <div class="options">
+        <div class="editlink">@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.volunteerposition.CvpID })</div>
+        <span class="editlink backTwo"> @Html.ActionLink("Edit", "Edit", new { id = Model.volunteerposition.CvpID }) </span>
+        <span class="editlink backOne"> @Html.ActionLink("Back to List", "List")</span>
+    </div>

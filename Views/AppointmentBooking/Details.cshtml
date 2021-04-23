@@ -1,4 +1,4 @@
-﻿@model SensenbrennerHospital.Models.AppointmentBooking
+﻿@model SensenbrennerHospital.Models.ViewModels.ListAppointment
 
 @{
     ViewBag.Title = "Details";
@@ -11,64 +11,64 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.DoctorInfo.FirstName)
+            Doctor
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DoctorInfo.FirstName)
+            Dr @Html.DisplayFor(model => model.doctorDto.LastName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.appointmentBookingDto.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.appointmentBookingDto.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.appointmentBookingDto.LastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LastName)
+            @Html.DisplayFor(model => model.appointmentBookingDto.LastName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            @Html.DisplayNameFor(model => model.appointmentBookingDto.PhoneNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
+            @Html.DisplayFor(model => model.appointmentBookingDto.PhoneNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RequestDescription)
+            @Html.DisplayNameFor(model => model.appointmentBookingDto.RequestDescription)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RequestDescription)
+            @Html.DisplayFor(model => model.appointmentBookingDto.RequestDescription)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AppointmentDate)
+            @Html.DisplayNameFor(model => model.appointmentBookingDto.AppointmentDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AppointmentDate)
+            @Html.DisplayFor(model => model.appointmentBookingDto.AppointmentDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Confirmation)
+            @Html.DisplayNameFor(model => model.appointmentBookingDto.Confirmation)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Confirmation)
+            @Html.DisplayFor(model => model.appointmentBookingDto.Confirmation)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AppointmentID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.appointmentBookingDto.AppointmentID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

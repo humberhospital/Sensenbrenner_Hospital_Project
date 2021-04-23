@@ -19,8 +19,10 @@ namespace SensenbrennerHospital.Controllers
         /// <summary>
         /// Retrieves a list of all career postings
         /// </summary>
-        /// <returns></returns>
-        // GET: api/CareerData/ListCareers
+        /// <returns>IEnumerable<Career></returns>
+        /// <example>
+        /// GET: api/CareerData/ListCareers
+        /// </example>
         [HttpGet]
         public IEnumerable<Career> ListCareers()
         {
@@ -28,11 +30,13 @@ namespace SensenbrennerHospital.Controllers
         }
 
         /// <summary>
-        /// Retrieves a specific career posting by id
+        /// Retrieves a career posting specified by its id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: api/CareerData/GetCareer/5
+        /// <param name="id">Career posting id</param>
+        /// <returns>Career posting object</returns>
+        /// <example>
+        /// GET: api/CareerData/GetCareer/5
+        /// </example>
         [ResponseType(typeof(Career))]
         [HttpGet]
         public IHttpActionResult GetCareer(int id)
@@ -47,7 +51,15 @@ namespace SensenbrennerHospital.Controllers
             return Ok(career);
         }
 
-        // POST: api/CareerData/UpdateCareer/5
+        /// <summary>
+        /// Updates a career posting with the given form data
+        /// </summary>
+        /// <param name="id">Input career posting id</param>
+        /// <param name="career">Career object, recieved as POST data</param>
+        /// <returns></returns>
+        /// <example>
+        /// POST: api/CareerData/UpdateCareer/5
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateCareer(int id, [FromBody]Career career)
@@ -83,7 +95,14 @@ namespace SensenbrennerHospital.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/CareerData/AddCareer
+        /// <summary>
+        /// Adds a career posting to the database using form data
+        /// </summary>
+        /// <param name="career">Career object, recieved as POST data</param>
+        /// <returns>status code, along with id associated with the new posting</returns>
+        /// <example>
+        /// POST: api/CareerData/AddCareer
+        /// </example>
         [ResponseType(typeof(Career))]
         [HttpPost]
         public IHttpActionResult AddCareer([FromBody]Career career)
@@ -99,7 +118,14 @@ namespace SensenbrennerHospital.Controllers
             return Ok(career.CareerID);
         }
 
-        // DELETE: api/CareerData/5
+        /// <summary>
+        /// Deletes a career posting associated with the specified id
+        /// </summary>
+        /// <param name="id">Career posting id</param>
+        /// <returns></returns>
+        /// <example>
+        /// DELETE: api/CareerData/5
+        /// </example>
         [ResponseType(typeof(Career))]
         [HttpPost]
         public IHttpActionResult DeleteCareer(int id)

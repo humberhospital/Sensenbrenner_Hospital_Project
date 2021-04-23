@@ -56,7 +56,8 @@ namespace SensenbrennerHospital.Controllers
         public ActionResult Create(Department NewDepartment)
         {
             string url = "DepartmentData/AddDepartment";
-            
+
+            Debug.WriteLine(NewDepartment.DepartmentName);
             HttpContent content = new StringContent(jss.Serialize(NewDepartment));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;

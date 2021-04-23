@@ -20,7 +20,7 @@ namespace SensenbrennerHospital.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        /// <summary>Needs more
+        /// <summary>Needs more...
         /// Gets a list or volunteers in the database alongside a status code (200 OK).
         /// </summary>
         /// <returns>A list of volunteers including ..........</returns>
@@ -41,6 +41,8 @@ namespace SensenbrennerHospital.Controllers
                     VolunteerID = Volunteer.VolunteerID,
                     FirstName = Volunteer.FirstName,
                     LastName = Volunteer.LastName,
+                    VolunteerHasPic = Volunteer.VolunteerHasPic,
+                    PicExtension = Volunteer.PicExtension,
                     DepartmentID = Volunteer.DepartmentID
                 };
                 VolunteerDtos.Add(NewVolunteer);
@@ -49,7 +51,7 @@ namespace SensenbrennerHospital.Controllers
             return Ok(VolunteerDtos);
         }
 
-        /// <summary>
+        /// <summary>Needs more...
         /// Finds a particular volunteer in the database with a 200 status code. If the volunteer is not found, return 404.
         /// </summary>
         /// <param name="id">The volunteer id</param>
@@ -75,7 +77,10 @@ namespace SensenbrennerHospital.Controllers
                 VolunteerID = Volunteer.VolunteerID,
                 FirstName = Volunteer.FirstName,
                 LastName = Volunteer.LastName,
-                DepartmentID = Volunteer.DepartmentID
+                DepartmentID = Volunteer.DepartmentID,
+                VolunteerHasPic = Volunteer.VolunteerHasPic,
+                PicExtension = Volunteer.PicExtension
+
             };
 
 
@@ -83,11 +88,11 @@ namespace SensenbrennerHospital.Controllers
             return Ok(VolunteerDto);
         }
 
-        ///// <summary> ELLE, LOOK AT THIS LATER!!
+        ///// <summary> ELLE, I THINK YOU MIGHT NEED THIS??
         ///// Finds a particular Department in the database given a volunteer id with a 200 status code. If the Department is not found, return 404.
         ///// </summary>
         ///// <param name="id">The volunteer id</param>
-        ///// <returns>Information about the Department, including Department id, bio, first and last name, and countryid</returns>
+        ///// <returns>Information about the Department, including Department id, Department name, and department number</returns>
         //// <example>
         //// GET: api/DepartmentData/FindDepartmentForVolunteer/5
         //// </example>
@@ -95,8 +100,7 @@ namespace SensenbrennerHospital.Controllers
         //[ResponseType(typeof(DepartmentDto))]
         //public IHttpActionResult FindDepartmentForVolunteer(int id)
         //{
-        //    //Finds the first country which has any volunteers
-        //    //that match the input articleid
+        //    //Finds the first Department that matches the input volunteerid
         //    Department Department = db.Departments
         //        .Where(t => t.Volunteers.Any(p => p.VolunteerID == id))
         //        .FirstOrDefault();
@@ -121,7 +125,7 @@ namespace SensenbrennerHospital.Controllers
 
 
 
-        /// <summary>
+        /// <summary> ADD MORE...
         /// Updates a volunteer in the database given information about the volunteer.
         /// </summary>
         /// <param name="id">The volunteer id</param>
@@ -180,7 +184,7 @@ namespace SensenbrennerHospital.Controllers
         /// HEADER: enctype=multipart/form-data
         /// FORM-DATA: image
         /// </example>
-        /// https://stackoverflow.com/questions/28369529/how-to-set-up-a-web-api-controller-for-multipart-form-data
+        /// 
 
         [HttpPost]
         public IHttpActionResult UpdateVolunteerPic(int id)
@@ -217,10 +221,12 @@ namespace SensenbrennerHospital.Controllers
 
                                 //save the file
                                 VolunteerPic.SaveAs(path);
+                                Debug.WriteLine("Path:" + path);
 
                                 //if these are all successful then we can set these fields
                                 haspic = true;
                                 picextension = extension;
+                                Debug.WriteLine("fn" + fn);
 
                                 //Update the volunteer haspic and picextension fields in the database
                                 Volunteer SelectedVolunteer = db.Volunteers.Find(id);
@@ -246,7 +252,7 @@ namespace SensenbrennerHospital.Controllers
         }
 
 
-        /// <summary>
+        /// <summary>ADD MORE...
         /// Adds a volunteer to the database.
         /// </summary>
         /// <param name="volunteer">A volunteer object. Sent as POST form data.</param>

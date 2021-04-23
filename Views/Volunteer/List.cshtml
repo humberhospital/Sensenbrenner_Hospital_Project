@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SensenbrennerHospital.Models.VolunteerDto>
+<head>
+    @*//Stylesheets
+    //
+    <link rel="stylesheet" href="~/Content/Volunteers/articles.css">
+    //
+    <link rel="stylesheet" href="~/Content/Site.css">*@
+</head>
+@{
+    ViewBag.Title = "View";
+}
+<div id="topBanner">
+    <h2 class="water">Volunteers List</h2>
+
+</div>
+
+<div class="record-container">
+    @foreach (var volunteer in Model)
+    {
+
+        <div class="record">
+            <div class="_record">
+                @{
+
+                    string pic = "/Content/Volunteers/globe.jpg";
+                    string alt = "No Picture Provided.";
+                    if (volunteer.VolunteerHasPic)
+                    {
+                        pic = "/Content/Volunteers/" + volunteer.VolunteerID + "." + volunteer.PicExtension;
+                        alt = "Picture of " + volunteer.FirstName;
+                    }
+                }
+                <div class="contain">
+                    <img src="@pic" alt="@alt" />
+                </div>
+                <div class="recordtitle">
+                    <h1>@volunteer.FirstName @volunteer.LastName </h1>
+                    @volunteer.PicExtension
+                </div>
+                <div class="linknav">
+                    <span class="editlink">@Html.ActionLink("Details", "Details", new { id = volunteer.VolunteerID })</span>
+                    <span class="editlink">@Html.ActionLink("Delete", "DeleteConfirm", new { id = volunteer.VolunteerID })</span>
+                </div>
+
+            </div>
+        </div>
+    }
+    <div class="record _record" id="createNew">
+        <h3>@Html.ActionLink("Create New", "Create")</h3>
+    </div>
+</div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 using System.Linq;
 using System.Web;
 
@@ -21,5 +22,23 @@ namespace SensenbrennerHospital.Models
         [ForeignKey("DoctorInfo")]
         public int DoctorID { get; set; }
         public virtual Doctor DoctorInfo { get; set; }
+    }
+    public class AppointmentBookingDto
+    {
+        public int AppointmentID { get; set; }
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+        [Display(Name = "Request Description")]
+        public string RequestDescription { get; set; }
+        [Display(Name = "Appointment Date")]
+        public DateTime AppointmentDate { get; set; }
+        [Display(Name = "Doctor")]
+        public int DoctorID { get; set; }
+        public string Confirmation { get; set; }
+        public List<SelectListItem> doctorSelectList { get; set; }
     }
 }

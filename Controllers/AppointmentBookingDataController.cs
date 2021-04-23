@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -16,14 +17,44 @@ namespace SensenbrennerHospital.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/AppointmentBookingData/ListAppointmentBookings
+        /// <summary>
+        /// Returns a list of all appointment bookings in database along with a status code
+        /// </summary>
+        /// <returns>IEnumerable<AppointmentBookingDto></returns>
+        /// <example>
+        /// GET: api/AppointmentBookingData/ListAppointmentBookings
+        /// </example>
+        [ResponseType(typeof(IEnumerable<AppointmentBookingDto>))]
         [HttpGet]
-        public IEnumerable<AppointmentBooking> ListAppointmentBookings()
+        public IHttpActionResult ListAppointmentBookings()
         {
-            return db.AppointmentBookings;
-        }
+            List<AppointmentBooking> appointmentBookings = db.AppointmentBookings.ToList();
+            List<AppointmentBookingDto> appointmentBookingDtos = new List<AppointmentBookingDto> { };
 
-        // GET: api/AppointmentBookingData/GetAppointmentBooking/5
+            foreach(var appointmentBooking in appointmentBookings)
+            {
+                AppointmentBookingDto appointmentBookingDto = new AppointmentBookingDto
+                {
+                    AppointmentID = appointmentBooking.AppointmentID,
+                    FirstName = appointmentBooking.FirstName,
+                    LastName = appointmentBooking.LastName,
+                    PhoneNumber = appointmentBooking.PhoneNumber,
+                    DoctorID = appointmentBooking.DoctorID,
+                    RequestDescription = appointmentBooking.RequestDescription,
+                    AppointmentDate = appointmentBooking.AppointmentDate
+                };
+                appointmentBookingDtos.Add(appointmentBookingDto);
+            }
+            return Ok(appointmentBookingDtos);
+        }
+        /// <summary>
+        /// Finds an appointment booking associated with a particular id, along with status code
+        /// </summary>
+        /// <param name="id">Input appointment id</param>
+        /// <returns>Appointment booking associated with id</returns>
+        /// <example>
+        /// GET: api/AppointmentBookingData/GetAppointmentBooking/5
+        /// </example>
         [ResponseType(typeof(AppointmentBooking))]
         [HttpGet]
         public IHttpActionResult GetAppointmentBooking(int id)
@@ -36,8 +67,51 @@ namespace SensenbrennerHospital.Controllers
 
             return Ok(appointmentBooking);
         }
+        /// <summary>
+        /// Finds all appointment associated with a doctor, along with a status code
+        /// </summary>
+        /// <param name="id">Input doctor id</param>
+        /// <returns>List of appointments associated with a doctor</returns>
+        /// <example>
+        /// GET: api/AppointmentBookingData/GetAppointmentsForDoctor/2
+        /// </example>
+        [ResponseType(typeof(IEnumerable<AppointmentBookingDto>))]
+        [HttpGet]
+        public IHttpActionResult GetAppointmentsForDoctor(int id)
+        {
+            List<AppointmentBooking> appointmentBookings = db
+                .AppointmentBookings
+                .Where(a => a.DoctorID == id)
+                .ToList();
+            List<AppointmentBookingDto> appointmentBookingDtos = new List<AppointmentBookingDto> { };
 
-        // POST: api/AppointmentBookingData/UpdateAppointmentBooking/5
+            foreach(var appointment in appointmentBookings)
+            {
+                AppointmentBookingDto appointmentBookingDto = new AppointmentBookingDto
+                {
+                    AppointmentID = appointment.AppointmentID,
+                    AppointmentDate = appointment.AppointmentDate,
+                    FirstName = appointment.FirstName,
+                    LastName = appointment.LastName,
+                    PhoneNumber = appointment.PhoneNumber,
+                    RequestDescription = appointment.RequestDescription,
+                    Confirmation = appointment.Confirmation,
+                    DoctorID = appointment.DoctorID
+                };
+                appointmentBookingDtos.Add(appointmentBookingDto);
+            }
+            return Ok(appointmentBookingDtos);
+        }
+
+        /// <summary>
+        /// Updates a specific appointment booking in the database when provided with an appointment ID
+        /// </summary>
+        /// <param name="id">Input appointment id</param>
+        /// <param name="appointmentBooking">Edited appointment booking object</param>
+        /// <returns>HTTP status code</returns>
+        /// <example>
+        /// POST: api/AppointmentBookingData/UpdateAppointmentBooking/5
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateAppointmentBooking(int id, [FromBody]AppointmentBooking appointmentBooking)
@@ -73,7 +147,14 @@ namespace SensenbrennerHospital.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/AppointmentBookingData/AddAppointmentBooking
+        /// <summary>
+        /// Adds an appointment to the database
+        /// </summary>
+        /// <param name="appointmentBooking">Input appointment booking data from form</param>
+        /// <returns>Status code</returns>
+        /// <example>
+        /// POST: api/AppointmentBookingData/AddAppointmentBooking
+        /// </example>
         [ResponseType(typeof(AppointmentBooking))]
         [HttpPost]
         public IHttpActionResult AddAppointmentBooking([FromBody]AppointmentBooking appointmentBooking)
@@ -82,14 +163,21 @@ namespace SensenbrennerHospital.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            Debug.WriteLine(appointmentBooking);
             db.AppointmentBookings.Add(appointmentBooking);
             db.SaveChanges();
 
             return Ok(appointmentBooking.AppointmentID);
         }
 
-        // DELETE: api/AppointmentBookingData/DeleteAppointmentBooking/5
+        /// <summary>
+        /// Deletes specified appointment booking
+        /// </summary>
+        /// <param name="id">Input appointment booking id</param>
+        /// <returns></returns>
+        /// <example>
+        /// POST: api/AppointmentBookingData/DeleteAppointmentBooking/5
+        /// </example>
         [ResponseType(typeof(AppointmentBooking))]
         [HttpPost]
         public IHttpActionResult DeleteAppointmentBooking(int id)
