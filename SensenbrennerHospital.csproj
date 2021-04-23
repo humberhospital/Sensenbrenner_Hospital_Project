@@ -304,6 +304,7 @@
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\ViewModels\CreateAppointment.cs" />
     <Compile Include="Models\ViewModels\CreateFaq.cs" />
+    <Compile Include="Models\ViewModels\ListAppointments.cs" />
     <Compile Include="Models\ViewModels\ListDonation.cs" />
     <Compile Include="Models\ViewModels\ListFaq.cs" />
     <Compile Include="Models\ViewModels\ListUser.cs" />
