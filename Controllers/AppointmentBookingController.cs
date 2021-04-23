@@ -31,14 +31,28 @@ namespace SensenbrennerHospital.Controllers
         // GET: AppointmentBooking
         public ActionResult Index()
         {
+            List<ListAppointment> ViewModel = new List<ListAppointment> { };
             string url = "AppointmentBookingData/ListAppointmentBookings";
             HttpResponseMessage httpResponse = client.GetAsync(url).Result;
 
             if (httpResponse.IsSuccessStatusCode)
             {
                 IEnumerable<AppointmentBookingDto> BookingList = httpResponse.Content.ReadAsAsync<IEnumerable<AppointmentBookingDto>>().Result;
-                Debug.WriteLine(BookingList);
-                return View(BookingList);
+                foreach(var item in BookingList)
+                {
+                    url = "DoctorData/GetDoctor/" + item.DoctorID;
+                    httpResponse = client.GetAsync(url).Result;
+
+                    ListAppointment listAppointment = new ListAppointment
+                    {
+                        appointmentBookingDto = item,
+                        isadmin = User.IsInRole("Admin"),
+                        doctorDto = httpResponse.Content.ReadAsAsync<DoctorDTO>().Result
+                    };
+                    ViewModel.Add(listAppointment);
+                }
+                Debug.WriteLine(ViewModel);
+                return View(ViewModel);
             }
             else
             {
@@ -55,11 +69,18 @@ namespace SensenbrennerHospital.Controllers
 
             if (httpResponse.IsSuccessStatusCode)
             {
-                AppointmentBooking selectedBooking = new AppointmentBooking();
-                selectedBooking = httpResponse.Content.ReadAsAsync<AppointmentBooking>().Result;
+                AppointmentBookingDto selectedBooking = new AppointmentBookingDto();
+                selectedBooking = httpResponse.Content.ReadAsAsync<AppointmentBookingDto>().Result;
 
-                return View(selectedBooking);
-
+                url = "DoctorData/GetDoctor/" + selectedBooking.DoctorID;
+                httpResponse = client.GetAsync(url).Result;
+                ListAppointment ViewModel = new ListAppointment
+                {
+                    isadmin = User.IsInRole("Admin"),
+                    appointmentBookingDto = selectedBooking,
+                    doctorDto = httpResponse.Content.ReadAsAsync<DoctorDTO>().Result
+                };
+                return View(ViewModel);
             }
             else
             {
@@ -101,6 +122,7 @@ namespace SensenbrennerHospital.Controllers
         [HttpPost]
         public ActionResult Create(AppointmentBooking NewAppointmentBooking)
         {
+            NewAppointmentBooking.Confirmation = "0";
             string url = "AppointmentBookingData/AddAppointmentBooking";
 
             HttpContent content = new StringContent(jss.Serialize(NewAppointmentBooking));
@@ -128,11 +150,25 @@ namespace SensenbrennerHospital.Controllers
 
             if (httpResponse.IsSuccessStatusCode)
             {
-                AppointmentBooking selectedBooking = new AppointmentBooking();
-                selectedBooking = httpResponse.Content.ReadAsAsync<AppointmentBooking>().Result;
+                AppointmentBookingDto selectedBooking = new AppointmentBookingDto();
+                selectedBooking = httpResponse.Content.ReadAsAsync<AppointmentBookingDto>().Result;
+
+                url = "DoctorData/GetListOfDoctors";
+                httpResponse = client.GetAsync(url).Result;
+                List<SelectListItem> doctorSelectList = new List<SelectListItem>();
+                IEnumerable<DoctorDTO> doctorList = httpResponse.Content.ReadAsAsync<IEnumerable<DoctorDTO>>().Result;
+
+                foreach (var d in doctorList)
+                {
+                    doctorSelectList.Add(new SelectListItem
+                    {
+                        Text = "Dr." + d.LastName,
+                        Value = d.DoctorID.ToString()
+                    });
+                }
+                selectedBooking.doctorSelectList = doctorSelectList;
 
                 return View(selectedBooking);
-
             }
             else
             {
@@ -159,7 +195,7 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
-        // GET: AppointmentBooking/Delete/5
+        // GET: AppointmentBooking/DeleteConfirm/5
         [HttpGet]
         public ActionResult DeleteConfirm(int id)
         {
@@ -168,10 +204,19 @@ namespace SensenbrennerHospital.Controllers
 
             if (httpResponse.IsSuccessStatusCode)
             {
-                AppointmentBooking selectedBooking = new AppointmentBooking();
-                selectedBooking = httpResponse.Content.ReadAsAsync<AppointmentBooking>().Result;
+                AppointmentBookingDto selectedBooking = new AppointmentBookingDto();
+                selectedBooking = httpResponse.Content.ReadAsAsync<AppointmentBookingDto>().Result;
 
-                return View(selectedBooking);
+                url = "DoctorData/GetDoctor/" + selectedBooking.DoctorID;
+                httpResponse = client.GetAsync(url).Result;
+                ListAppointment ViewModel = new ListAppointment
+                {
+                    isadmin = User.IsInRole("Admin"),
+                    appointmentBookingDto = selectedBooking,
+                    doctorDto = httpResponse.Content.ReadAsAsync<DoctorDTO>().Result
+                };
+
+                return View(ViewModel);
 
             }
             else

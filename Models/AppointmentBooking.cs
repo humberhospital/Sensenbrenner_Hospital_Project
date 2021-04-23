@@ -38,6 +38,7 @@ namespace SensenbrennerHospital.Models
         public DateTime AppointmentDate { get; set; }
         [Display(Name = "Doctor")]
         public int DoctorID { get; set; }
+        public string Confirmation { get; set; }
         public List<SelectListItem> doctorSelectList { get; set; }
     }
 }

@@ -5,10 +5,10 @@ using System.Web;
 
 namespace SensenbrennerHospital.Models.ViewModels
 {
-    public class ListAppointments
+    public class ListAppointment
     {
         public bool isadmin { get; set; }
-        public AppointmentBookingDto appointment { get; set; }
-        public IEnumerable<CategoryDto> category { get; set; }
+        public AppointmentBookingDto appointmentBookingDto { get; set; }
+        public DoctorDTO doctorDto { get; set; }
     }
 }
