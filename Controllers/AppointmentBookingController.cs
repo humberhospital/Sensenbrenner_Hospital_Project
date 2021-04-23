@@ -37,6 +37,7 @@ namespace SensenbrennerHospital.Controllers
             if (httpResponse.IsSuccessStatusCode)
             {
                 IEnumerable<AppointmentBookingDto> BookingList = httpResponse.Content.ReadAsAsync<IEnumerable<AppointmentBookingDto>>().Result;
+                Debug.WriteLine(BookingList);
                 return View(BookingList);
             }
             else

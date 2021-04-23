@@ -18,10 +18,28 @@ namespace SensenbrennerHospital.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/AppointmentBookingData/ListAppointmentBookings
+        [ResponseType(typeof(IEnumerable<AppointmentBookingDto>))]
         [HttpGet]
-        public IEnumerable<AppointmentBooking> ListAppointmentBookings()
+        public IHttpActionResult ListAppointmentBookings()
         {
-            return db.AppointmentBookings;
+            List<AppointmentBooking> appointmentBookings = db.AppointmentBookings.ToList();
+            List<AppointmentBookingDto> appointmentBookingDtos = new List<AppointmentBookingDto> { };
+
+            foreach(var appointmentBooking in appointmentBookings)
+            {
+                AppointmentBookingDto appointmentBookingDto = new AppointmentBookingDto
+                {
+                    AppointmentID = appointmentBooking.AppointmentID,
+                    FirstName = appointmentBooking.FirstName,
+                    LastName = appointmentBooking.LastName,
+                    PhoneNumber = appointmentBooking.PhoneNumber,
+                    DoctorID = appointmentBooking.DoctorID,
+                    RequestDescription = appointmentBooking.RequestDescription,
+                    AppointmentDate = appointmentBooking.AppointmentDate
+                };
+                appointmentBookingDtos.Add(appointmentBookingDto);
+            }
+            return Ok(appointmentBookingDtos);
         }
 
         // GET: api/AppointmentBookingData/GetAppointmentBooking/5

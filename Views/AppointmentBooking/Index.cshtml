@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SensenbrennerHospital.Models.AppointmentBooking>
+﻿@model IEnumerable<SensenbrennerHospital.Models.AppointmentBookingDto>
 
 @{
     ViewBag.Title = "Index";
@@ -11,9 +11,9 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.DoctorInfo.FirstName)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -29,17 +29,17 @@
         <th>
             @Html.DisplayNameFor(model => model.AppointmentDate)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Confirmation)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.DoctorInfo.FirstName)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
@@ -55,9 +55,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.AppointmentDate)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Confirmation)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AppointmentID }) |
             @Html.ActionLink("Details", "Details", new { id=item.AppointmentID }) |
