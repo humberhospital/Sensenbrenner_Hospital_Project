@@ -13,24 +13,24 @@ namespace SensenbrennerHospital.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        [ResponseType(typeof(CategoryDto))]
-        [HttpGet]
-        public IHttpActionResult GetCategoriesForFaq(int id)
-        {
-            IEnumerable<FaqCategory> faqCategories = db.FaqCategories.Where(c => c.FaqID == id).ToList();
-            List<CategoryDto> categoryDtos = new List<CategoryDto>();
+        //[ResponseType(typeof(CategoryDto))]
+        //[HttpGet]
+        //public IHttpActionResult GetCategoriesForFaq(int id)
+        //{
+        //    IEnumerable<FaqCategory> faqCategories = db.FaqCategories.Where(c => c.FaqID == id).ToList();
+        //    List<CategoryDto> categoryDtos = new List<CategoryDto>();
 
-            foreach (var faqCategory in faqCategories)
-            {
-                CategoryDto NewCategory = new CategoryDto
-                {
-                    CategoryID = faqCategory.Category.CategoryID,
-                    CategoryName = faqCategory.Category.CategoryName
-                };
-                categoryDtos.Add(NewCategory);
-            }
-            return Ok(categoryDtos);
-        }
+        //    foreach (var faqCategory in faqCategories)
+        //    {
+        //        CategoryDto NewCategory = new CategoryDto
+        //        {
+        //            CategoryID = faqCategory.Category.CategoryID,
+        //            CategoryName = faqCategory.Category.CategoryName
+        //        };
+        //        categoryDtos.Add(NewCategory);
+        //    }
+        //    return Ok(categoryDtos);
+        //}
 
         [ResponseType(typeof(IEnumerable<CategoryDto>))]
         [HttpGet]
