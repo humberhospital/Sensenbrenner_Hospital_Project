@@ -41,6 +41,8 @@ namespace SensenbrennerHospital.Controllers
                     VolunteerID = Volunteer.VolunteerID,
                     FirstName = Volunteer.FirstName,
                     LastName = Volunteer.LastName,
+                    VolunteerHasPic = Volunteer.VolunteerHasPic,
+                    PicExtension = Volunteer.PicExtension,
                     DepartmentID = Volunteer.DepartmentID
                 };
                 VolunteerDtos.Add(NewVolunteer);
@@ -75,7 +77,10 @@ namespace SensenbrennerHospital.Controllers
                 VolunteerID = Volunteer.VolunteerID,
                 FirstName = Volunteer.FirstName,
                 LastName = Volunteer.LastName,
-                DepartmentID = Volunteer.DepartmentID
+                DepartmentID = Volunteer.DepartmentID,
+                VolunteerHasPic = Volunteer.VolunteerHasPic,
+                PicExtension = Volunteer.PicExtension
+
             };
 
 
@@ -216,10 +221,12 @@ namespace SensenbrennerHospital.Controllers
 
                                 //save the file
                                 VolunteerPic.SaveAs(path);
+                                Debug.WriteLine("Path:" + path);
 
                                 //if these are all successful then we can set these fields
                                 haspic = true;
                                 picextension = extension;
+                                Debug.WriteLine("fn" + fn);
 
                                 //Update the volunteer haspic and picextension fields in the database
                                 Volunteer SelectedVolunteer = db.Volunteers.Find(id);
