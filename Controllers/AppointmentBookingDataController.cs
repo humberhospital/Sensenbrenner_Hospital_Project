@@ -56,6 +56,34 @@ namespace SensenbrennerHospital.Controllers
             return Ok(appointmentBooking);
         }
 
+        [ResponseType(typeof(IEnumerable<AppointmentBookingDto>))]
+        [HttpGet]
+        public IHttpActionResult GetAppointmentsForDoctor(int id)
+        {
+            List<AppointmentBooking> appointmentBookings = db
+                .AppointmentBookings
+                .Where(a => a.DoctorID == id)
+                .ToList();
+            List<AppointmentBookingDto> appointmentBookingDtos = new List<AppointmentBookingDto> { };
+
+            foreach(var appointment in appointmentBookings)
+            {
+                AppointmentBookingDto appointmentBookingDto = new AppointmentBookingDto
+                {
+                    AppointmentID = appointment.AppointmentID,
+                    AppointmentDate = appointment.AppointmentDate,
+                    FirstName = appointment.FirstName,
+                    LastName = appointment.LastName,
+                    PhoneNumber = appointment.PhoneNumber,
+                    RequestDescription = appointment.RequestDescription,
+                    Confirmation = appointment.Confirmation,
+                    DoctorID = appointment.DoctorID
+                };
+                appointmentBookingDtos.Add(appointmentBookingDto);
+            }
+            return Ok(appointmentBookingDtos);
+        }
+
         // POST: api/AppointmentBookingData/UpdateAppointmentBooking/5
         [ResponseType(typeof(void))]
         [HttpPost]
