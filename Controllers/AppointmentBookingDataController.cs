@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -82,7 +83,7 @@ namespace SensenbrennerHospital.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            Debug.WriteLine(appointmentBooking.AppointmentDate);
             db.AppointmentBookings.Add(appointmentBooking);
             db.SaveChanges();
 

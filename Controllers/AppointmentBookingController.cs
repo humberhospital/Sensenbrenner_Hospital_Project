@@ -72,7 +72,7 @@ namespace SensenbrennerHospital.Controllers
             CreateAppointment ViewModel = new CreateAppointment();
 
             ViewModel.appointmentBooking = new AppointmentBooking();
-            string URL = "DoctorInfoData/GetDoctors";
+            string URL = "DoctorData/GetListOfDoctors";
             HttpResponseMessage httpResponse = client.GetAsync(URL).Result;
 
             
@@ -107,8 +107,8 @@ namespace SensenbrennerHospital.Controllers
 
             HttpContent content = new StringContent(jss.Serialize(NewAppointmentBooking));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
             Debug.WriteLine(jss.Serialize(NewAppointmentBooking));
+            HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
 
             if (httpResponse.IsSuccessStatusCode)
             {
