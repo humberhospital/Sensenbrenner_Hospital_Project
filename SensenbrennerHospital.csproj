@@ -278,6 +278,10 @@
     <Compile Include="Migrations\202104151816058_DoctorUpdaate.Designer.cs">
       <DependentUpon>202104151816058_DoctorUpdaate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104230025339_faq-change.cs" />
+    <Compile Include="Migrations\202104230025339_faq-change.Designer.cs">
+      <DependentUpon>202104230025339_faq-change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -450,6 +454,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104151816058_DoctorUpdaate.resx">
       <DependentUpon>202104151816058_DoctorUpdaate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104230025339_faq-change.resx">
+      <DependentUpon>202104230025339_faq-change.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

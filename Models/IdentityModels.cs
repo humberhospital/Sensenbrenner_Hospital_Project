@@ -38,7 +38,6 @@ namespace SensenbrennerHospital.Models
 
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<FaqCategory> FaqCategories { get; set; }
         public DbSet<Career> Careers { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
         public DbSet<Department> Departments { get; set; }
