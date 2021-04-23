@@ -83,7 +83,7 @@ namespace SensenbrennerHospital.Controllers
             {
                 return BadRequest(ModelState);
             }
-            Debug.WriteLine(appointmentBooking.AppointmentDate);
+            Debug.WriteLine(appointmentBooking);
             db.AppointmentBookings.Add(appointmentBooking);
             db.SaveChanges();
 

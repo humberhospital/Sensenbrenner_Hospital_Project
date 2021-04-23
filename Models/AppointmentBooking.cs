@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 using System.Linq;
 using System.Web;
 
@@ -38,5 +39,6 @@ namespace SensenbrennerHospital.Models
         public string Confirmation { get; set; }
         [Display(Name = "Doctor")]
         public int DoctorID { get; set; }
+        public List<SelectListItem> doctorSelectList { get; set; }
     }
 }
