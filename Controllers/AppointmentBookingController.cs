@@ -143,6 +143,7 @@ namespace SensenbrennerHospital.Controllers
         }
 
         // GET: AppointmentBooking/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             string url = "AppointmentBookingData/GetAppointmentBooking/" + id;
@@ -197,6 +198,7 @@ namespace SensenbrennerHospital.Controllers
 
         // GET: AppointmentBooking/DeleteConfirm/5
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "AppointmentBookingData/GetAppointmentBooking/" + id;
@@ -227,6 +229,7 @@ namespace SensenbrennerHospital.Controllers
 
         // POST: AppointmentBooking/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             string url = "AppointmentBookingData/DeleteAppointmentBooking/" + id;
