@@ -34,6 +34,7 @@ namespace SensenbrennerHospital.Controllers
             if (httpResponse.IsSuccessStatusCode)
             {
                 IEnumerable<CareerDto> CareerList = httpResponse.Content.ReadAsAsync<IEnumerable<CareerDto>>().Result;
+                ViewBag.isadmin = User.IsInRole("Admin");
                 return View(CareerList);
             }
             else
@@ -52,7 +53,7 @@ namespace SensenbrennerHospital.Controllers
             {
                 CareerDto selectedCareer = new CareerDto();
                 selectedCareer = httpResponse.Content.ReadAsAsync<CareerDto>().Result;
-
+                selectedCareer.isadmin = User.IsInRole("Admin");
                 return View(selectedCareer);
 
             }

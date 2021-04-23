@@ -26,5 +26,6 @@ namespace SensenbrennerHospital.Models
         public string CareerType { get; set; }
         [Display(Name = "Description")]
         public string CareerDescription { get; set; }
+        public bool isadmin { get; set; }
     }
 }
