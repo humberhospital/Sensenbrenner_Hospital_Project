@@ -34,16 +34,23 @@ namespace SensenbrennerHospital.Controllers
             string url = "FaqData/ListFaqs";
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<FaqDto> FaqList = response.Content.ReadAsAsync<IEnumerable<FaqDto>>().Result;
+
+            url = "CategoryData/GetCategories";
+            response = client.GetAsync(url).Result;
+            IEnumerable<CategoryDto> categoryList = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
+
             foreach (var item in FaqList)
             {
-                url = "CategoryData/GetCategoriesForFaq/" + item.FaqID;
+                Debug.WriteLine(item.CategoryID);
+                url = "CategoryData/FindCategory/" + item.CategoryID;
                 response = client.GetAsync(url).Result;
-                IEnumerable<CategoryDto> selectedCategories = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
+                CategoryDto selectedCategory = response.Content.ReadAsAsync<CategoryDto>().Result;
                 ListFaq newListFaq = new ListFaq
                 {
                     isadmin = User.IsInRole("Admin"),
                     faq = item,
-                    category = selectedCategories
+                    category = selectedCategory,
+                    listOfCategories = categoryList
                 };
                 ViewModel.Add(newListFaq);
             }
@@ -54,10 +61,18 @@ namespace SensenbrennerHospital.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            return View();
+            CreateFaq ViewModel = new CreateFaq();
+
+            string url = "CategoryData/GetCategories";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<CategoryDto> PotentialCategory = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
+            ViewModel.allCategories = PotentialCategory;
+
+            return View(ViewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         [Authorize(Roles = "Admin")]
         public ActionResult Create(Faq NewFaq)
         {
@@ -70,12 +85,119 @@ namespace SensenbrennerHospital.Controllers
             if (response.IsSuccessStatusCode)
             {
                 int faqID = response.Content.ReadAsAsync<int>().Result;
+                //Change this to details when controller is ready
                 return RedirectToAction("List");
             }
             else
             {
                 return RedirectToAction("Error");
             }
+        }
+
+        //GET: Faq/Update/4
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Update(int id)
+        {
+            CreateFaq ViewModel = new CreateFaq();
+            string url = "FaqData/FindFaq/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                FaqDto selectedFaq = response.Content.ReadAsAsync<FaqDto>().Result;
+                ViewModel.faq = selectedFaq;
+
+                url = "CategoryData/GetCategories";
+                response = client.GetAsync(url).Result;
+                IEnumerable<CategoryDto> PotentialCategories = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
+                ViewModel.allCategories = PotentialCategories;
+
+                return View(ViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+
+        }
+
+        //POST: Faq/Update/4
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Update(int id, Faq FaqInfo)
+        {
+            string url = "FaqData/UpdateFaq/" + id;
+
+            HttpContent content = new StringContent(jss.Serialize(FaqInfo));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        //GET : Faq/DeleteConfirm/2
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteConfirm(int id)
+        {
+            string url = "FaqData/FindFaq/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                FaqDto SelectedFaq = response.Content.ReadAsAsync<FaqDto>().Result;
+                return View(SelectedFaq);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        //POST: Faq/Delete/2
+        public ActionResult Delete(int id)
+        {
+            string url = "FaqData/DeleteFaq/" + id;
+            //Body is empty
+            HttpContent content = new StringContent("");
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public ActionResult Error()
+        {
+            return View();
         }
     }
 }

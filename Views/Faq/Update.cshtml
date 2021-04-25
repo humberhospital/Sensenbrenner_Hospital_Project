@@ -1,19 +1,21 @@
 ﻿@model SensenbrennerHospital.Models.ViewModels.CreateFaq
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Update";
 }
 
-<h2>Create</h2>
+<h2>Update FAQ</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Update", "Faq", new { id = Model.faq.FaqID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
     <h4>Faq</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.faq.FaqID, new { Name = "FaqID" })
+
     <div class="form-group">
         @Html.LabelFor(model => model.faq.Question, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -38,7 +40,7 @@
                 <span>There are no categories yet. Please @Html.ActionLink("add a category", "Create", "Category") first.</span>
             }
             else
-            {
+{
                 <select name="CategoryID">
                     @foreach (var item in Model.allCategories)
                     {
@@ -51,18 +53,12 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            @*@{ string noclick = ""; }
-            @if (Model.allCategories.Count() == 0)
-            {
-                noclick = "disabled";
-            }
-            <input type="submit" value="Create" class="btn btn-default @noclick" />*@
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "List")
 </div>

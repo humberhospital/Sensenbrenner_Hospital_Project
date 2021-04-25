@@ -1,6 +1,7 @@
 ﻿using SensenbrennerHospital.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,24 +14,21 @@ namespace SensenbrennerHospital.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        //[ResponseType(typeof(CategoryDto))]
-        //[HttpGet]
-        //public IHttpActionResult GetCategoriesForFaq(int id)
-        //{
-        //    IEnumerable<FaqCategory> faqCategories = db.FaqCategories.Where(c => c.FaqID == id).ToList();
-        //    List<CategoryDto> categoryDtos = new List<CategoryDto>();
+        [ResponseType(typeof(CategoryDto))]
+        [HttpGet]
+        public IHttpActionResult FindCategory(int id)
+        {
+            Debug.WriteLine(id);
+            Category category = db.Categories.Find(id);
 
-        //    foreach (var faqCategory in faqCategories)
-        //    {
-        //        CategoryDto NewCategory = new CategoryDto
-        //        {
-        //            CategoryID = faqCategory.Category.CategoryID,
-        //            CategoryName = faqCategory.Category.CategoryName
-        //        };
-        //        categoryDtos.Add(NewCategory);
-        //    }
-        //    return Ok(categoryDtos);
-        //}
+            CategoryDto categoryDto = new CategoryDto
+            {
+                CategoryID = category.CategoryID,
+                CategoryName = category.CategoryName
+            };
+
+            return Ok(categoryDto);
+        }
 
         [ResponseType(typeof(IEnumerable<CategoryDto>))]
         [HttpGet]
@@ -49,6 +47,15 @@ namespace SensenbrennerHospital.Controllers
                 categoryDtos.Add(NewCategory);
             }
             return Ok(categoryDtos);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

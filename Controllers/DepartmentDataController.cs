@@ -96,5 +96,14 @@ namespace SensenbrennerHospital.Controllers
 
             return Ok(departmentDtos);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

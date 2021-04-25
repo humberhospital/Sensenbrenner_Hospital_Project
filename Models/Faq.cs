@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -23,7 +24,11 @@ namespace SensenbrennerHospital.Models
     public class FaqDto
     {
         public int FaqID { get; set; }
+        [Required(ErrorMessage = "Please enter the question.")]
         public string Question { get; set; }
+        [Required(ErrorMessage = "Please enter the answer.")]
         public string Answer { get; set; }
+        [DisplayName("Category")]
+        public int CategoryID { get; set; }
     }
 }

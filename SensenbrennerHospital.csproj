@@ -236,7 +236,6 @@
     <Compile Include="Controllers\DoctorDataController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\DonationDataController.cs" />
-    <Compile Include="Controllers\FaqCategoryDataController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\FaqDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -416,6 +415,8 @@
     <Content Include="Views\Doctor\ListDoctors.cshtml" />
     <Content Include="Views\Doctor\Create.cshtml" />
     <Content Include="Views\Doctor\Delete.cshtml" />
+    <Content Include="Views\Faq\DeleteConfirm.cshtml" />
+    <Content Include="Views\Faq\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

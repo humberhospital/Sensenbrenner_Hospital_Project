@@ -13,8 +13,9 @@
     }
 </p>
 <div id="category-container">
-    @foreach (var item in Model.First().category)
+    @foreach (var item in Model.First().listOfCategories)
     {
+        Html.Raw(item.CategoryID);
         <button class="btn-category" id="btn-@item.CategoryID">@item.CategoryName</button>
     }
 </div>
@@ -31,11 +32,7 @@
 
     @foreach (var item in Model)
     {
-        <tr class="@foreach (var category in item.category)
-        {
-            @Html.Raw(category.CategoryName + " ")
-        } question
-        ">
+        <tr class="@Html.Raw(item.category.CategoryName + " ") question">
             <td>
                 @item.faq.Question
             </td>
@@ -43,10 +40,7 @@
                 @item.faq.Answer
             </td>
             <td>
-                @foreach (var category in item.category)
-                {
-                    @category.CategoryName
-                }
+                @item.category.CategoryName
             </td>
             @if (Model.First().isadmin)
             {

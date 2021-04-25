@@ -10,6 +10,7 @@ namespace SensenbrennerHospital.Models.ViewModels
         //Admin will see administrative options while normal users will not
         public bool isadmin { get; set; }
         public FaqDto faq { get; set; }
-        public IEnumerable<CategoryDto> category { get; set; }
+        public CategoryDto category { get; set; }
+        public IEnumerable<CategoryDto> listOfCategories { get; set; }
     }
 }
