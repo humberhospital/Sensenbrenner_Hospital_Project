@@ -33,7 +33,7 @@ namespace SensenbrennerHospital.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult List()
         {
-            string url = "CategoryData/GetCategories";
+            string url = "CategoryData/ListCategories";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
@@ -62,7 +62,7 @@ namespace SensenbrennerHospital.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create(Category NewCategory)
         {
-            string url = "CategoryData/CreateCategory";
+            string url = "CategoryData/AddCategory";
 
             HttpContent content = new StringContent(jss.Serialize(NewCategory));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");

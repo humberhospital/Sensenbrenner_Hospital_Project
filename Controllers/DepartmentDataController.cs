@@ -22,11 +22,11 @@ namespace SensenbrennerHospital.Controllers
         /// </summary>
         /// <returns>A list of departments including the department ID, name, and phone number.</returns>
         /// <example>
-        /// GET: api/DepartmentData/GetDepartments
+        /// GET: api/DepartmentData/ListDepartments
         /// </example>
         [ResponseType(typeof(IEnumerable<DepartmentDto>))]
         [HttpGet]
-        public IHttpActionResult GetDepartments()
+        public IHttpActionResult ListDepartments()
         {
             List<Department> departments = db.Departments.ToList();
             List<DepartmentDto> departmentDtos = new List<DepartmentDto>();
@@ -51,11 +51,11 @@ namespace SensenbrennerHospital.Controllers
         /// <param name="id">The department ID</param>
         /// <returns>Information about the department including department ID, name, and phone number</returns>
         /// <example>
-        /// GET: api/DepartmentData/GetDepartment/3
+        /// GET: api/DepartmentData/FindDepartment/3
         /// </example>
         [ResponseType(typeof(DepartmentDto))]
         [HttpGet]
-        public IHttpActionResult GetDepartment(int id)
+        public IHttpActionResult FindDepartment(int id)
         {
             //Gets the data from the database
             Department department = db.Departments.Find(id);

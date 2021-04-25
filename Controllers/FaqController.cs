@@ -37,7 +37,7 @@ namespace SensenbrennerHospital.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<FaqDto> FaqList = response.Content.ReadAsAsync<IEnumerable<FaqDto>>().Result;
 
-            url = "CategoryData/GetCategories";
+            url = "CategoryData/ListCategories";
             response = client.GetAsync(url).Result;
             IEnumerable<CategoryDto> categoryList = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
 
@@ -65,7 +65,7 @@ namespace SensenbrennerHospital.Controllers
         {
             CreateFaq ViewModel = new CreateFaq();
 
-            string url = "CategoryData/GetCategories";
+            string url = "CategoryData/ListCategories";
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<CategoryDto> PotentialCategory = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
             ViewModel.allCategories = PotentialCategory;
@@ -87,8 +87,6 @@ namespace SensenbrennerHospital.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                int faqID = response.Content.ReadAsAsync<int>().Result;
-                //Change this to details when controller is ready
                 return RedirectToAction("List");
             }
             else
@@ -113,7 +111,7 @@ namespace SensenbrennerHospital.Controllers
                 FaqDto selectedFaq = response.Content.ReadAsAsync<FaqDto>().Result;
                 ViewModel.faq = selectedFaq;
 
-                url = "CategoryData/GetCategories";
+                url = "CategoryData/ListCategories";
                 response = client.GetAsync(url).Result;
                 IEnumerable<CategoryDto> PotentialCategories = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
                 ViewModel.allCategories = PotentialCategories;

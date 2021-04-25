@@ -16,6 +16,14 @@ namespace SensenbrennerHospital.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Finds a specific category from the database with a 200 status code. If the category is not found returns a 404 status code.
+        /// </summary>
+        /// <param name="id">The category ID</param>
+        /// <returns>Information about the category including category ID, and name. </returns>
+        /// <example>
+        /// GET: api/CategoryData/FindCategory/3
+        /// </example>
         [ResponseType(typeof(CategoryDto))]
         [HttpGet]
         public IHttpActionResult FindCategory(int id)
@@ -32,9 +40,16 @@ namespace SensenbrennerHospital.Controllers
             return Ok(categoryDto);
         }
 
+        /// <summary>
+        /// Gets a list of categories from the database along with a status code (200 OK).
+        /// </summary>
+        /// <returns>A list of categories including the category ID, and name. </returns>
+        /// <example>
+        /// GET: api/CategoryData/ListCategories
+        /// </example>
         [ResponseType(typeof(IEnumerable<CategoryDto>))]
         [HttpGet]
-        public IHttpActionResult GetCategories()
+        public IHttpActionResult ListCategories()
         {
             List<Category> categories = db.Categories.ToList();
             List<CategoryDto> categoryDtos = new List<CategoryDto>();
@@ -51,8 +66,17 @@ namespace SensenbrennerHospital.Controllers
             return Ok(categoryDtos);
         }
 
+        /// <summary>
+        /// Adds a category to the database.
+        /// </summary>
+        /// <param name="NewCategory">A category object sent as a POST form data.</param>
+        /// <returns>200 status code if successful, 400 status code if not successful.</returns>
+        /// <example>
+        /// POST: api/CategoryData/AddCategory
+        /// FORM DATA: Category JSON object
+        /// </example>
         [HttpPost]
-        public IHttpActionResult CreateCategory([FromBody]Category NewCategory)
+        public IHttpActionResult AddCategory([FromBody]Category NewCategory)
         {
             if (!ModelState.IsValid)
             {
@@ -65,6 +89,14 @@ namespace SensenbrennerHospital.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Deletes a category from the database
+        /// </summary>
+        /// <param name="id">Id of the category to delete.</param>
+        /// <returns>200 status code if successful, 404 status code if not successful.</returns>
+        /// <example>
+        /// POST: api/CategoryData/DeleteCategory/3
+        /// </example>
         [HttpGet]
         public IHttpActionResult DeleteCategory(int id)
         {
@@ -79,6 +111,18 @@ namespace SensenbrennerHospital.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Update a category in the database.
+        /// </summary>
+        /// <param name="id">The category ID</param>
+        /// <param name="department">A category object sent as a POST form data.</param>
+        /// <returns>200 status code if successful, 400 status code if not successful.</returns>
+        /// <example>
+        /// POST: api/CategoryData/UpdateCategory/1
+        /// FORM DATA: Category JSON object
+        /// </example>
+        [ResponseType(typeof(void))]
+        [HttpPost]
         public IHttpActionResult UpdateCategory(int id, [FromBody] Category category)
         {
             if (!ModelState.IsValid)
@@ -109,7 +153,7 @@ namespace SensenbrennerHospital.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

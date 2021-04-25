@@ -32,7 +32,7 @@ namespace SensenbrennerHospital.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            string url = "DepartmentData/GetDepartments";
+            string url = "DepartmentData/ListDepartments";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
@@ -82,7 +82,7 @@ namespace SensenbrennerHospital.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "DepartmentData/GetDepartment/" + id;
+            string url = "DepartmentData/FindDepartment/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
@@ -121,7 +121,7 @@ namespace SensenbrennerHospital.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Update(int id)
         {
-            string url = "DepartmentData/GetDepartment/" + id;
+            string url = "DepartmentData/FindDepartment/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
