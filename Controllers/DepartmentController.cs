@@ -28,14 +28,16 @@ namespace SensenbrennerHospital.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        //GET: Department/List
+        [HttpGet]
         public ActionResult List()
         {
             string url = "DepartmentData/GetDepartments";
-            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+            HttpResponseMessage response = client.GetAsync(url).Result;
 
-            if (httpResponse.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-                IEnumerable<DepartmentDto> DepartmentList = httpResponse.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+                IEnumerable<DepartmentDto> DepartmentList = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
                 return View(DepartmentList);
             }
             else
@@ -44,6 +46,7 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
+        //GET: Department/Create
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
@@ -51,6 +54,7 @@ namespace SensenbrennerHospital.Controllers
             return View();
         }
 
+        //POST: Department/Create
         [HttpPost]
         [ValidateAntiForgeryToken()]
         [Authorize(Roles = "Admin")]
@@ -60,11 +64,11 @@ namespace SensenbrennerHospital.Controllers
 
             HttpContent content = new StringContent(jss.Serialize(NewDepartment));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-            if (httpResponse.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-                int DepartmentID = httpResponse.Content.ReadAsAsync<int>().Result;
+                int DepartmentID = response.Content.ReadAsAsync<int>().Result;
                 return RedirectToAction("List");
             }
             else
@@ -73,16 +77,17 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
+        //GET: Department/DeleteConfirm/3
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "DepartmentData/GetDepartment/" + id;
-            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+            HttpResponseMessage response = client.GetAsync(url).Result;
 
-            if (httpResponse.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-                DepartmentDto department = httpResponse.Content.ReadAsAsync<DepartmentDto>().Result;
+                DepartmentDto department = response.Content.ReadAsAsync<DepartmentDto>().Result;
                 return View(department);
             }
             else
@@ -91,14 +96,17 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
+        //POST: Department/Delete/3
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             string url = "DepartmentData/DeleteDepartment/" + id;
+            //Body is empty
             HttpContent content = new StringContent("");
-            HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
-            if (httpResponse.IsSuccessStatusCode)
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");
             }
@@ -108,20 +116,44 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
+        //GET: Department/Update/1
         [HttpGet]
-        public IEnumerable<DepartmentDto> DepartmentList()
+        [Authorize(Roles = "Admin")]
+        public ActionResult Update(int id)
         {
-            string url = "DepartmentData/GetListOfDepartments";
-            HttpResponseMessage httpResponse = client.GetAsync(url).Result;
+            string url = "DepartmentData/GetDepartment/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
 
-            if (httpResponse.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-                IEnumerable<DepartmentDto> DepartmentList = httpResponse.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
-                return DepartmentList;
+                DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
+                return View(SelectedDepartment);
             }
             else
             {
-                return null;
+                return RedirectToAction("Error");
+            }
+        }
+
+        //POST: Department/Update/1
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Update(int id, Department DepartmentInfo)
+        {
+            string url = "DepartmentData/UpdateDepartment/" + id;
+
+            HttpContent content = new StringContent(jss.Serialize(DepartmentInfo));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
 

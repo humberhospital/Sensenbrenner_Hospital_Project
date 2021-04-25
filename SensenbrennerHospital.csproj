@@ -423,6 +423,7 @@
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\DeleteConfirm.cshtml" />
     <Content Include="Views\Category\Update.cshtml" />
+    <Content Include="Views\Department\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -76,7 +76,7 @@ namespace SensenbrennerHospital.Controllers
             return Ok(selectedFaq);
         }
 
-        [ResponseType(typeof(Faq))]
+        [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateFaq(int id, [FromBody] Faq faq)
         {
@@ -108,7 +108,7 @@ namespace SensenbrennerHospital.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok();
         }
 
         [HttpPost]

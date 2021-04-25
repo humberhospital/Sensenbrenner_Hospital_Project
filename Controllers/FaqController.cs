@@ -103,8 +103,11 @@ namespace SensenbrennerHospital.Controllers
         public ActionResult Update(int id)
         {
             CreateFaq ViewModel = new CreateFaq();
+
             string url = "FaqData/FindFaq/" + id;
+
             HttpResponseMessage response = client.GetAsync(url).Result;
+
             if (response.IsSuccessStatusCode)
             {
                 FaqDto selectedFaq = response.Content.ReadAsAsync<FaqDto>().Result;
@@ -152,6 +155,7 @@ namespace SensenbrennerHospital.Controllers
         public ActionResult DeleteConfirm(int id)
         {
             string url = "FaqData/FindFaq/" + id;
+
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)

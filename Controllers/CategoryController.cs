@@ -169,12 +169,6 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
-
-
-
-
-
-
         public ActionResult Error()
         {
             return View();
