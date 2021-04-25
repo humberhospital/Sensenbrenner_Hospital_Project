@@ -1,4 +1,5 @@
 ﻿using SensenbrennerHospital.Models;
+using SensenbrennerHospital.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -156,6 +157,34 @@ namespace SensenbrennerHospital.Controllers
                 return RedirectToAction("Error");
             }
         }
+
+        //------------------ Commented until practices controller is finished ---------------------
+        //GET: Department/Show/5
+        //[HttpGet]
+        //public ActionResult Show(int id)
+        //{
+        //    ShowDepartment ViewModel = new ShowDepartment();
+        //    string url = "DepartmentData/FindDepartment/" + id;
+
+        //    HttpResponseMessage response = client.GetAsync(url).Result;
+
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
+        //        ViewModel.department = SelectedDepartment;
+
+        //        url = "PracticeData/GetPracticesByDepartmentId/" + SelectedDepartment.DepartmentID;
+        //        response = client.GetAsync(url).Result;
+        //        IEnumerable<Practice> listOfPractices = response.Content.ReadAsAsync<IEnumerable<Practice>>().Result;
+        //        ViewModel.listOfPractices = listOfPractices;
+
+        //        return View(ViewModel);
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Error");
+        //    }
+        //}
 
         public ActionResult Error()
         {
