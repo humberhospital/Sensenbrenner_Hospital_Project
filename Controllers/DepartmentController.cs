@@ -52,16 +52,16 @@ namespace SensenbrennerHospital.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         [Authorize(Roles = "Admin")]
         public ActionResult Create(Department NewDepartment)
         {
             string url = "DepartmentData/AddDepartment";
 
-            Debug.WriteLine(NewDepartment.DepartmentName);
             HttpContent content = new StringContent(jss.Serialize(NewDepartment));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage httpResponse = client.PostAsync(url, content).Result;
-            //Debug.WriteLine(jss.Serialize(NewDepartment));
+
             if (httpResponse.IsSuccessStatusCode)
             {
                 int DepartmentID = httpResponse.Content.ReadAsAsync<int>().Result;
@@ -82,8 +82,7 @@ namespace SensenbrennerHospital.Controllers
 
             if (httpResponse.IsSuccessStatusCode)
             {
-                DepartmentDto department = new DepartmentDto();
-                department = httpResponse.Content.ReadAsAsync<DepartmentDto>().Result;
+                DepartmentDto department = httpResponse.Content.ReadAsAsync<DepartmentDto>().Result;
                 return View(department);
             }
             else

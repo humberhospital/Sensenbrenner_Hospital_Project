@@ -125,6 +125,50 @@ namespace SensenbrennerHospital.Controllers
             return Ok();
         }
 
+        [ResponseType(typeof(FaqDto))]
+        [HttpGet]
+        public IHttpActionResult GetFaqsByCategoryId(int id)
+        {
+            List<Faq> faqList = db.Faqs.Where(f => f.CategoryID == id).ToList();
+            List<FaqDto> faqDtos = new List<FaqDto>();
+            if (faqList == null)
+            {
+                return NotFound();
+            }
+
+            foreach (var item in faqList)
+            {
+                FaqDto NewFaq = new FaqDto
+                {
+                    FaqID = item.FaqID,
+                    Answer = item.Answer,
+                    Question = item.Question,
+                    CategoryID = item.CategoryID
+                };
+                faqDtos.Add(NewFaq);
+            }
+
+            return Ok(faqDtos);
+        }
+
+        [HttpGet]
+        public IHttpActionResult DeleteFaqsByCategoryId(int id)
+        {
+            List<Faq> faqList = db.Faqs.Where(c => c.CategoryID == id).ToList();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            foreach (var item in faqList)
+            {
+                db.Faqs.Remove(item);
+            }
+            db.SaveChanges();
+
+            return Ok();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -28,6 +28,8 @@ namespace SensenbrennerHospital.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        //GET: Faq/List
+        [HttpGet]
        public ActionResult List()
         {
             List<ListFaq> ViewModel = new List<ListFaq>();
@@ -41,7 +43,6 @@ namespace SensenbrennerHospital.Controllers
 
             foreach (var item in FaqList)
             {
-                Debug.WriteLine(item.CategoryID);
                 url = "CategoryData/FindCategory/" + item.CategoryID;
                 response = client.GetAsync(url).Result;
                 CategoryDto selectedCategory = response.Content.ReadAsAsync<CategoryDto>().Result;
@@ -57,6 +58,7 @@ namespace SensenbrennerHospital.Controllers
             return View(ViewModel);
         }
 
+        //GET: Faq/Create
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
@@ -71,6 +73,7 @@ namespace SensenbrennerHospital.Controllers
             return View(ViewModel);
         }
 
+        //POST: Faq/Create
         [HttpPost]
         [ValidateAntiForgeryToken()]
         [Authorize(Roles = "Admin")]
@@ -179,21 +182,6 @@ namespace SensenbrennerHospital.Controllers
                 return RedirectToAction("Error");
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public ActionResult Error()
         {
