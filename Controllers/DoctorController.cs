@@ -26,6 +26,7 @@ namespace SensenbrennerHospital.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+
         public ActionResult ListDoctors()
         {
             string URL = "DoctorData/GetDoctors";

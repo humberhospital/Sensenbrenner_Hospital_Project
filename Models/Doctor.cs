@@ -5,6 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
+/// <summary>
+/// 
+/// </summary>
+
 namespace SensenbrennerHospital.Models
 {
     public class Doctor
