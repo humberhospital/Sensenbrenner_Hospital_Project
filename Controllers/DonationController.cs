@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-
+using System.Web.Security;
 
 namespace SensenbrennerHospital.Controllers
 {
@@ -100,7 +100,7 @@ namespace SensenbrennerHospital.Controllers
 
 				//return RedirectToAction("MyMessage");
 
-				return RedirectToAction("Details", new { id = DonationID });
+				return RedirectToAction("MyMessage", DonationID);
 			}
 			else
 			{
@@ -205,24 +205,12 @@ namespace SensenbrennerHospital.Controllers
 		}
 
 
-		// Action Result to display "Thank you message"
-		/*public ActionResult Message()
-		{
-			return View();
-		}
-
-		[HttpPost]
-		public ActionResult Message(string gratitude)
-		{
-			ViewBag.Message = "Thank you for your donation. Each dollar counts!";
-			return View("MyMessage");
-		}
-
+		[HttpGet]
 		public ActionResult MyMessage()
 		{
-			ViewBag.Msg = ViewBag.Message; 
-			return View("MyMessage");
-		}*/
+			return View();
+			
+		}
 
 
 

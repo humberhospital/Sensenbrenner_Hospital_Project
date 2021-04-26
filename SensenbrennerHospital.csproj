@@ -428,6 +428,7 @@
     <Content Include="Views\Category\Update.cshtml" />
     <Content Include="Views\Department\Update.cshtml" />
     <Content Include="Views\Donation\success.cshtml" />
+    <Content Include="Views\Donation\MyMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
