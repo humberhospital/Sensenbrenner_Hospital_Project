@@ -95,6 +95,10 @@ namespace SensenbrennerHospital.Controllers
 			{
 				int DonationID = httpResponse.Content.ReadAsAsync<int>().Result;
 
+				//redirecting user to "Thank you page"
+				// return View(); 
+
+				//return RedirectToAction("MyMessage");
 
 				return RedirectToAction("Details", new { id = DonationID });
 			}
@@ -199,6 +203,26 @@ namespace SensenbrennerHospital.Controllers
 				return RedirectToAction("Error");
 			}
 		}
+
+
+		// Action Result to display "Thank you message"
+		/*public ActionResult Message()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult Message(string gratitude)
+		{
+			ViewBag.Message = "Thank you for your donation. Each dollar counts!";
+			return View("MyMessage");
+		}
+
+		public ActionResult MyMessage()
+		{
+			ViewBag.Msg = ViewBag.Message; 
+			return View("MyMessage");
+		}*/
 
 
 

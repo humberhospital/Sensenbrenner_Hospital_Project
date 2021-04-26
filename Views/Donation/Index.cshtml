@@ -1,16 +1,21 @@
 ﻿@model IEnumerable<SensenbrennerHospital.Models.DonationDto>
 
+@Styles.Render("~/Content/donation.css")
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Donation list</h2>
 
-<p>
+<button>
     @Html.ActionLink("Donate now", "Create")
-</p>
+</button>
+
+
+
 <table class="table">
-    <tr>
+    <tr class="head">
         <th>
             @Html.DisplayNameFor(model => model.DonationAmount)
         </th>
@@ -28,7 +33,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="table-body">
             <td>
                 @Html.DisplayFor(modelItem => item.DonationAmount)
             </td>
@@ -42,9 +47,17 @@
                 @Html.DisplayFor(modelItem => item.DonationDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.DonationID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.DonationID }) |
-                @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.DonationID })
+                <button class="button">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DonationID })
+                </button>
+
+                <button class="button">
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationID })
+                </button>
+                <button class="button">
+                    @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.DonationID })
+                </button>
+
             </td>
         </tr>
     }

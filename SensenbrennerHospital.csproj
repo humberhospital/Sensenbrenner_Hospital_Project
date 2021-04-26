@@ -327,6 +327,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\donation.css" />
+    <Content Include="Content\Images\transparent.jpg" />
     <Content Include="Content\Volunteers\globe.jpg" />
     <Content Include="Content\faqstyles.css" />
     <Content Include="favicon.ico" />
@@ -425,6 +427,7 @@
     <Content Include="Views\Category\DeleteConfirm.cshtml" />
     <Content Include="Views\Category\Update.cshtml" />
     <Content Include="Views\Department\Update.cshtml" />
+    <Content Include="Views\Donation\success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

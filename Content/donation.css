@@ -1,0 +1,36 @@
+
+
+.button {
+        
+        background-color: darkkhaki;
+        border-radius: 5px;
+        border: 2px double #cccccc;
+        color: #eeeeee;
+        text-align: center;
+        font-size: 12px;
+        padding: 5px;
+        width: 50px;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+      }
+
+.button:hover {
+    background-color: chartreuse;
+    color:black;
+}
+
+.head {
+    background-color: darkkhaki;
+    text-align: center;
+}
+.table{
+    text-align: center;
+}
+
+.table .table-body:hover {
+    background-color: dodgerblue;
+}
