@@ -5,9 +5,9 @@ using System.Web;
 
 namespace SensenbrennerHospital.Models.ViewModels
 {
-	public class CreateFaq
-	{
-        public FaqDto faq { get; set; }
-        public IEnumerable<CategoryDto> allCategories { get; set; }
+    public class DeleteCategory
+    {
+        public CategoryDto category { get; set; }
+        public IEnumerable<FaqDto> faqList { get; set; }
     }
 }

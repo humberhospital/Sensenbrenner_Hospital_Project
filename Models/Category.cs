@@ -19,6 +19,7 @@ namespace SensenbrennerHospital.Models
     public class CategoryDto
     {
         public int CategoryID { get; set; }
+        [Display(Name = "Category Name")]
         public string CategoryName { get; set; }
     }
 }
