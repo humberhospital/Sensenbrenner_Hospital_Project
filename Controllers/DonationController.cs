@@ -106,7 +106,7 @@ namespace SensenbrennerHospital.Controllers
 
 
 		// GET: Donation/Edit/5
-		
+		[Authorize(Roles = "Admin")]
 		public ActionResult Edit(int id)
 		{
 			string url = "DonationData/GetDonation/" + id;
