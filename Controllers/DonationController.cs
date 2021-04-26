@@ -132,7 +132,7 @@ namespace SensenbrennerHospital.Controllers
 
 		// POST: Donation/Edit/5
 		[HttpPost]
-		
+		[Authorize(Roles = "Admin")]
 		public ActionResult Edit(int id, Donation selectedDonation)
 		{
 			string url = "DonationData/UpdateDonation/" + id;
@@ -156,7 +156,7 @@ namespace SensenbrennerHospital.Controllers
 
 
 		// GET: Donation/Delete/5
-		
+		[Authorize(Roles = "Admin")]
 		public ActionResult DeleteConfirm(int id)
 		{
 			string url = "DonationData/GetDonation/" + id;
@@ -179,10 +179,10 @@ namespace SensenbrennerHospital.Controllers
 			}
 		}
 
-
+		
 		// POST: Donation/Delete/5
 		[HttpPost]
-
+		[Authorize(Roles = "Admin")]
 		public ActionResult Delete(int id)
 		{
 			string url = "DonationData/DeleteDonation/" + id;
