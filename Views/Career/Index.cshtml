@@ -1,14 +1,17 @@
-﻿@model IEnumerable<SensenbrennerHospital.Models.Career>
+﻿@model IEnumerable<SensenbrennerHospital.Models.CareerDto>
 
 @{
     ViewBag.Title = "Careers";
 }
 
 <h2>Career Postings</h2>
-
+@if(ViewBag.isadmin == true)
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -41,9 +44,15 @@
             @Html.DisplayFor(modelItem => item.CareerDescription)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CareerID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CareerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CareerID })
+            @if (ViewBag.isadmin == true)
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.CareerID })
+            }
+            @Html.ActionLink("Details", "Details", new { id = item.CareerID })
+            @if (ViewBag.isadmin == true)
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.CareerID })
+            }
         </td>
     </tr>
 }

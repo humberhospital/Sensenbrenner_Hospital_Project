@@ -11,11 +11,15 @@ namespace SensenbrennerHospital.Models
         [Key]
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
+        
+        //A category can have many Faqs
+        public virtual ICollection<Faq> Faq { get; set; }
     }
 
     public class CategoryDto
     {
         public int CategoryID { get; set; }
+        [Display(Name = "Category Name")]
         public string CategoryName { get; set; }
     }
 }

@@ -70,7 +70,7 @@ namespace SensenbrennerHospital.Controllers
                 //Volunteer goes in Data Transfer Object
                 VolunteerDto SelectedVolunteer = response.Content.ReadAsAsync<VolunteerDto>().Result;
                 ViewModel.volunteer = SelectedVolunteer;
-
+                Debug.WriteLine("SelectedVolunteer:" + SelectedVolunteer.VolunteerHasPic);
 
                 url = "volunteerdata/finddepartmentforvolunteer/" + id;
                 response = client.GetAsync(url).Result;

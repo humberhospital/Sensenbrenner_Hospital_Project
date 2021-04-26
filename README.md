@@ -69,7 +69,6 @@ Nodir - Application USer, Donation
 - [x] API Controllers for donations
 - [x] Views for donations
 - [x] Connection between Application User and Donation 
+- [x] Added CSS styling to the 'Index" View  
 #### Next Steps -
-- [ ] Completing all views, 
-- [ ] checking for any bugs
-- [ ] Working on styling
+- [ ] Creating "Thanks" View for users

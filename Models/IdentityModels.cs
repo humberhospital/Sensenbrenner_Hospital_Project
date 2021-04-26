@@ -13,7 +13,7 @@ namespace SensenbrennerHospital.Models
         public string LastName { get; set; }
         public int StreetNumber { get; set; }
         public string Address { get; set; }
-        public string PostalCode { get; set; }
+        public string PostalCode { get; set; } 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -38,7 +38,6 @@ namespace SensenbrennerHospital.Models
 
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<FaqCategory> FaqCategories { get; set; }
         public DbSet<Career> Careers { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
         public DbSet<Department> Departments { get; set; }

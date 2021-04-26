@@ -7,18 +7,17 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
-using System.Web.Http.Description;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
 namespace SensenbrennerHospital.Controllers
 {
-    public class DepartmentController : Controller
+    public class CategoryController : Controller
     {
         private JavaScriptSerializer jss = new JavaScriptSerializer();
         private static readonly HttpClient client;
 
-        static DepartmentController()
+        static CategoryController()
         {
             HttpClientHandler handler = new HttpClientHandler()
             {
@@ -29,17 +28,18 @@ namespace SensenbrennerHospital.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        //GET: Department/List
+        //GET: Category/List
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult List()
         {
-            string url = "DepartmentData/ListDepartments";
+            string url = "CategoryData/ListCategories";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                IEnumerable<DepartmentDto> DepartmentList = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
-                return View(DepartmentList);
+                IEnumerable<CategoryDto> CategoryList = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
+                return View(CategoryList);
             }
             else
             {
@@ -47,7 +47,8 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
-        //GET: Department/Create
+
+        //GET: Category/Create
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
@@ -55,21 +56,20 @@ namespace SensenbrennerHospital.Controllers
             return View();
         }
 
-        //POST: Department/Create
+        //POST: Category/Create
         [HttpPost]
         [ValidateAntiForgeryToken()]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create(Department NewDepartment)
+        public ActionResult Create(Category NewCategory)
         {
-            string url = "DepartmentData/AddDepartment";
+            string url = "CategoryData/AddCategory";
 
-            HttpContent content = new StringContent(jss.Serialize(NewDepartment));
+            HttpContent content = new StringContent(jss.Serialize(NewCategory));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                int DepartmentID = response.Content.ReadAsAsync<int>().Result;
                 return RedirectToAction("List");
             }
             else
@@ -78,18 +78,27 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
-        //GET: Department/DeleteConfirm/3
+        //GET: Category/DeleteConfirm/1
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "DepartmentData/FindDepartment/" + id;
+            DeleteCategory ViewModel = new DeleteCategory();
+
+            string url = "CategoryData/FindCategory/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                DepartmentDto department = response.Content.ReadAsAsync<DepartmentDto>().Result;
-                return View(department);
+                CategoryDto category = response.Content.ReadAsAsync<CategoryDto>().Result;
+                ViewModel.category = category;
+
+                url = "FaqData/GetFaqsByCategoryId/" + category.CategoryID;
+                response = client.GetAsync(url).Result;
+                IEnumerable<FaqDto> faqList = response.Content.ReadAsAsync<IEnumerable<FaqDto>>().Result;
+                ViewModel.faqList = faqList;
+
+                return View(ViewModel);
             }
             else
             {
@@ -97,38 +106,40 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
-        //POST: Department/Delete/3
+        //POST: Category/Delete/1
         [HttpPost]
         [ValidateAntiForgeryToken()]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
-            string url = "DepartmentData/DeleteDepartment/" + id;
-            //Body is empty
-            HttpContent content = new StringContent("");
-            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            string url = "FaqData/DeleteFaqsByCategoryId/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
             if (response.IsSuccessStatusCode)
             {
+                url = "CategoryData/DeleteCategory/" + id;
+                response = client.GetAsync(url).Result;
                 return RedirectToAction("List");
             }
             else
             {
                 return RedirectToAction("Error");
             }
+            
         }
 
-        //GET: Department/Update/1
+        //GET: Category/Update/2
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult Update(int id)
         {
-            string url = "DepartmentData/FindDepartment/" + id;
+            string url = "CategoryData/FindCategory/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-
+            
             if (response.IsSuccessStatusCode)
             {
-                DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
-                return View(SelectedDepartment);
+                CategoryDto SelectedCategory = response.Content.ReadAsAsync<CategoryDto>().Result;
+                return View(SelectedCategory);
             }
             else
             {
@@ -136,15 +147,15 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
-        //POST: Department/Update/1
+        //POST: Category/Update/2
         [HttpPost]
         [ValidateAntiForgeryToken()]
         [Authorize(Roles = "Admin")]
-        public ActionResult Update(int id, Department DepartmentInfo)
+        public ActionResult Update(int id, Category CategoryInfo)
         {
-            string url = "DepartmentData/UpdateDepartment/" + id;
+            string url = "CategoryData/UpdateCategory/" + id;
 
-            HttpContent content = new StringContent(jss.Serialize(DepartmentInfo));
+            HttpContent content = new StringContent(jss.Serialize(CategoryInfo));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
@@ -157,34 +168,6 @@ namespace SensenbrennerHospital.Controllers
                 return RedirectToAction("Error");
             }
         }
-
-        //------------------ Commented until practices controller is finished ---------------------
-        //GET: Department/Show/5
-        //[HttpGet]
-        //public ActionResult Show(int id)
-        //{
-        //    ShowDepartment ViewModel = new ShowDepartment();
-        //    string url = "DepartmentData/FindDepartment/" + id;
-
-        //    HttpResponseMessage response = client.GetAsync(url).Result;
-
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
-        //        ViewModel.department = SelectedDepartment;
-
-        //        url = "PracticeData/GetPracticesByDepartmentId/" + SelectedDepartment.DepartmentID;
-        //        response = client.GetAsync(url).Result;
-        //        IEnumerable<Practice> listOfPractices = response.Content.ReadAsAsync<IEnumerable<Practice>>().Result;
-        //        ViewModel.listOfPractices = listOfPractices;
-
-        //        return View(ViewModel);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Error");
-        //    }
-        //}
 
         public ActionResult Error()
         {

@@ -11,6 +11,7 @@ using System.Web.Script.Serialization;
 
 namespace SensenbrennerHospital.Controllers
 {
+
     public class CareerController : Controller
     {
         private JavaScriptSerializer jss = new JavaScriptSerializer();
@@ -33,7 +34,8 @@ namespace SensenbrennerHospital.Controllers
 
             if (httpResponse.IsSuccessStatusCode)
             {
-                IEnumerable<Career> CareerList = httpResponse.Content.ReadAsAsync<IEnumerable<Career>>().Result;
+                IEnumerable<CareerDto> CareerList = httpResponse.Content.ReadAsAsync<IEnumerable<CareerDto>>().Result;
+                ViewBag.isadmin = User.IsInRole("Admin");
                 return View(CareerList);
             }
             else
@@ -50,9 +52,9 @@ namespace SensenbrennerHospital.Controllers
 
             if (httpResponse.IsSuccessStatusCode)
             {
-                Career selectedCareer = new Career();
-                selectedCareer = httpResponse.Content.ReadAsAsync<Career>().Result;
-
+                CareerDto selectedCareer = new CareerDto();
+                selectedCareer = httpResponse.Content.ReadAsAsync<CareerDto>().Result;
+                selectedCareer.isadmin = User.IsInRole("Admin");
                 return View(selectedCareer);
 
             }
@@ -63,6 +65,8 @@ namespace SensenbrennerHospital.Controllers
         }
 
         // GET: Career/Create
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -70,6 +74,7 @@ namespace SensenbrennerHospital.Controllers
 
         // POST: Career/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Career NewCareer)
         {
             string url = "CareerData/AddCareer";
@@ -92,6 +97,8 @@ namespace SensenbrennerHospital.Controllers
         }
 
         // GET: Career/Edit/5
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             string url = "CareerData/GetCareer/" + id;
@@ -99,8 +106,8 @@ namespace SensenbrennerHospital.Controllers
 
             if (httpResponse.IsSuccessStatusCode)
             {
-                Career selectedCareer = new Career();
-                selectedCareer = httpResponse.Content.ReadAsAsync<Career>().Result;
+                CareerDto selectedCareer = new CareerDto();
+                selectedCareer = httpResponse.Content.ReadAsAsync<CareerDto>().Result;
 
                 return View(selectedCareer);
 
@@ -113,6 +120,7 @@ namespace SensenbrennerHospital.Controllers
 
         // POST: Career/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, Career selectedCareer)
         {
             string url = "CareerData/UpdateCareer/" + id;
@@ -130,7 +138,9 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
-        // GET: Career/Delete/5
+        // GET: Career/DeleteConfirm/5
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "CareerData/GetCareer/" + id;
@@ -138,8 +148,8 @@ namespace SensenbrennerHospital.Controllers
 
             if (httpResponse.IsSuccessStatusCode)
             {
-                Career selectedCareer = new Career();
-                selectedCareer = httpResponse.Content.ReadAsAsync<Career>().Result;
+                CareerDto selectedCareer = new CareerDto();
+                selectedCareer = httpResponse.Content.ReadAsAsync<CareerDto>().Result;
 
                 return View(selectedCareer);
 
@@ -152,6 +162,7 @@ namespace SensenbrennerHospital.Controllers
 
         // POST: Career/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             string url = "CareerData/DeleteCareer/" + id;
