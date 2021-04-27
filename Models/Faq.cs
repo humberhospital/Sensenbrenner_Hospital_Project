@@ -12,7 +12,9 @@ namespace SensenbrennerHospital.Models
     {
         [Key]
         public int FaqID { get; set; }
+        [Required]
         public string Question { get; set; }
+        [Required]
         public string Answer { get; set; }
 
         //An Faq belongs to one category

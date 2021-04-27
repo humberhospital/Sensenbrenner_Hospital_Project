@@ -11,7 +11,9 @@ namespace SensenbrennerHospital.Models
 
         [Key]
         public int DepartmentID { get; set; }
+        [Required]
         public string DepartmentName { get; set; }
+        [Required]
         public string DepartmentPhoneNumber { get; set; }
 
     }

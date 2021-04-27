@@ -10,6 +10,7 @@ namespace SensenbrennerHospital.Models
     {
         [Key]
         public int CategoryID { get; set; }
+        [Required]
         public string CategoryName { get; set; }
         
         //A category can have many Faqs
