@@ -78,7 +78,7 @@ namespace SensenbrennerHospital.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState)
+                return BadRequest(ModelState);
             }
 
             if (ID != Doctor.DoctorID)
@@ -94,8 +94,16 @@ namespace SensenbrennerHospital.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!)
+                if (!DoctorExists(ID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
+            return Ok();
         }
 
 
