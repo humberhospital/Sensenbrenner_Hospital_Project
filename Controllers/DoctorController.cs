@@ -72,6 +72,45 @@ namespace SensenbrennerHospital.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
+        public ActionResult Update(int id)
+        {
+            string URL = "DoctorData/FindDoctor/" + id;
+
+            HttpResponseMessage Response = client.GetAsync(URL).Result;
+
+            if (Response.IsSuccessStatusCode)
+            {
+                DoctorDTO SelectedDoctor = Response.Content.ReadAsAsync<DoctorDTO>().Result;
+                return View(SelectedDoctor);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Update(int id, Doctor DoctorInfo)
+        {
+            string URL = "DoctorData/UpdateDoctor/" + id;
+
+            HttpContent Content = new StringContent(jss.Serialize(DoctorInfo));
+            Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage Response = client.PostAsync(URL, Content).Result;
+
+            if (Response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string URL = "DoctorData/GetDoctors/" + id;
@@ -108,8 +147,13 @@ namespace SensenbrennerHospital.Controllers
             }    
         }
 
+        public ActionResult Update(int id)
+        {
+            string URL = "DoctorData/"
+        }
+
         [HttpGet]
-        public IEnumerable<DoctorDTO> DoctorList()
+        public IEnumerable<DoctorDTO> ShowDoctor()
         {
             string URL = "DoctorData/GetListOfDoctors";
             HttpResponseMessage HttpResponse = client.GetAsync(URL).Result;

@@ -22,5 +22,7 @@ namespace SensenbrennerHospital.Models
     {
         public int DoctorID { get; set; }
         [Display(Name = "Practice Name")]
+        public string PracticeName { get; set; }
+        public int DepartmentID { get; set; }
     }
 }
