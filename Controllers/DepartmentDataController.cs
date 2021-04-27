@@ -191,5 +191,6 @@ namespace SensenbrennerHospital.Controllers
         {
             return db.Departments.Count(e => e.DepartmentID == id) > 0;
         }
+
     }
 }

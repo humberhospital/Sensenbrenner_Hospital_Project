@@ -20,7 +20,7 @@ namespace SensenbrennerHospital.Models
 
     public class PracticeDTO
     {
-        public int DoctorID { get; set; }
+        public int PracticeID { get; set; }
         [Display(Name = "Practice Name")]
         public string PracticeName { get; set; }
         public int DepartmentID { get; set; }
