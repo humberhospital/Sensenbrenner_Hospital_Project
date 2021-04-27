@@ -1,6 +1,8 @@
 ﻿using SensenbrennerHospital.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -12,13 +14,13 @@ namespace SensenbrennerHospital.Controllers
 {
     public class DoctorDataController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext DB = new ApplicationDbContext();
 
         [ResponseType(typeof(IEnumerable<DoctorDTO>))]
         [HttpGet]
         public IHttpActionResult GetDoctors()
         {
-            List<Doctor> Doctors = db.Doctors.ToList();
+            List<Doctor> Doctors = DB.Doctors.ToList();
             List<DoctorDTO> NewDoctorDTO = new List<DoctorDTO>();
 
             foreach (var Doctor in Doctors)
@@ -39,7 +41,7 @@ namespace SensenbrennerHospital.Controllers
         [HttpGet]
         public IHttpActionResult GetDoctor(int id)
         {
-            Doctor Doctor = db.Doctors.Find(id);
+            Doctor Doctor = DB.Doctors.Find(id);
             if (Doctor == null)
             {
                 return NotFound();
@@ -47,6 +49,57 @@ namespace SensenbrennerHospital.Controllers
 
             return Ok(Doctor);
         }
+
+        [ResponseType(typeof(DoctorDTO))]
+        [HttpGet]
+        public IHttpActionResult FindDoctor(int id)
+        {
+            Doctor Doctor = DB.Doctors.Find(id);
+
+            if (Doctor == null)
+            {
+                return NotFound();
+            }
+
+            DoctorDTO SelectedDoctor = new DoctorDTO
+            {
+                DoctorID = Doctor.DoctorID,
+                FirstName = Doctor.FirstName,
+                LastName = Doctor.LastName,
+                PracticeID = Doctor.PracticeID
+            };
+
+            return Ok(SelectedDoctor);
+        }
+
+        [ResponseType(typeof(void))]
+        [HttpPost]
+        public IHttpActionResult UpdateDoctor(int ID, [FromBody] Doctor Doctor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState)
+            }
+            
+            if (ID != Doctor.DoctorID)
+            {
+                return BadRequest();
+            }
+
+            DB.Entry(Doctor).State = EntityState.Modified;
+
+            try
+            {
+                DB.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!)
+            }
+        }
+
+
+
 
         [ResponseType(typeof(Doctor))]
         [HttpPost]
@@ -58,8 +111,8 @@ namespace SensenbrennerHospital.Controllers
                 return BadRequest(ModelState);
             }
             Debug.WriteLine(NewDoctor);
-            db.Doctors.Add(NewDoctor);
-            db.SaveChanges();
+            DB.Doctors.Add(NewDoctor);
+            DB.SaveChanges();
 
             return Ok(NewDoctor.DoctorID);
         }
@@ -67,14 +120,14 @@ namespace SensenbrennerHospital.Controllers
         [HttpPost]
         public IHttpActionResult DeleteDoctor(int id)
         {
-            Doctor Doctor = db.Doctors.Find(id);
+            Doctor Doctor = DB.Doctors.Find(id);
             if (Doctor == null)
             {
                 return NotFound();
             }
 
-            db.Doctors.Remove(Doctor);
-            db.SaveChanges();
+            DB.Doctors.Remove(Doctor);
+            DB.SaveChanges();
 
             return Ok(Doctor);
         }
@@ -82,7 +135,7 @@ namespace SensenbrennerHospital.Controllers
         [HttpGet]
         public IHttpActionResult GetListOfDoctors()
         {
-            List<Doctor> Doctors = db.Doctors.ToList();
+            List<Doctor> Doctors = DB.Doctors.ToList();
             List<DoctorDTO> doctorDTOs = new List<DoctorDTO>();
 
             foreach (var Doctor in Doctors)
@@ -98,7 +151,42 @@ namespace SensenbrennerHospital.Controllers
             }
             return Ok(doctorDTOs);
         }
+
+        private bool DoctorExists(int id)
+        {
+            return DB.Doctors.Count(Doctor => Doctor.DoctorID == id) > 0;
+        }
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                DB.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+
+        [ResponseType(typeof(PracticeDTO))]
+        [HttpGet]
+        public IHttpActionResult GetPracticesByDepartmentId(int Id)
+        {
+            List<Practice> PracticeList = DB.Practices.Where(p => p.DepartmentID == Id).ToList();
+            List<PracticeDTO> PracticeDtos = new List<PracticeDTO>();
+
+            if (PracticeList == null)
+            {
+                return NotFound();
+            }
+
+            foreach (var Practice in PracticeList)
+            {
+                PracticeDTO NewPractice = new PracticeDTO
+                {
+                    PracticeID = Practice.PracticeID;
+                }
+            }
+        }
     }
-
-
 }
