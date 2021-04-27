@@ -143,6 +143,7 @@ namespace SensenbrennerHospital.Controllers
         }
 
         // GET: AppointmentBooking/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -178,6 +179,7 @@ namespace SensenbrennerHospital.Controllers
         }
 
         // POST: AppointmentBooking/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(int id, AppointmentBooking selectedBooking)
         {
