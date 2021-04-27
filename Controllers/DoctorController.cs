@@ -147,10 +147,10 @@ namespace SensenbrennerHospital.Controllers
             }    
         }
 
-        public ActionResult Update(int id)
-        {
-            string URL = "DoctorData/"
-        }
+        //public ActionResult Update(int id)
+        //{
+        //    string URL = "DoctorData/"
+        //}
 
         [HttpGet]
         public IEnumerable<DoctorDTO> ShowDoctor()
