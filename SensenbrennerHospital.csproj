@@ -242,6 +242,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PracticeController.cs" />
+    <Compile Include="Controllers\PracticeDataController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\UserInfoDataController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
@@ -438,6 +439,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PracticeData\" />
     <Folder Include="Views\Practices\" />
     <Folder Include="Views\UserInfo\" />
   </ItemGroup>

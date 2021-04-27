@@ -72,31 +72,31 @@ namespace SensenbrennerHospital.Controllers
             return Ok(SelectedDoctor);
         }
 
-        //[ResponseType(typeof(void))]
-        //[HttpPost]
-        //public IHttpActionResult UpdateDoctor(int ID, [FromBody] Doctor Doctor)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState)
-        //    }
-            
-        //    if (ID != Doctor.DoctorID)
-        //    {
-        //        return BadRequest();
-        //    }
+        [ResponseType(typeof(void))]
+        [HttpPost]
+        public IHttpActionResult UpdateDoctor(int ID, [FromBody] Doctor Doctor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState)
+            }
 
-        //    DB.Entry(Doctor).State = EntityState.Modified;
+            if (ID != Doctor.DoctorID)
+            {
+                return BadRequest();
+            }
 
-        //    try
-        //    {
-        //        DB.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!)
-        //    }
-        //}
+            DB.Entry(Doctor).State = EntityState.Modified;
+
+            try
+            {
+                DB.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!)
+            }
+        }
 
 
 
@@ -166,27 +166,5 @@ namespace SensenbrennerHospital.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-        //[ResponseType(typeof(PracticeDTO))]
-        //[HttpGet]
-        //public IHttpActionResult GetPracticesByDepartmentId(int Id)
-        //{
-        //    List<Practice> PracticeList = DB.Practices.Where(p => p.DepartmentID == Id).ToList();
-        //    List<PracticeDTO> PracticeDtos = new List<PracticeDTO>();
-
-        //    if (PracticeList == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    foreach (var Practice in PracticeList)
-        //    {
-        //        PracticeDTO NewPractice = new PracticeDTO
-        //        {
-        //            PracticeID = Practice.PracticeID;
-        //        }
-        //    }
-        //}
     }
 }
