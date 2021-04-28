@@ -107,8 +107,6 @@ namespace SensenbrennerHospital.Controllers
         }
 
 
-
-
         [ResponseType(typeof(Doctor))]
         [HttpPost]
         public IHttpActionResult AddDoctor([FromBody] Doctor NewDoctor)

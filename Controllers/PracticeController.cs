@@ -64,6 +64,47 @@ namespace SensenbrennerHospital.Controllers
             }
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Update(int id)
+        {
+            string URL = "PracticeData/FindPractice/" + id;
+
+            HttpResponseMessage Response = Client.GetAsync(URL).Result;
+
+            if (Response.IsSuccessStatusCode)
+            {
+                PracticeDTO SelectedPractice = Response.Content.ReadAsAsync<PracticeDTO>().Result;
+
+                return View(SelectedPractice);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }    
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Update(int id, Practice PracticeInfo)
+        {
+            string URL = "PracticeData/UpdatePractice/" + id;
+
+            HttpContent Content = new StringContent(JSS.Serialize(PracticeInfo));
+
+            Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage Response = Client.PostAsync(URL, Content).Result;
+
+            if (Response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -99,6 +140,24 @@ namespace SensenbrennerHospital.Controllers
             } else
             {
                 return RedirectToAction("Error");
+            }
+        }
+
+        [HttpGet]
+        public IEnumerable<PracticeDTO> ShowPractice()
+        {
+            string URL = "PracticeData/GetListOfPractices";
+            HttpResponseMessage HttpResponse = Client.GetAsync(URL).Result;
+
+            if (HttpResponse.IsSuccessStatusCode)
+            {
+                IEnumerable<PracticeDTO> PracticeList = HttpResponse.Content.ReadAsAsync<IEnumerable<PracticeDTO>>().Result;
+
+                return PracticeList;
+            }
+            else
+            {
+                return null;
             }
         }
 

@@ -13,7 +13,7 @@ namespace SensenbrennerHospital.Controllers
     public class DoctorController : Controller
     {
         private JavaScriptSerializer jss = new JavaScriptSerializer();
-        private static readonly HttpClient client;
+        private static readonly HttpClient Client;
 
         static DoctorController()
         {
@@ -21,16 +21,16 @@ namespace SensenbrennerHospital.Controllers
             {
                 AllowAutoRedirect = false
             };
-            client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44336/api/");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Client = new HttpClient(handler);
+            Client.BaseAddress = new Uri("https://localhost:44336/api/");
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
 
         public ActionResult ListDoctors()
         {
             string URL = "DoctorData/GetDoctors";
-            HttpResponseMessage httpResponse = client.GetAsync(URL).Result;
+            HttpResponseMessage httpResponse = Client.GetAsync(URL).Result;
 
             if (httpResponse.IsSuccessStatusCode)
             {
@@ -57,7 +57,7 @@ namespace SensenbrennerHospital.Controllers
 
             HttpContent Content = new StringContent(jss.Serialize(NewDoctor));
             Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            HttpResponseMessage HttpResponse = client.PostAsync(URL, Content).Result;
+            HttpResponseMessage HttpResponse = Client.PostAsync(URL, Content).Result;
 
             if (HttpResponse.IsSuccessStatusCode)
             {
@@ -76,7 +76,7 @@ namespace SensenbrennerHospital.Controllers
         {
             string URL = "DoctorData/FindDoctor/" + id;
 
-            HttpResponseMessage Response = client.GetAsync(URL).Result;
+            HttpResponseMessage Response = Client.GetAsync(URL).Result;
 
             if (Response.IsSuccessStatusCode)
             {
@@ -97,7 +97,7 @@ namespace SensenbrennerHospital.Controllers
 
             HttpContent Content = new StringContent(jss.Serialize(DoctorInfo));
             Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            HttpResponseMessage Response = client.PostAsync(URL, Content).Result;
+            HttpResponseMessage Response = Client.PostAsync(URL, Content).Result;
 
             if (Response.IsSuccessStatusCode)
             {
@@ -114,7 +114,7 @@ namespace SensenbrennerHospital.Controllers
         public ActionResult DeleteConfirm(int id)
         {
             string URL = "DoctorData/GetDoctors/" + id;
-            HttpResponseMessage HttpResponse = client.GetAsync(URL).Result;
+            HttpResponseMessage HttpResponse = Client.GetAsync(URL).Result;
 
             if (HttpResponse.IsSuccessStatusCode)
             {
@@ -135,7 +135,7 @@ namespace SensenbrennerHospital.Controllers
         {
             string URL = "DoctorData/DeleteDoctor/" + id;
             HttpContent Content = new StringContent("");
-            HttpResponseMessage HttpResponse = client.PostAsync(URL, Content).Result;
+            HttpResponseMessage HttpResponse = Client.PostAsync(URL, Content).Result;
 
             if (HttpResponse.IsSuccessStatusCode)
             {
@@ -156,7 +156,7 @@ namespace SensenbrennerHospital.Controllers
         public IEnumerable<DoctorDTO> ShowDoctor()
         {
             string URL = "DoctorData/GetListOfDoctors";
-            HttpResponseMessage HttpResponse = client.GetAsync(URL).Result;
+            HttpResponseMessage HttpResponse = Client.GetAsync(URL).Result;
 
             if (HttpResponse.IsSuccessStatusCode)
             {

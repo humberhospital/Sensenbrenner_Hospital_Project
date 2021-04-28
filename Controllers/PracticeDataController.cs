@@ -1,6 +1,7 @@
 ﻿using SensenbrennerHospital.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,6 +13,94 @@ namespace SensenbrennerHospital.Controllers
     public class PracticeDataController : ApiController
     {
         private ApplicationDbContext DB = new ApplicationDbContext();
+
+        [ResponseType(typeof(IEnumerable<PracticeDTO>))]
+        [HttpGet]
+        public IHttpActionResult GetPractices()
+        {
+            List<Practice> Practices = DB.Practices.ToList();
+            List<PracticeDTO> NewPracticeDTO = new List<PracticeDTO>();
+
+            foreach (var Practice in Practices)
+            {
+                PracticeDTO NewPractice = new PracticeDTO
+                {
+                    PracticeID = Practice.PracticeID,
+                    PracticeName = Practice.PracticeName,
+                    DepartmentID = Practice.DepartmentID
+                };
+                NewPracticeDTO.Add(NewPractice);
+            }
+            return Ok(NewPracticeDTO);
+        }
+
+        [ResponseType(typeof(PracticeDTO))]
+        [HttpGet]
+        public IHttpActionResult GetPractice(int id)
+        {
+            Practice Practice = DB.Practices.Find(id);
+            
+            if (Practice == null)
+            {
+                return NotFound();
+            }
+            return Ok(Practice);
+        }
+
+        [ResponseType(typeof(PracticeDTO))]
+        [HttpGet]
+        public IHttpActionResult FindPractice(int ID)
+        {
+            Practice Practice = DB.Practices.Find(ID);
+
+            if (Practice == null)
+            {
+                return NotFound();
+            }
+
+            PracticeDTO SelectedPractice = new PracticeDTO
+            {
+                PracticeID = Practice.PracticeID,
+                PracticeName = Practice.PracticeName,
+                DepartmentID = Practice.DepartmentID
+            };
+
+            return Ok(SelectedPractice);
+        }
+
+        [ResponseType(typeof(void))]
+        [HttpPost]
+        public IHttpActionResult UpdatePractice(int ID, [FromBody] Practice Practice)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (ID != Practice.PracticeID)
+            {
+                return BadRequest();
+            }
+
+            DB.Entry(Practice).State = System.Data.Entity.EntityState.Modified;
+
+            try
+            {
+                DB.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PracticeExists(ID))
+                {
+                    return NotFound();
+                }    
+                else
+                {
+                    throw;
+                }
+            }
+                return Ok();
+        }
 
         [ResponseType(typeof(PracticeDTO))]
         [HttpGet]
@@ -36,6 +125,11 @@ namespace SensenbrennerHospital.Controllers
                 PracticeDtos.Add(NewPractice);
             }
             return Ok(PracticeDtos);
+        }
+
+        private bool PracticeExists(int ID)
+        {
+            return DB.Practices.Count(Practice => Practice.PracticeID == ID) > 0;
         }
     }
 }
