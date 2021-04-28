@@ -46,11 +46,17 @@ Nodir - Application USer, Donation
 ### Mohamed: 
 #### Completed -
 - [x] Models
-- [x] API Controllers for departments
+- [x] Department Controller
+- [x] Department Data Controller
+- [x] Faq Controller
+- [x] Faq Data Controller
+- [x] Category Controller
+- [x] Category Data Controller
 - [x] Views for departments
+- [x] Views for categories
+- [x] Views for faqs
 #### Next Steps -
-- [ ] API Controllers for FAQ
-- [ ] Views for FAQ
+- [ ] Styling for both features
 
 ### Bryan:
 #### Completed -
