@@ -28,8 +28,8 @@ Nodir - Application USer, Donation
 - [x] Views for both features
 #### Next Steps 
 - [ ] Calendar widget for appointment bookings page
-- [ ] Integrate appointment booking table with doctors table
-- [ ] Create admin view for appointment bookings table
+- [x] Integrate appointment booking table with doctors table
+- [x] Create admin view for appointment bookings table
 
 ### Elle: 
 #### Completed
@@ -46,11 +46,17 @@ Nodir - Application USer, Donation
 ### Mohamed: 
 #### Completed -
 - [x] Models
-- [x] API Controllers for departments
+- [x] Department Controller
+- [x] Department Data Controller
+- [x] Faq Controller
+- [x] Faq Data Controller
+- [x] Category Controller
+- [x] Category Data Controller
 - [x] Views for departments
+- [x] Views for categories
+- [x] Views for faqs
 #### Next Steps -
-- [ ] API Controllers for FAQ
-- [ ] Views for FAQ
+- [ ] Styling for both features
 
 ### Bryan:
 #### Completed -

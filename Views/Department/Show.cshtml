@@ -1,0 +1,50 @@
+﻿@model SensenbrennerHospital.Models.ViewModels.ShowDepartment
+
+@{
+    ViewBag.Title = "Show Department";
+}
+
+<h2>@Model.department.DepartmentName</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.department.DepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.DepartmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department.DepartmentPhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.DepartmentPhoneNumber)
+        </dd>
+    </dl>
+
+    @if (Model.listOfPractices.Count() >= 1)
+    {
+        <h4>Practices</h4>
+        <hr />
+        <dl lcass="dl-horizontal">
+            @foreach (var item in Model.listOfPractices)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.listOfPractices.First().PracticeName)
+                </dt>
+
+                <dd>
+                    @Html.ActionLink(item.PracticeName, "Details", "Practice", new { id = item.PracticeID })
+                </dd>
+            }
+        </dl>
+    }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Update", new { id = Model.department.DepartmentID }) |
+    @Html.ActionLink("Back to List", "List")
+</p>

@@ -1,38 +1,48 @@
-﻿@model IEnumerable<SensenbrennerHospital.Models.DepartmentDto>
+﻿@model SensenbrennerHospital.Models.ViewModels.ListDepartment
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "List Departments";
 }
 
-<h2>List</h2>
+<h2>List Departments</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Department", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DepartmentName)
+            @Html.DisplayNameFor(model => model.listOfDepartments.First().DepartmentName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartmentPhoneNumber)
+            @Html.DisplayNameFor(model => model.listOfDepartments.First().DepartmentPhoneNumber)
         </th>
-        <th></th>
+        @if (Model.isadmin)
+        {
+            <th>
+                More actions
+            </th>
+        }
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.listOfDepartments) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.DepartmentName)
+            @Html.ActionLink(item.DepartmentName, "Show", new { id = item.DepartmentID })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DepartmentPhoneNumber)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Update", new { id = item.DepartmentID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.DepartmentID }) |
-            @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.DepartmentID })
-        </td>
+            @if (Model.isadmin)
+                {
+                    <div>
+                        @Html.ActionLink("Edit", "Update", new { id = item.DepartmentID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.DepartmentID }) |
+                        @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.DepartmentID })
+                    </div>
+                }
+            </td>
     </tr>
 }
 

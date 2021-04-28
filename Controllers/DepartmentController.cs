@@ -33,13 +33,18 @@ namespace SensenbrennerHospital.Controllers
         [HttpGet]
         public ActionResult List()
         {
+            ListDepartment ViewModel = new ListDepartment();
+
+            ViewModel.isadmin = User.IsInRole("Admin");
+
             string url = "DepartmentData/ListDepartments";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
             {
                 IEnumerable<DepartmentDto> DepartmentList = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
-                return View(DepartmentList);
+                ViewModel.listOfDepartments = DepartmentList;
+                return View(ViewModel);
             }
             else
             {
@@ -160,31 +165,31 @@ namespace SensenbrennerHospital.Controllers
 
         //------------------ Commented until practices controller is finished ---------------------
         //GET: Department/Show/5
-        //[HttpGet]
-        //public ActionResult Show(int id)
-        //{
-        //    ShowDepartment ViewModel = new ShowDepartment();
-        //    string url = "DepartmentData/FindDepartment/" + id;
+        [HttpGet]
+        public ActionResult Show(int id)
+        {
+            ShowDepartment ViewModel = new ShowDepartment();
+            string url = "DepartmentData/FindDepartment/" + id;
 
-        //    HttpResponseMessage response = client.GetAsync(url).Result;
+            HttpResponseMessage response = client.GetAsync(url).Result;
 
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
-        //        ViewModel.department = SelectedDepartment;
+            if (response.IsSuccessStatusCode)
+            {
+                DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
+                ViewModel.department = SelectedDepartment;
 
-        //        url = "PracticeData/GetPracticesByDepartmentId/" + SelectedDepartment.DepartmentID;
-        //        response = client.GetAsync(url).Result;
-        //        IEnumerable<Practice> listOfPractices = response.Content.ReadAsAsync<IEnumerable<Practice>>().Result;
-        //        ViewModel.listOfPractices = listOfPractices;
+                url = "PracticeData/GetPracticesByDepartmentId/" + SelectedDepartment.DepartmentID;
+                response = client.GetAsync(url).Result;
+                IEnumerable<Practice> listOfPractices = response.Content.ReadAsAsync<IEnumerable<Practice>>().Result;
+                ViewModel.listOfPractices = listOfPractices;
 
-        //        return View(ViewModel);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Error");
-        //    }
-        //}
+                return View(ViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
 
         public ActionResult Error()
         {

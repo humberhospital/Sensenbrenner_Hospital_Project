@@ -312,6 +312,7 @@
     <Compile Include="Models\ViewModels\CreateFaq.cs" />
     <Compile Include="Models\ViewModels\DeleteCategory.cs" />
     <Compile Include="Models\ViewModels\ListAppointments.cs" />
+    <Compile Include="Models\ViewModels\ListDepartment.cs" />
     <Compile Include="Models\ViewModels\ListDonation.cs" />
     <Compile Include="Models\ViewModels\ListFaq.cs" />
     <Compile Include="Models\ViewModels\ListUser.cs" />
@@ -436,6 +437,7 @@
     <Content Include="Views\Department\Update.cshtml" />
     <Content Include="Views\Donation\success.cshtml" />
     <Content Include="Views\Donation\MyMessage.cshtml" />
+    <Content Include="Views\Department\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
