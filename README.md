@@ -28,8 +28,8 @@ Nodir - Application USer, Donation
 - [x] Views for both features
 #### Next Steps 
 - [ ] Calendar widget for appointment bookings page
-- [ ] Integrate appointment booking table with doctors table
-- [ ] Create admin view for appointment bookings table
+- [x] Integrate appointment booking table with doctors table
+- [x] Create admin view for appointment bookings table
 
 ### Elle: 
 #### Completed
