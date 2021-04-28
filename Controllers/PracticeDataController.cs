@@ -102,6 +102,57 @@ namespace SensenbrennerHospital.Controllers
                 return Ok();
         }
 
+        [ResponseType(typeof(Practice))]
+        [HttpPost]
+        public IHttpActionResult AddPractice([FromBody] Practice NewPractice)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            DB.Practices.Add(NewPractice);
+            DB.SaveChanges();
+
+            return Ok(NewPractice.PracticeID);
+        }
+
+        [HttpPost]
+        public IHttpActionResult DeletePractice(int ID)
+        {
+            Practice Practice = DB.Practices.Find(ID);
+
+            if (Practice == null)
+            {
+                return NotFound();
+            }
+
+            DB.Practices.Remove(Practice);
+            DB.SaveChanges();
+
+            return Ok(Practice);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetListOfPractices()
+        {
+            List<Practice> Practices = DB.Practices.ToList();
+            List<PracticeDTO> PracticeDTOs = new List<PracticeDTO>();
+
+            foreach (var Practice in Practices)
+            {
+                PracticeDTO NewPractice = new PracticeDTO
+                {
+                    PracticeID = Practice.PracticeID,
+                    PracticeName = Practice.PracticeName,
+                    DepartmentID = Practice.DepartmentID
+                };
+                PracticeDTOs.Add(NewPractice);
+            }
+            return Ok(PracticeDTOs);
+        }
+
+
+
         [ResponseType(typeof(PracticeDTO))]
         [HttpGet]
         public IHttpActionResult GetPracticesByDepartmentId(int Id)
@@ -130,6 +181,15 @@ namespace SensenbrennerHospital.Controllers
         private bool PracticeExists(int ID)
         {
             return DB.Practices.Count(Practice => Practice.PracticeID == ID) > 0;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                DB.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
