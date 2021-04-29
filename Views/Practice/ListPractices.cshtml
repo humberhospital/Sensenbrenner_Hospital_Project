@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SensenbrennerHospital.Models.PracticeDTO>
+
+@{
+    ViewBag.Title = "ListPractices";
+}
+
+<h2>ListPractices</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PracticeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PracticeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PracticeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PracticeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PracticeID })
+        </td>
+    </tr>
+}
+
+</table>

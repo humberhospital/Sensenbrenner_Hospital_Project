@@ -1,4 +1,5 @@
 ﻿using SensenbrennerHospital.Models;
+using SensenbrennerHospital.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,20 @@ namespace SensenbrennerHospital.Controllers
             {
                 return RedirectToAction("Error");
             }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create()
+        {
+            CreatePractice ViewModel = new CreatePractice();
+
+            string URL = "DepartmentData/ListDepartments";
+            HttpResponseMessage Response = Client.GetAsync(URL).Result;
+            IEnumerable<DepartmentDto> ListOfDepartments = Response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+            ViewModel.AllDepartments = ListOfDepartments;
+
+            return View(ViewModel);
         }
 
         [HttpGet]
