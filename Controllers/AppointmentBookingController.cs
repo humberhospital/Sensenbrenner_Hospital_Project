@@ -23,7 +23,7 @@ namespace SensenbrennerHospital.Controllers
                 AllowAutoRedirect = false
             };
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44336/api/");
+            client.BaseAddress = new Uri("http://sensenbrennerhospital-env.eba-ev233pkq.us-east-2.elasticbeanstalk.com/api/");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
