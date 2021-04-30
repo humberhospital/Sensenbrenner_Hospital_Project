@@ -72,7 +72,7 @@ namespace SensenbrennerHospital.Controllers
                 ViewModel.volunteer = SelectedVolunteer;
                 Debug.WriteLine("SelectedVolunteer:" + SelectedVolunteer.VolunteerHasPic);
 
-                url = "volunteerdata/finddepartmentforvolunteer/" + id;
+                url = "DepartmentData/FindDepartment/" + SelectedVolunteer.DepartmentID;
                 response = client.GetAsync(url).Result;
                 DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
                 ViewModel.department = SelectedDepartment;
