@@ -90,7 +90,7 @@ namespace SensenbrennerHospital.Controllers
         {
             UpdateVolunteer ViewModel = new UpdateVolunteer();
             //get information about departments this volunteer could also be in
-            string url = "departmentdata/getdepartments";
+            string url = "departmentdata/listdepartments";
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<DepartmentDto> PotentialDepartments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
             ViewModel.alldepartments = PotentialDepartments;
@@ -140,7 +140,7 @@ namespace SensenbrennerHospital.Controllers
                 ViewModel.volunteer = SelectedVolunteer;
 
                 //get information about departments this volunteer could also be in
-                url = "departmentdata/getdepartments";
+                url = "departmentdata/listdepartments";
                 response = client.GetAsync(url).Result;
                 IEnumerable<DepartmentDto> PotentialDepartments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
                 ViewModel.alldepartments = PotentialDepartments;

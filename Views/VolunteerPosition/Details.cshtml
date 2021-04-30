@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.department.DepartmentName)
             </dt>
             <dd>
-                @*// @Html.ActionLink(Model.department.DepartmentName, "Details", "Department", new { id = Model.department.DepartmentID }, new { })*@
+                @Html.ActionLink(Model.department.DepartmentName, "Show", "Department", new { id = Model.volunteerposition.DepartmentID })
             </dd>
 
         </dl>
