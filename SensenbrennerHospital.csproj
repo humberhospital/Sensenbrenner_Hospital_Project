@@ -292,6 +292,7 @@
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppointmentBooking.cs" />
+    <Compile Include="Models\AWSConnector.cs" />
     <Compile Include="Models\Career.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Department.cs" />
@@ -400,7 +401,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Career\Index.cshtml" />
     <Content Include="Views\Career\Details.cshtml" />
     <Content Include="Views\Career\Create.cshtml" />
@@ -414,7 +414,6 @@
     <Content Include="Views\Department\List.cshtml" />
     <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\DeleteConfirm.cshtml" />
-    <Content Include="Views\Department\DepartmentList.cshtml" />
     <Content Include="Views\Donation\Index.cshtml" />
     <Content Include="Views\Donation\Details.cshtml" />
     <Content Include="Views\Donation\Create.cshtml" />
