@@ -63,12 +63,12 @@ Nodir - Application USer, Donation
 - [x] Models
 - [x] Doctor Controller
 - [x] Doctor Data Controller
+- [x] Practice Controller
+- [x] Practice Data Controller
+- [x] View Models
+- [x] CRUD Views for Doctor/Practice
 #### Next Steps -
-- [ ] Practice Controller
-- [ ] Practice Data Controller
-- [ ] Doctors View
-- [ ] Doctor View
-- [ ] Practices Views
+- [ ] Relax
 ### Nodir: 
 #### Completed -
 - [x] Models
