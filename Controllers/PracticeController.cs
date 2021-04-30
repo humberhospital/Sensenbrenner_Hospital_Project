@@ -30,14 +30,24 @@ namespace SensenbrennerHospital.Controllers
         // GET: Practices
         public ActionResult ListPractices()
         {
+            List<ListPractices> ViewModel = new List<ListPractices>();
             string URL = "PracticeData/GetPractices";
             HttpResponseMessage HttpResponse = Client.GetAsync(URL).Result;
 
             if (HttpResponse.IsSuccessStatusCode)
             {
                 IEnumerable<PracticeDTO> PracticeList = HttpResponse.Content.ReadAsAsync<IEnumerable<PracticeDTO>>().Result;
-
-                return View(PracticeList);
+                foreach (var item in PracticeList)
+                {
+                    URL = "DepartmentData/FindDepartment/" + item.DepartmentID;
+                    HttpResponse = Client.GetAsync(URL).Result;
+                    DepartmentDto NewDepartment = HttpResponse.Content.ReadAsAsync<DepartmentDto>().Result;
+                    ListPractices NewList = new ListPractices();
+                    NewList.Practice = item;
+                    NewList.Department = NewDepartment;
+                    ViewModel.Add(NewList);
+                }
+                return View(ViewModel);
             } else
             {
                 return RedirectToAction("List");
@@ -57,7 +67,7 @@ namespace SensenbrennerHospital.Controllers
             if (HttpResponse.IsSuccessStatusCode)
             {
                 int PracticeID = HttpResponse.Content.ReadAsAsync<int>().Result;
-                return RedirectToAction("List");
+                return RedirectToAction("ListPractices");
             }
             else
             {
@@ -83,15 +93,21 @@ namespace SensenbrennerHospital.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Update(int id)
         {
+            CreatePractice ViewModel = new CreatePractice();
+
             string URL = "PracticeData/FindPractice/" + id;
 
             HttpResponseMessage Response = Client.GetAsync(URL).Result;
 
             if (Response.IsSuccessStatusCode)
             {
-                PracticeDTO SelectedPractice = Response.Content.ReadAsAsync<PracticeDTO>().Result;
-
-                return View(SelectedPractice);
+                Practice SelectedPractice = Response.Content.ReadAsAsync<Practice>().Result;
+                ViewModel.Practice = SelectedPractice;
+                URL = "DepartmentData/ListDepartments";
+                Response = Client.GetAsync(URL).Result;
+                IEnumerable<DepartmentDto> NewDepartment = Response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+                ViewModel.AllDepartments = NewDepartment;
+                return View(ViewModel);
             }
             else
             {
@@ -112,7 +128,7 @@ namespace SensenbrennerHospital.Controllers
 
             if (Response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("ListPractices");
             }
             else
             {
@@ -131,7 +147,7 @@ namespace SensenbrennerHospital.Controllers
 
             if (HttpResponse.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("ListPractices");
             }
             else
             {

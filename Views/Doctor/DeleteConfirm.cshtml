@@ -1,4 +1,4 @@
-﻿@model SensenbrennerHospital.Models.Doctor
+﻿@model SensenbrennerHospital.Models.ViewModels.ListDoctor
 
 @{
     ViewBag.Title = "DeleteConfirm";
@@ -19,24 +19,31 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.Doctor.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.Doctor.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.Doctor.LastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LastName)
+            @Html.DisplayFor(model => model.Doctor.LastName)
         </dd>
 
     </dl>
+
+
+    @using (Html.BeginForm("Delete", "Doctor", new { id = Model.Doctor.DoctorID }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+            @Html.ActionLink("Back to List", "ListDoctors")
+        </div>
+    }
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.DoctorID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

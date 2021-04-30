@@ -1,4 +1,5 @@
 ﻿using SensenbrennerHospital.Models;
+using SensenbrennerHospital.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,12 +31,27 @@ namespace SensenbrennerHospital.Controllers
         public ActionResult ListDoctors()
         {
             string URL = "DoctorData/GetDoctors";
+            List<ListDoctor> ViewModel = new List<ListDoctor>();
             HttpResponseMessage httpResponse = Client.GetAsync(URL).Result;
 
             if (httpResponse.IsSuccessStatusCode)
             {
                 IEnumerable<DoctorDTO> DoctorsList = httpResponse.Content.ReadAsAsync<IEnumerable<DoctorDTO>>().Result;
-                return View(DoctorsList);
+
+                foreach (var item in DoctorsList)
+                {
+                    URL = "PracticeData/FindPractice/" + item.PracticeID;
+                    httpResponse = Client.GetAsync(URL).Result;
+                    PracticeDTO Practice = httpResponse.Content.ReadAsAsync<PracticeDTO>().Result;
+                    ListDoctor NewList = new ListDoctor
+                    {
+                        Doctor = item,
+                        Practice = Practice
+                    };
+                    ViewModel.Add(NewList);
+                }
+
+                return View(ViewModel);
             } else
             {
                 return RedirectToAction("Error");
@@ -46,7 +62,20 @@ namespace SensenbrennerHospital.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            return View();
+            CreateDoctor ViewModel = new CreateDoctor();
+            string URL = "PracticeData/GetListOfPractices";
+            HttpResponseMessage HttpResponse = Client.GetAsync(URL).Result;
+
+            if (HttpResponse.IsSuccessStatusCode)
+            {
+                List<PracticeDTO> Practices = HttpResponse.Content.ReadAsAsync<List<PracticeDTO>>().Result;
+                ViewModel.Practice = Practices;
+                return View(ViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
 
         [HttpPost]
@@ -62,7 +91,7 @@ namespace SensenbrennerHospital.Controllers
             if (HttpResponse.IsSuccessStatusCode)
             {
                 int DoctorID = HttpResponse.Content.ReadAsAsync<int>().Result;
-                return RedirectToAction("List");
+                return RedirectToAction("ListDoctors");
             }
             else
             {
@@ -74,6 +103,7 @@ namespace SensenbrennerHospital.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Update(int id)
         {
+            CreateDoctor ViewModel = new CreateDoctor();
             string URL = "DoctorData/FindDoctor/" + id;
 
             HttpResponseMessage Response = Client.GetAsync(URL).Result;
@@ -81,7 +111,12 @@ namespace SensenbrennerHospital.Controllers
             if (Response.IsSuccessStatusCode)
             {
                 DoctorDTO SelectedDoctor = Response.Content.ReadAsAsync<DoctorDTO>().Result;
-                return View(SelectedDoctor);
+                ViewModel.Doctor = SelectedDoctor;
+                URL = "PracticeData/GetListOfPractices";
+                Response = Client.GetAsync(URL).Result;
+                List<PracticeDTO> PracticeList = Response.Content.ReadAsAsync<List<PracticeDTO>>().Result;
+                ViewModel.Practice = PracticeList;
+                return View(ViewModel);
             }
             else
             {
@@ -98,30 +133,39 @@ namespace SensenbrennerHospital.Controllers
             HttpContent Content = new StringContent(jss.Serialize(DoctorInfo));
             Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage Response = Client.PostAsync(URL, Content).Result;
-
-            if (Response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("List");
-            }
-            else
-            {
-                return RedirectToAction("Error");
-            }
+            return RedirectToAction("ListDoctors");
+            //if (Response.IsSuccessStatusCode)
+            //{
+            //    return RedirectToAction("ListDoctors");
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Error");
+            //}
         }
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
-            string URL = "DoctorData/GetDoctors/" + id;
+            string URL = "DoctorData/GetDoctor/" + id;
+            ListDoctor ViewModel = new ListDoctor();
+
+
             HttpResponseMessage HttpResponse = Client.GetAsync(URL).Result;
 
             if (HttpResponse.IsSuccessStatusCode)
             {
-                DoctorDTO Doctor = new DoctorDTO();
-                Doctor = HttpResponse.Content.ReadAsAsync<DoctorDTO>().Result;
+                DoctorDTO Doctor = HttpResponse.Content.ReadAsAsync<DoctorDTO>().Result;
+                ViewModel.Doctor = Doctor;
 
-                return View(Doctor);
+                URL = "PracticeData/FindPractice/" + Doctor.PracticeID;
+                HttpResponse = Client.GetAsync(URL).Result;
+
+                PracticeDTO Practice = HttpResponse.Content.ReadAsAsync<PracticeDTO>().Result;
+                ViewModel.Practice = Practice;
+
+                return View(ViewModel);
             }
             else
             {
@@ -139,7 +183,7 @@ namespace SensenbrennerHospital.Controllers
 
             if (HttpResponse.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("ListDoctors");
             }
             else
             {
@@ -153,21 +197,26 @@ namespace SensenbrennerHospital.Controllers
         //}
 
         [HttpGet]
-        public IEnumerable<DoctorDTO> ShowDoctor()
+        public ActionResult DoctorDetails(int id)
         {
-            string URL = "DoctorData/GetListOfDoctors";
+            string URL = "DoctorData/GetDoctor/" + id;
             HttpResponseMessage HttpResponse = Client.GetAsync(URL).Result;
 
             if (HttpResponse.IsSuccessStatusCode)
             {
-                IEnumerable<DoctorDTO> DoctorList = HttpResponse.Content.ReadAsAsync<IEnumerable<DoctorDTO>>().Result;
+                DoctorDTO DoctorList = HttpResponse.Content.ReadAsAsync<DoctorDTO>().Result;
 
-                return DoctorList;
+                return View(DoctorList);
             }
             else
             {
-                return null;
+                return RedirectToAction("Error");
             }    
+        }
+
+        public ActionResult Error()
+        {
+            return View();
         }
 
     }

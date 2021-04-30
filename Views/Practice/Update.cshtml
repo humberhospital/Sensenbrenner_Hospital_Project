@@ -1,0 +1,48 @@
+﻿@model SensenbrennerHospital.Models.ViewModels.CreatePractice
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+@using (Html.BeginForm("Update", "Practice", new { id = Model.Practice.PracticeID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <h4>Practice</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Practice.PracticeID, new { Name = "PracticeID" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Practice.PracticeName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Practice.PracticeName, new { htmlAttributes = new { @class = "form-control", Name = "PracticeName" } })
+            @Html.ValidationMessageFor(model => model.Practice.PracticeName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Practice.DepartmentID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select name="DepartmentId">
+                @foreach (var item in Model.AllDepartments)
+                {
+                    <option value="@item.DepartmentID">@item.DepartmentName</option>
+                }
+            </select>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+        }
+
+<div>
+    @Html.ActionLink("Back to List", "ListPractices")
+</div>

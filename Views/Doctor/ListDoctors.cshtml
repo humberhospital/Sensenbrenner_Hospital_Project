@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SensenbrennerHospital.Models.DoctorDTO>
+﻿@model IEnumerable<SensenbrennerHospital.Models.ViewModels.ListDoctor>
 
 @{
     ViewBag.Title = "ListDoctors";
@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.Doctor.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.Doctor.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PracticeID)
+            @Html.DisplayNameFor(model => model.Practice.PracticeName)
         </th>
         <th></th>
     </tr>
@@ -26,18 +26,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+            
+            @Html.DisplayFor(modelItem => item.Doctor.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LastName)
+            @Html.DisplayFor(modelItem => item.Doctor.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PracticeID)
+            @Html.DisplayFor(modelItem => item.Practice.PracticeName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DoctorID}) |
-            @Html.ActionLink("Details", "Details", new { id=item.DoctorID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DoctorID })
+            @Html.ActionLink("Edit", "Update", new { id=item.Doctor.DoctorID }) |
+            @Html.ActionLink("Details", "DoctorDetails", new { id=item.Doctor.DoctorID }) |
+            @Html.ActionLink("Delete", "DeleteConfirm", new { id=item.Doctor.DoctorID })
         </td>
     </tr>
 }

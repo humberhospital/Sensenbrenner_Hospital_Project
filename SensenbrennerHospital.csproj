@@ -309,13 +309,16 @@
     <Compile Include="Models\ReportsTable.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\ViewModels\CreateAppointment.cs" />
+    <Compile Include="Models\ViewModels\CreateDoctor.cs" />
     <Compile Include="Models\ViewModels\CreateFaq.cs" />
     <Compile Include="Models\ViewModels\CreatePractice.cs" />
     <Compile Include="Models\ViewModels\DeleteCategory.cs" />
     <Compile Include="Models\ViewModels\ListAppointments.cs" />
     <Compile Include="Models\ViewModels\ListDepartment.cs" />
+    <Compile Include="Models\ViewModels\ListDoctor.cs" />
     <Compile Include="Models\ViewModels\ListDonation.cs" />
     <Compile Include="Models\ViewModels\ListFaq.cs" />
+    <Compile Include="Models\ViewModels\ListPractices.cs" />
     <Compile Include="Models\ViewModels\ListUser.cs" />
     <Compile Include="Models\ViewModels\ShowDepartment.cs" />
     <Compile Include="Models\ViewModels\ShowDonation.cs" />
@@ -441,6 +444,11 @@
     <Content Include="Views\Department\Show.cshtml" />
     <Content Include="Views\Doctor\Update.cshtml" />
     <Content Include="Views\Practice\ListPractices.cshtml" />
+    <Content Include="Views\Practice\Create.cshtml" />
+    <Content Include="Views\Practice\Update.cshtml" />
+    <Content Include="Views\Practice\Delete.cshtml" />
+    <Content Include="Views\Practice\DeleteConfirm.cshtml" />
+    <Content Include="Views\Doctor\DoctorDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

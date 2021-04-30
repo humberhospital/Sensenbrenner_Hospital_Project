@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SensenbrennerHospital.Models.PracticeDTO>
+﻿@model IEnumerable<SensenbrennerHospital.Models.ViewModels.ListPractices>
 
 @{
     ViewBag.Title = "ListPractices";
@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Department.DepartmentName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PracticeName)
+            @Html.DisplayNameFor(model => model.Practice.PracticeID)
         </th>
         <th></th>
     </tr>
@@ -26,12 +26,12 @@
             @Html.DisplayFor(modelItem => item.Department.DepartmentName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PracticeName)
+            @Html.DisplayFor(modelItem => item.Practice.PracticeName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PracticeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PracticeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PracticeID })
+            @Html.ActionLink("Edit", "Update", new { id=item.Practice.PracticeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Practice.PracticeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Practice.PracticeID })
         </td>
     </tr>
 }
