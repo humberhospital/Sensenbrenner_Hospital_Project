@@ -22,3 +22,269 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/* Table of Contents */
+/* Google Font */
+/* 1. Global Chnages */
+/* 2. Header */
+/* 3. Main */
+/* 4. Footer */
+
+
+/* Google Font */
+
+/* @import url("https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Open+Sans:wght@300&display=swap"); */
+
+/* Global Chnages */
+
+html {
+    box-sizing: border-box;
+    min-width: 100%;
+    margin: auto;
+    font-size: 1.3em;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: white;
+    font: normal 1em/1.2 'Verdana', 'sans-serif';
+    font-weight: 400;
+}
+
+img {
+    max-width: 100%;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 1.3em;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #113573;
+    font-weight: bold;
+}
+
+p {
+    font-size: larger;
+}
+
+.wrapper {
+    width: 95%;
+    margin: 0 auto;
+}
+
+section {
+    padding: 5vh 0;
+}
+
+/* Nav */
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 3em;
+    align-items: center;
+    margin: 0;
+}
+
+    nav li {
+        width: 10em;
+        text-align: center;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 77%;
+    }
+
+    nav p {
+        padding: 0 8em;
+    }
+
+/* Header */
+
+header {
+    background-image: url(./img/Kapuskasing_2009-07.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding-bottom: 5%;
+}
+
+.updates {
+    background-color: #ffffffbd;
+    padding-bottom: 3em;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 10%;
+    font-size: 4em;
+    color: #1030AD;
+    margin-bottom: 2%;
+    padding-top: 0.5em;
+}
+
+/* Section 1 */
+.section1 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    justify-content: center;
+}
+
+    .section1 a {
+        color: black;
+    }
+
+.icons {
+    background-color: #A3C9E0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 17em;
+    height: 17em;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+    border-radius: 2em;
+}
+
+    .icons img {
+        width: 7em;
+    }
+
+    .icons h3 {
+        font-size: x-large;
+    }
+
+.lastTwo {
+    margin: 1em 3em;
+}
+
+/* Section 2 */
+
+.section2 {
+    background-color: #A3C9E0;
+    display: flex;
+    text-align: center;
+    padding: 4em 2em;
+    color: #1030AD;
+}
+
+    .section2 h3 {
+        font-size: 1.6em;
+    }
+
+    .section2 p {
+        padding: 1.5em 4em 2em 4em;
+        line-height: 2em;
+        color: black;
+    }
+
+    .section2 i {
+        display: flex;
+        font-size: 60px;
+        align-items: center;
+    }
+
+/* Section 3 */
+
+.section3 {
+    background-image: url(./img/pexels-gustavo-fring-3985301.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 75vh;
+}
+
+.text1 {
+    background: #ffffffbd;
+    width: 22em;
+    height: 22em;
+    text-align: center;
+    padding-top: 4em;
+    border-radius: 3em;
+    color: #113573;
+}
+
+.linkAsButton {
+    color: white;
+    background: #113573;
+    padding: 0.5em 2em;
+    font-size: 1.5em;
+    border-radius: 0.5em;
+}
+
+/* Section 4 */
+
+.section4 {
+    padding: 3em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+    .section4 h3 {
+        font-size: 2em;
+        width: 54%;
+    }
+
+/* Footer */
+
+footer {
+    background-color: #113573;
+    color: white;
+}
+
+#mainFooter {
+    display: flex;
+    padding: 2em 9em 0;
+    justify-content: space-between;
+}
+
+#copyright {
+    padding: 2em;
+    border-top: solid 1px #FFA500;
+}
+
+footer ul {
+    display: flex;
+    flex-direction: column;
+    line-height: 6em;
+}
+
+footer a {
+    color: white;
+}
+
+footer img {
+    background-color: white;
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+    html {
+        width: 154%;
+    }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    html {
+        width: 270%;
+    }
+}

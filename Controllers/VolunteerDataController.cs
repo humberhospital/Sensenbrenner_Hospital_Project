@@ -88,41 +88,6 @@ namespace SensenbrennerHospital.Controllers
             return Ok(VolunteerDto);
         }
 
-        ///// <summary> ELLE, I THINK YOU MIGHT NEED THIS??
-        ///// Finds a particular Department in the database given a volunteer id with a 200 status code. If the Department is not found, return 404.
-        ///// </summary>
-        ///// <param name="id">The volunteer id</param>
-        ///// <returns>Information about the Department, including Department id, Department name, and department number</returns>
-        //// <example>
-        //// GET: api/DepartmentData/FindDepartmentForVolunteer/5
-        //// </example>
-        //[HttpGet]
-        //[ResponseType(typeof(DepartmentDto))]
-        //public IHttpActionResult FindDepartmentForVolunteer(int id)
-        //{
-        //    //Finds the first Department that matches the input volunteerid
-        //    Department Department = db.Departments
-        //        .Where(t => t.Volunteers.Any(p => p.VolunteerID == id))
-        //        .FirstOrDefault();
-        //    //if not found, return 404 status code.
-        //    if (Department == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    //put into a 'friendly object format'
-        //    DepartmentDto DepartmentDto = new DepartmentDto
-        //    {
-        //        DepartmentID = Department.DepartmentID,
-        //        DepartmentName = Department.DepartmentName,
-        //        DepartmentPhoneNumber = Department.DepartmentPhoneNumber
-        //    };
-
-
-        //    //pass along data as 200 status code OK response
-        //    return Ok(DepartmentDto);
-        //}
-
 
 
         /// <summary> ADD MORE...
