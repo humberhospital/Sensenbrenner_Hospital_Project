@@ -33,7 +33,7 @@ textarea {
 /* Global Chnages */
 html {
     box-sizing: border-box;
-    max-width: 1500px;
+    max-width: 1800px;
     margin: auto;
     font-size: 1.3em;
 }
@@ -83,7 +83,7 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    /*align-items: center;*/
     margin: 0;
 }
 
@@ -124,10 +124,12 @@ header {
 
 h1 {
     margin-top: 10%;
-    font-size: 4em;
     color: #1030AD;
     margin-bottom: 2%;
     padding-top: 0.5em;
+    font: normal 1em/1.2 'Verdana', 'sans-serif';
+    font-size: 4em;
+    font-weight: 600;
 }
 
 
