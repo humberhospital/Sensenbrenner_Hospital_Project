@@ -340,6 +340,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\donation.css" />
+    <Content Include="Content\Images\appointmentImage.jpg" />
+    <Content Include="Content\Images\headerImage.jpg" />
+    <Content Include="Content\Images\siteLogo.png" />
+    <Content Include="Content\Images\siteLogo2.png" />
     <Content Include="Content\Images\transparent.jpg" />
     <Content Include="Content\Volunteers\globe.jpg" />
     <Content Include="Content\faqstyles.css" />

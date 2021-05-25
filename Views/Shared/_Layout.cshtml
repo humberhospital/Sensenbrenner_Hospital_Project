@@ -4,122 +4,81 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Sensenbrenner Hospital</title>
-    @Styles.Render("~/Content/Site.css")
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    < !--Font Awesome Script-- >
-    <script src="https://kit.fontawesome.com/6118df99db.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ba57f7a475.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <!-- header -->
+    <!-- Header -->
     <header>
-        <div class="wrapper">
+        <div class="headerWrapper wrapper">
             <nav>
-                <!-- logo -->
+                <!-- Logo -->
                 <div class="logo">
-                    @Html.ActionLink("Sensenbrenner Hospital", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                        <img src="@Url.Content("~/Content/Images/siteLogo2.png")" />
+                    </a>
                 </div>
-                  <ul>
-                        <li>@Html.ActionLink("Online Appointment", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Patient and Visitors", "About", "Home")</li>
-                        <li>@Html.ActionLink("Department Directory", "About", "Home")</li>
-                        <li>@Html.ActionLink("About Us", "About", "Home")</li>
-                        <li>@Html.ActionLink("Careers", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Faq", "List", "Faq")</li>
-                        <li>@Html.ActionLink("Contact Us", "Create", "Volunteer")</li>
-                  </ul>
+                <ul id="mainMenu">
+                    <li>@Html.ActionLink("Online Appointment", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Patient and Visitors", "About", "Home")</li>
+                    <li>@Html.ActionLink("Department Directory", "List", "Department")</li>
+                    <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                    <li>@Html.ActionLink("Careers", "Index", "Career")</li>
+                    <li>@Html.ActionLink("Faq", "List", "Faq")</li>
+                    <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                </ul>
             </nav>
+            <div class="signInContainer">
+                <span class="FrButton"><a href="#">FR</a></span>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="signInButton"><a href="@Url.Action("Index", "Manage")">@User.Identity.Name</a></span>
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                    }
+                }
+                else
+                {
+                    <span class="signInButton"><a href="@Url.Action("Login", "Account")">Sign In</a></span>
+                }
+                <span class="fas fa-search"><a href="#"></a></span>
+            </div>
         </div>
         <div class="updates">
             <h1>Important Updates</h1>
             <p class="wrapper">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae id sodales donec amet in ultricies. Molestie vel, vestibulum vitae enim sed enim, pharetra. Leo sapien rhoncus fermentum diam mauris donec. Vestibulum sodales risus ac nec dui, mollis sem.</p>
         </div>
     </header>
-
+    <!-- End of Header -->
     <!-- Main Content -->
     <main>
-
-        <!-- Section 1 -->
-        <section class="section1 wrapper">
-            <div class="icons">
-                <img src="./img/hospital-symbol.svg" alt="plus icon">
-                <h3><a href="#">Doctors Office</a></h3>
-            </div>
-            <div class="icons">
-                <img src="./img/maps-and-flags.svg" alt="location icon">
-                <h3><a href="#">Directions & Hospital Map</a></h3>
-            </div>
-            <div class="icons">
-                <img src="./img/round-account-button-with-user-inside.svg" alt="round icon with user shape inside">
-                <h3><a href="#">Visitor Information</a></h3>
-            </div>
-            <div class="icons">
-                <img src="./img/building-silhouette.svg" alt="building icon">
-                <h3><a href="#">Departments</a></h3>
-            </div>
-            <div class="icons">
-                <img src="./img/suitcase-black-shape.svg" alt="suitcase icon">
-                <h3 class="lastTwo"><a href="#">Careers</a></h3>
-            </div>
-            <div class="icons">
-                <img src="./img/information.svg" alt="information icon">
-                <h3 class="lastTwo"><a href="#">FAQ</a></h3>
-            </div>
-        </section>
-
-        <!-- Section 2 -->
-        <section class="section2">
-            <i class="fas fa-chevron-left left-arrow"></i>
-            <div class="wrapper">
-                <h2>A Note from Sensenbrenner</h2>
-                <h3>Latest blog posts</h3>
-                <p class="bodytext">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam officiis earum commodi? Amet explicabo reprehenderit, cum molestias quidem pariatur quae culpa hic eum consequatur delectus ipsam quo repudiandae fugit perspiciatis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam officiis earum commodi? Amet explicabo reprehenderit, cum molestias quidem pariatur quae culpa hic eum consequatur delectus ipsam quo repudiandae fugit perspiciatis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam officiis earum commodi? Amet explicabo reprehenderit, cum molestias quidem pariatur quae culpa hic eum consequatur delectus ipsam quo repudiandae fugit perspiciatis.</p>
-            </div>
-            <i class="fas fa-chevron-right right-arrow"></i>
-        </section>
-
-        <!-- Section 3 -->
-        <section class="section3">
-            <div class="wrapper">
-                <div class="image-text">
-                    <div class="text1">
-                        <h2>Book an Appointment</h2>
-                        <a class="linkAsButton" href="#">Here</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4 -->
-        <section class="section4">
-            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
-            <a class="linkAsButton" href="#">Donate</a>
-        </section>
-
+        @RenderBody()
     </main>
 
     <!-- Footer -->
     <footer>
-        <div id="mainFooter">
-            <ul>
-                <li><a href="#">Online Appointment</a></li>
-                <li><a href="#">Department Directory</a></li>
-                <li><a href="#">Patients and Visitors</a></li>
-            </ul>
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Careers</a></li>
-            </ul>
-            <ul>
-                <li><a href=""><img src="./img/sensenbrenner_hospital.png" alt="sensenbrenner hospital logo"></a></li>
-                <li><a href="">Terms and conditions</a></li>
-                <li><a href="#">Privacy policy</a></li>
-            </ul>
+        <ul class="footerMenu">
+            <li><a href="#">Online Appointment</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Department Directory</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Patients and Visitors</a></li>
+            <li><a href="#">Careers</a></li>
+        </ul>
+        <div class="footerExtraInfo">
+            <a href="#"><img src="@Url.Content("~/Content/Images/siteLogo2.png")" alt="sensenbrenner hospital logo"></a>
+            <a href="#">Terms and conditions</a>
+            <a href="#">Privacy policy</a>
         </div>
-        <p id="copyright">Copyright © 2021 Humber Hospital Project - Team 4</p>
+        <span id="copyright">Copyright © 2021 Humber Hospital Project - Team 4</span>
     </footer>
     <!-- End of Footer -->
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

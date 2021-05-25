@@ -26,15 +26,15 @@ namespace SensenbrennerHospital.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-           : base(AWSConnector.GetRDSConnectionString())
-        {
-        }
-
         //public ApplicationDbContext()
-        //    : base("DefaultConnection", throwIfV1Schema: false)
+        //   : base(AWSConnector.GetRDSConnectionString())
         //{
         //}
+
+        public ApplicationDbContext()
+            : base("DefaultConnection", throwIfV1Schema: false)
+        {
+        }
 
         public static ApplicationDbContext Create()
         {
