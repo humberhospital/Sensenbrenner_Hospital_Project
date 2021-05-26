@@ -1,19 +1,16 @@
 ﻿@model SensenbrennerHospital.Models.ViewModels.ShowVolunteerPosition
-<head>
-    // Stylesheets
-    //
-    <link rel="stylesheet" href="~/Content/Volunteers/details.css">
-    //
-    <link rel="stylesheet" href="~/Content/Site.css">
-</head>
 
+@{ 
+    ViewBag.Title = Model.volunteerposition.Name;
+}
 
-<h2>@Html.DisplayFor(model => model.volunteerposition.Name)</h2>
+<div class="viewContainer">
+    <h2 class="viewTitle">@Html.DisplayFor(model => model.volunteerposition.Name)</h2>
 
-<div>
-    <hr />
+    <div>
+        <hr />
 
-        <dl class="dl-horizontal">
+        <dl class="customDL">
             <dt>
                 @Html.DisplayNameFor(model => model.volunteerposition.Name)
             </dt>
@@ -36,3 +33,4 @@
         <span class="editlink backTwo"> @Html.ActionLink("Edit", "Edit", new { id = Model.volunteerposition.CvpID }) </span>
         <span class="editlink backOne"> @Html.ActionLink("Back to List", "List")</span>
     </div>
+</div>

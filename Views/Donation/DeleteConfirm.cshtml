@@ -1,56 +1,57 @@
 ﻿@model SensenbrennerHospital.Models.Donation
 
 @{
-    ViewBag.Title = "DeleteConfirm";
+    ViewBag.Title = "Delete Donation";
 }
 
-<h2>DeleteConfirm</h2>
+<div class="viewContainer">
+    <h2 class="viewTitle">Delete Donation</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Donation</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DonationAmount)
-        </dt>
+    <h3 class="formTitle">Are you sure you want to delete this donation?</h3>
+    <div>
+        <dl class="customDL">
+            <dt>
+                @Html.DisplayNameFor(model => model.DonationAmount)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonationAmount)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DonationAmount)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DonationMethod)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DonationMethod)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonationMethod)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DonationMethod)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DonationText)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DonationText)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonationText)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DonationText)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DonationDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DonationDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonationDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DonationDate)
+            </dd>
 
-    </dl>
+        </dl>
 
-    @using (Html.BeginForm("Delete", "Donation", new { id = Model.DonationID })) {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm("Delete", "Donation", new { id = Model.DonationID }))
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
 </div>

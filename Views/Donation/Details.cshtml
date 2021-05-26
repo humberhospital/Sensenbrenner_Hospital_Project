@@ -3,48 +3,49 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="viewContainer">
+    <h2 class="viewTitle">Details</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>Donation</h4>
+        <hr />
+        <dl class="customDL">
+            <dt>
+                @Html.DisplayNameFor(model => model.DonationAmount)
+            </dt>
 
-<div>
-    <h4>Donation</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DonationAmount)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DonationAmount)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonationAmount)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DonationMethod)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DonationMethod)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DonationMethod)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonationMethod)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DonationText)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DonationText)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DonationText)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonationText)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DonationDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DonationDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DonationDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonationDate)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.DonationID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.DonationID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

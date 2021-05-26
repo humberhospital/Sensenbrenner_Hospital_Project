@@ -1,50 +1,50 @@
 ﻿@model SensenbrennerHospital.Models.CareerDto
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Careers";
 }
 
-<h2>Details</h2>
+<div class="viewContainer">
+    <h2 class="viewTitle">Career</h2>
 
-<div>
-    <h4>Career</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CareerName)
-        </dt>
+    <div>
+        <dl class="customDL">
+            <dt>
+                @Html.DisplayNameFor(model => model.CareerName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CareerName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CareerName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CareerPayRange)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CareerPayRange)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CareerPayRange)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CareerPayRange)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CareerType)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CareerType)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CareerType)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CareerType)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CareerDescription)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CareerDescription)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CareerDescription)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CareerDescription)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CareerID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CareerID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

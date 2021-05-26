@@ -151,6 +151,10 @@ h1 {
     margin-right: 1em;
 }
 
+.searchIcon {
+    cursor: pointer;
+}
+
 
 /* Section 1 */
 .linkCardsContainer {
@@ -336,6 +340,10 @@ footer img {
     flex: 1 0 100%;
     margin: 4em -1.6em 0 -1.6em;
     font-size: .6em;
+}
+
+.btn-default {
+    background-color: lightblue;
 }
 
 /* Landscape phone to portrait tablet */

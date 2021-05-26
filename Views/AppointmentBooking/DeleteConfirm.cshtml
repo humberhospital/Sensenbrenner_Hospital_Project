@@ -1,78 +1,81 @@
 ﻿@model SensenbrennerHospital.Models.ViewModels.ListAppointment
 
 @{
-    ViewBag.Title = "DeleteConfirm";
+    ViewBag.Title = "Delete Appointment";
 }
 
-<h2>Are you sure you want to delete booking?</h2>
+<div class="viewContainer">
+    <h2 class="viewTitle">Delete Appointment</h2>
+    
+    <h3 class="formTitle">Are you sure you want to delete this booking?</h3>
+    <div>
+        <dl class="customDL">
+            <dt>
+                Doctor
+            </dt>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Doctor
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.doctorDto.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.doctorDto.LastName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.FirstName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.FirstName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.appointmentBookingDto.FirstName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.appointmentBookingDto.FirstName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.LastName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.LastName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.appointmentBookingDto.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.appointmentBookingDto.LastName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.PhoneNumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.PhoneNumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.appointmentBookingDto.PhoneNumber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.appointmentBookingDto.PhoneNumber)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.RequestDescription)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.RequestDescription)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.appointmentBookingDto.RequestDescription)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.appointmentBookingDto.RequestDescription)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.AppointmentDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.AppointmentDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.appointmentBookingDto.AppointmentDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.appointmentBookingDto.AppointmentDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.Confirmation)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.Confirmation)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.appointmentBookingDto.Confirmation)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.appointmentBookingDto.Confirmation)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
 </div>

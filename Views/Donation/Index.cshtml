@@ -3,63 +3,65 @@
 @Styles.Render("~/Content/donation.css")
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Donate";
 }
 
-<h2>Donation list</h2>
+<div class="viewContainer">
+    <h2 class="viewTitle">Donation list</h2>
 
-<button>
-    @Html.ActionLink("Donate now", "Create")
-</button>
+    <button>
+        @Html.ActionLink("Donate now", "Create")
+    </button>
 
 
 
-<table class="table">
-    <tr class="head">
-        <th>
-            @Html.DisplayNameFor(model => model.DonationAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DonationMethod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DonationText)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DonationDate)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr class="table-body">
-            <td>
-                @Html.DisplayFor(modelItem => item.DonationAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonationMethod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonationText)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonationDate)
-            </td>
-            <td>
-                <button class="button">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.DonationID })
-                </button>
-
-                <button class="button">
-                    @Html.ActionLink("Details", "Details", new { id = item.DonationID })
-                </button>
-                <button class="button">
-                    @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.DonationID })
-                </button>
-
-            </td>
+    <table class="customTable">
+        <tr class="head">
+            <th>
+                @Html.DisplayNameFor(model => model.DonationAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonationMethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonationText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonationDate)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr class="table-body">
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonationAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonationMethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonationText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonationDate)
+                </td>
+                <td>
+                    <button class="button">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.DonationID })
+                    </button>
+
+                    <button class="button">
+                        @Html.ActionLink("Details", "Details", new { id = item.DonationID })
+                    </button>
+                    <button class="button">
+                        @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.DonationID })
+                    </button>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

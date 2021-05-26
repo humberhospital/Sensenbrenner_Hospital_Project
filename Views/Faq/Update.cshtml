@@ -4,61 +4,62 @@
     ViewBag.Title = "Update FAQ";
 }
 
-<h2>Update FAQ</h2>
+<div class="viewContainer">
+    <h2 class="viewTitle">Update FAQ</h2>
 
-@using (Html.BeginForm("Update", "Faq", new { id = Model.faq.FaqID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+    @using (Html.BeginForm("Update", "Faq", new { id = Model.faq.FaqID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
         @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-    <h4>Faq</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.faq.FaqID, new { Name = "FaqID" })
+        <div class="customForm">
+            <h4 class="formTitle">Faq</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.faq.FaqID, new { Name = "FaqID" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.faq.Question, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.faq.Question, new { htmlAttributes = new { @class = "form-control", Name = "Question" } })
-            @Html.ValidationMessageFor(model => model.faq.Question, "", new { @class = "text-danger", data_valmsg_for = "Question" })
-        </div>
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.faq.Question, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.faq.Question, new { htmlAttributes = new { @class = "form-control", Name = "Question" } })
+                    @Html.ValidationMessageFor(model => model.faq.Question, "", new { @class = "text-danger", data_valmsg_for = "Question" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.faq.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.faq.Answer, new { htmlAttributes = new { @class = "form-control", Name = "Answer" } })
-            @Html.ValidationMessageFor(model => model.faq.Answer, "", new { @class = "text-danger", data_valmsg_for = "Answer" })
-        </div>
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.faq.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.faq.Answer, new { htmlAttributes = new { @class = "form-control", Name = "Answer" } })
+                    @Html.ValidationMessageFor(model => model.faq.Answer, "", new { @class = "text-danger", data_valmsg_for = "Answer" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.faq.CategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @if (Model.allCategories.Count() == 0)
-            {
-                <span>There are no categories yet. Please @Html.ActionLink("add a category", "Create", "Category") first.</span>
-            }
-            else
-{
-                <select name="CategoryID">
-                    @foreach (var item in Model.allCategories)
+            <div class="form-group">
+                @Html.LabelFor(model => model.faq.CategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (Model.allCategories.Count() == 0)
                     {
-                        <option value="@item.CategoryID">@item.CategoryName</option>
+                        <span>There are no categories yet. Please @Html.ActionLink("add a category", "Create", "Category") first.</span>
                     }
-                </select>
-            }
-        </div>
-    </div>
+                    else
+                    {
+                        <select name="CategoryID">
+                            @foreach (var item in Model.allCategories)
+                            {
+                                <option value="@item.CategoryID">@item.CategoryName</option>
+                            }
+                        </select>
+                    }
+                </div>
+            </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-}
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "List")
+    <div>
+        @Html.ActionLink("Back to List", "List")
+    </div>
 </div>

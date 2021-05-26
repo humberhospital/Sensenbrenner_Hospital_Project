@@ -27,8 +27,9 @@ namespace SensenbrennerHospital
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/faqstyles.css"));
+                      "~/Content/globalStyles.css",
+                      "~/Content/faqstyles.css",
+                      "~/Content/generalStyles.css"));
         }
     }
 }

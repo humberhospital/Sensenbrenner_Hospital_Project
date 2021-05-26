@@ -1,49 +1,61 @@
 ﻿@model SensenbrennerHospital.Models.ViewModels.ListDepartment
 
 @{
-    ViewBag.Title = "List Departments";
+    ViewBag.Title = "Departments";
 }
 
-<h2>List Departments</h2>
+<div class="viewContainer">
 
-<p>
-    @Html.ActionLink("Create New Department", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.listOfDepartments.First().DepartmentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.listOfDepartments.First().DepartmentPhoneNumber)
-        </th>
-        @if (Model.isadmin)
-        {
-            <th>
-                More actions
-            </th>
-        }
-    </tr>
+    <h2 class="viewTitle">Departments List</h2>
 
-@foreach (var item in Model.listOfDepartments) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.DepartmentName, "Show", new { id = item.DepartmentID })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartmentPhoneNumber)
-        </td>
-        <td>
-            @if (Model.isadmin)
+    @if (Model.isadmin)
+    {
+        <p>
+            @Html.ActionLink("Create New Department", "Create")
+        </p>
+    }
+
+    <table class="customTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.listOfDepartments.First().DepartmentName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.listOfDepartments.First().DepartmentPhoneNumber)
+                </th>
+                @if (Model.isadmin)
                 {
-                    <div>
-                        @Html.ActionLink("Edit", "Update", new { id = item.DepartmentID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.DepartmentID }) |
-                        @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.DepartmentID })
-                    </div>
+                    <th>
+                        More actions
+                    </th>
                 }
-            </td>
-    </tr>
-}
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.listOfDepartments)
+            {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.DepartmentName, "Show", new { id = item.DepartmentID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentPhoneNumber)
+                </td>
+                @if (Model.isadmin)
+                {
+                    <td>
+                        <div>
+                            @Html.ActionLink("Edit", "Update", new { id = item.DepartmentID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.DepartmentID }) |
+                            @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.DepartmentID })
+                        </div>
+                    </td>
 
-</table>
+                }
+            </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

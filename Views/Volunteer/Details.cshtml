@@ -1,55 +1,52 @@
 ﻿@model SensenbrennerHospital.Models.ViewModels.ShowVolunteer
-<head>
-    @*// Stylesheets
-    //
-    <link rel="stylesheet" href="~/Content/Volunteers/details.css">
-    //
-    <link rel="stylesheet" href="~/Content/Site.css">*@
-</head>
+@{ 
+    ViewBag.Title = Model.volunteer.FirstName + " " + Model.volunteer.LastName;
+}
 
+<div class="viewContainer">
+    <h2 class="viewTitle">@Html.DisplayFor(model => model.volunteer.FirstName)</h2>
+    <h2 class="viewTitle">@Html.DisplayFor(model => model.volunteer.LastName)</h2>
 
-<h2>@Html.DisplayFor(model => model.volunteer.FirstName)</h2>
-<h2>@Html.DisplayFor(model => model.volunteer.LastName)</h2>
-
-<div>
-    <hr />
-    @{
-        //Use server rendering to determine an image
-        string pic = "/Content/Volunteers/globe.jpg";
-        string alt = "No Picture Provided.";
-        if (Model.volunteer.VolunteerHasPic)
-        {
-            pic = "/Content/Volunteers/" + Model.volunteer.VolunteerID + "." + Model.volunteer.PicExtension;
-            alt = "Profile shot of " + Model.volunteer.FirstName + Model.volunteer.LastName;
+    <div>
+        <hr />
+        @{
+            //Use server rendering to determine an image
+            string pic = "/Content/Volunteers/globe.jpg";
+            string alt = "No Picture Provided.";
+            if (Model.volunteer.VolunteerHasPic)
+            {
+                pic = "/Content/Volunteers/" + Model.volunteer.VolunteerID + "." + Model.volunteer.PicExtension;
+                alt = "Profile shot of " + Model.volunteer.FirstName + Model.volunteer.LastName;
+            }
         }
-    }
-    @{ 
-        @Model.volunteer.VolunteerHasPic;
-        @Model.volunteer.PicExtension;
-    }
-    <div class="detailsImg">
-        <img src="@pic" alt="@alt" />
+        @{
+            @Model.volunteer.VolunteerHasPic;
+            @Model.volunteer.PicExtension;
+        }
+        <div class="detailsImg">
+            <img src="@pic" alt="@alt" />
+        </div>
+        <dl class="customDL">
+            <dt>
+                @Html.DisplayNameFor(model => model.volunteer.FirstName)
+            </dt>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.volunteer.LastName)
+            </dt>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.department.DepartmentName)
+            </dt>
+            <dd>
+                @Html.ActionLink(Model.department.DepartmentName, "Show", "Department", new { id = Model.volunteer.DepartmentID })
+            </dd>
+
+        </dl>
     </div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.volunteer.FirstName)
-        </dt>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.volunteer.LastName)
-        </dt>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.department.DepartmentName)
-        </dt>
-        <dd>
-            @Html.ActionLink(Model.department.DepartmentName, "Show", "Department", new { id = Model.volunteer.DepartmentID })
-        </dd>
-
-    </dl>
-</div>
-<div class="options">
-    <div class="editlink">@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.volunteer.VolunteerID })</div>
-    <span class="editlink backTwo"> @Html.ActionLink("Edit", "Edit", new { id = Model.volunteer.VolunteerID }) </span>
-    <span class="editlink backOne"> @Html.ActionLink("Back to List", "List")</span>
+    <div class="options">
+        <div class="editlink">@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.volunteer.VolunteerID })</div>
+        <span class="editlink backTwo"> @Html.ActionLink("Edit", "Edit", new { id = Model.volunteer.VolunteerID }) </span>
+        <span class="editlink backOne"> @Html.ActionLink("Back to List", "List")</span>
+    </div>
 </div>

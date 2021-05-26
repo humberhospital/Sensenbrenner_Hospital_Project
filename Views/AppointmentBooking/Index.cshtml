@@ -1,75 +1,77 @@
 ﻿@model IEnumerable<SensenbrennerHospital.Models.ViewModels.ListAppointment>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Appointments list";
 }
+<div class="viewContainer">
+    <h2 class="viewTitle">Appointments List</h2>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Doctor
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.RequestDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.appointmentBookingDto.AppointmentDate)
-        </th>
-        @if (Model.ElementAt(0).isadmin == true)
-        {
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="customTable">
+        <tr>
             <th>
-                @Html.DisplayNameFor(model => model.appointmentBookingDto.Confirmation)
+                Doctor
             </th>
-            <th></th>
-        }
-    </tr>
+            <th>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.RequestDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.appointmentBookingDto.AppointmentDate)
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.appointmentBookingDto.Confirmation)
+                </th>
+                <th></th>
+            }
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            Dr @item.doctorDto.LastName
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.appointmentBookingDto.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.appointmentBookingDto.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.appointmentBookingDto.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.appointmentBookingDto.RequestDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.appointmentBookingDto.AppointmentDate)
-        </td>
-        @if(item.isadmin == true)
+        @foreach (var item in Model)
         {
-            <td>
-                @Html.DisplayFor(modelItem => item.appointmentBookingDto.Confirmation)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.appointmentBookingDto.AppointmentID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.appointmentBookingDto.AppointmentID }) |
-                @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.appointmentBookingDto.AppointmentID })
-            </td>
+            <tr>
+                <td>
+                    Dr @item.doctorDto.LastName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.appointmentBookingDto.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.appointmentBookingDto.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.appointmentBookingDto.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.appointmentBookingDto.RequestDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.appointmentBookingDto.AppointmentDate)
+                </td>
+                @if (item.isadmin == true)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.appointmentBookingDto.Confirmation)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.appointmentBookingDto.AppointmentID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.appointmentBookingDto.AppointmentID }) |
+                        @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.appointmentBookingDto.AppointmentID })
+                    </td>
+                }
+            </tr>
         }
-    </tr>
-}
 
-</table>
+    </table>
+</div>

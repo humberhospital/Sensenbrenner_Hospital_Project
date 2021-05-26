@@ -1,64 +1,67 @@
 ﻿@model IEnumerable<SensenbrennerHospital.Models.ViewModels.ListFaq>
 @Scripts.Render("~/bundles/faqScripts")
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Faqs";
 }
 
-<h2>F.A.Q</h2>
+<div class="viewContainer">
 
-<p>
-    @if (Model.First().isadmin)
-    {
-        @Html.ActionLink("Create New Faq", "Create")
-    }
-</p>
-<div id="category-container">
-    <h3>Categories</h3>
-    <div>
+    <h2 class="viewTitle">F.A.Qs</h2>
+
+    <p>
         @if (Model.First().isadmin)
         {
-            @Html.ActionLink("Manage Categories", "List", "Category")
+            @Html.ActionLink("Create New Faq", "Create")
         }
-    </div>
-    <span>
-        @foreach (var item in Model.First().listOfCategories)
-        {
-            Html.Raw(item.CategoryID);
-            <button class="btn-category" id="btn-@item.CategoryID">@item.CategoryName</button>
-        }
-    </span>
-</div>
-<table class="table">
-    <tr>
-        <th>Question</th>
-        <th>Answer</th>
-        <th>Categories</th>
-        @if (Model.First().isadmin)
-        {
-            <th>More options</th>
-        }
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr class="@Html.Raw(item.category.CategoryName + " ") question">
-            <td>
-                @item.faq.Question
-            </td>
-            <td>
-                @item.faq.Answer
-            </td>
-            <td>
-                @item.category.CategoryName
-            </td>
+    </p>
+    <div id="category-container">
+        <h3>Categories</h3>
+        <div>
             @if (Model.First().isadmin)
             {
-                <td>
-                    @Html.ActionLink("Edit", "Update", new { id = item.faq.FaqID }) |
-                    @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.faq.FaqID })
-                </td>
+                @Html.ActionLink("Manage Categories", "List", "Category")
+            }
+        </div>
+        <span>
+            @foreach (var item in Model.First().listOfCategories)
+            {
+                Html.Raw(item.CategoryID);
+                <button class="btn-category" id="btn-@item.CategoryID">@item.CategoryName</button>
+            }
+        </span>
+    </div>
+    <table class="customTable">
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Categories</th>
+            @if (Model.First().isadmin)
+            {
+                <th>More options</th>
             }
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr class="@Html.Raw(item.category.CategoryName + " ") question">
+                <td>
+                    @item.faq.Question
+                </td>
+                <td>
+                    @item.faq.Answer
+                </td>
+                <td>
+                    @item.category.CategoryName
+                </td>
+                @if (Model.First().isadmin)
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Update", new { id = item.faq.FaqID }) |
+                        @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.faq.FaqID })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</div>

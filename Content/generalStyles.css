@@ -1,0 +1,73 @@
+﻿body {
+}
+
+.viewContainer {
+    padding: 2em;
+}
+
+.viewTitle { 
+    margin-bottom: 40px;
+}
+
+.customTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.customTable td, .customTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.customTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.customTable tr:hover {
+    background-color: #ddd;
+}
+
+    .customTable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #113573;
+        color: white;
+    }
+
+.customDL {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.customDL dt {
+    flex: 1 0 20%;
+    margin-bottom: 5px;
+    color: #113573;
+}
+
+.customDL dd {
+    flex: 1 0 70%;
+    text-align: left;
+}
+
+.customForm {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.formTitle {
+    border-bottom: 1px solid black;
+    flex: 1 0 100%;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.customForm .form-group {
+    flex: 1 0 100%;
+    display: flex;
+}
+
+.customForm .form-group label {
+    flex: 1 0 20%;
+}

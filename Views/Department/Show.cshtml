@@ -1,50 +1,54 @@
 ﻿@model SensenbrennerHospital.Models.ViewModels.ShowDepartment
 
 @{
-    ViewBag.Title = "Show Department";
+    ViewBag.Title = Model.department.DepartmentName;
 }
 
-<h2>@Model.department.DepartmentName</h2>
+<div class="viewContainer">
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.department.DepartmentName)
-        </dt>
+    <h2 class="viewTitle">@Model.department.DepartmentName</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.department.DepartmentName)
-        </dd>
+    <div>
+        <dl class="customDL">
+            <dt>
+                @Html.DisplayNameFor(model => model.department.DepartmentName):
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.department.DepartmentPhoneNumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.department.DepartmentName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.department.DepartmentPhoneNumber)
-        </dd>
-    </dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.department.DepartmentPhoneNumber):
+            </dt>
 
-    @if (Model.listOfPractices.Count() >= 1)
-    {
-        <h4>Practices</h4>
-        <hr />
-        <dl lcass="dl-horizontal">
-            @foreach (var item in Model.listOfPractices)
-            {
-                <dt>
-                    @Html.DisplayNameFor(model => model.listOfPractices.First().PracticeName)
-                </dt>
-
-                <dd>
-                    @Html.ActionLink(item.PracticeName, "Details", "Practice", new { id = item.PracticeID })
-                </dd>
-            }
+            <dd>
+                @Html.DisplayFor(model => model.department.DepartmentPhoneNumber)
+            </dd>
         </dl>
-    }
+
+        @if (Model.listOfPractices.Count() >= 1)
+        {
+            <h4>Practices</h4>
+            <dl class="customDL">
+                @foreach (var item in Model.listOfPractices)
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.listOfPractices.First().PracticeName)
+                    </dt>
+
+                    <dd>
+                        @Html.ActionLink(item.PracticeName, "Details", "Practice", new { id = item.PracticeID })
+                    </dd>
+                }
+            </dl>
+        }
+    </div>
+    <p>
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Update", new { id = Model.department.DepartmentID }) Html.Raw("|");
+        }
+        @Html.ActionLink("Back to List", "List")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Update", new { id = Model.department.DepartmentID }) |
-    @Html.ActionLink("Back to List", "List")
-</p>

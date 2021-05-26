@@ -20,12 +20,12 @@
                     </a>
                 </div>
                 <ul id="mainMenu">
-                    <li>@Html.ActionLink("Online Appointment", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Patient and Visitors", "About", "Home")</li>
+                    <li>@Html.ActionLink("Online Appointment", "Create", "AppointmentBooking")</li>
+                    <li>@Html.ActionLink("Patient and Visitors", "List", "Faq")</li>
                     <li>@Html.ActionLink("Department Directory", "List", "Department")</li>
                     <li>@Html.ActionLink("About Us", "About", "Home")</li>
                     <li>@Html.ActionLink("Careers", "Index", "Career")</li>
-                    <li>@Html.ActionLink("Faq", "List", "Faq")</li>
+                    <li>@Html.ActionLink("Practices", "ListPractices", "Practice")</li>
                     <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
                 </ul>
             </nav>
@@ -45,7 +45,7 @@
                 {
                     <span class="signInButton"><a href="@Url.Action("Login", "Account")">Sign In</a></span>
                 }
-                <span class="fas fa-search"><a href="#"></a></span>
+                <span class="fas fa-search searchIcon"><a href="#"></a></span>
             </div>
         </div>
         <div class="updates">
@@ -62,15 +62,15 @@
     <!-- Footer -->
     <footer>
         <ul class="footerMenu">
-            <li><a href="#">Online Appointment</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Department Directory</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Patients and Visitors</a></li>
-            <li><a href="#">Careers</a></li>
+            <li>@Html.ActionLink("Online Appointment", "Create", "AppointmentBooking")</li>
+            <li>@Html.ActionLink("About Us", "About", "Home")</li>
+            <li>@Html.ActionLink("Department Directory", "List", "Department")</li>
+            <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+            <li>@Html.ActionLink("Patient and Visitors", "List", "Faq")</li>
+            <li>@Html.ActionLink("Careers", "Index", "Career")</li>
         </ul>
         <div class="footerExtraInfo">
-            <a href="#"><img src="@Url.Content("~/Content/Images/siteLogo2.png")" alt="sensenbrenner hospital logo"></a>
+            <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Content/Images/siteLogo2.png")" alt="sensenbrenner hospital logo"></a>
             <a href="#">Terms and conditions</a>
             <a href="#">Privacy policy</a>
         </div>
